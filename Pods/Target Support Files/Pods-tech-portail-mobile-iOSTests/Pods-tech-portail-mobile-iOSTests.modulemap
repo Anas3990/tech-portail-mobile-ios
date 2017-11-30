@@ -1,0 +1,6 @@
+framework module Pods_tech_portail_mobile_iOSTests {
+  umbrella header "Pods-tech-portail-mobile-iOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

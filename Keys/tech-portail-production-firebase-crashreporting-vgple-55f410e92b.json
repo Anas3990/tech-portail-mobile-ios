@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tech-portail-production",
+  "private_key_id": "55f410e92b7b5d43b9536a8997ac98992ff45c34",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCg6G//rdLkCqEs\nMxTY6gnlG0x7rYR/46sX/mPBMoCLJtzIsWVg9DqSQfp8Glaxt9a/vJ7GBdSxQeqs\nyp++3h03RYrA0eBEeuxebQzvzjMaq54yEoXLEzFUiFVKHouLe9Kh+7aN/sRkwZMw\nmUmYtEAjgsF8PfofmTJu5Xwn0QpCc5hHtfCbzP9HLJ2TeY724LCw0WvN9ikYQJ2W\nf0YQrF8zqf3M3uunFrvnEJSefpxDy0CWU5JkLyVhAwDrKJBZfWQ7vnnzJi5rVgU1\nFmX86Ym07UzDVhNI090/9L+zcUCeGDAP7m2gTypeK19n9kjfYnhIxhJuPriKZqLL\nDcJ/X+w9AgMBAAECggEAAR/KF4BpNqboxRoAaiGZ5a+x1N6NqDMUt5+BMGZhvyrT\nwDZhYQTF2dTrZ9TeJglNDYjNpR8ldgLBJEis/lI0otFtBgzsZxcanKF0T3P7KxAY\n9p1CxV65IwUODSG4hpTsf5M3/QJwu/Mqrl+ZiMaWIFWxz+eBTe7aMo5AC9XVtmMG\nzsQ1chOkMKVsmoFRKdMGaXTfZr0DpofnxFUqg2P4vy/6R1RZc/xDz/7PAittfO4K\nwvMXwvltxuXaSZnEOOImYTeRh3uAc9Yql9S2Sss84C0gz5Gno7zv/usxeLZJGc6f\nBxk1lJORW6Awe+uqN/f27vRAD5FanBJIchQeLicNxQKBgQDMgDi4Z54lrtqUllNg\nbnQbUF6wMa0a4YP1JGL/l32EHZhWKhGOsKoUhe0HMdIKDvF/9OEzi/wbCl4/Ax6Y\ng+5sSE5dB7l09IBjSHDBKwBInTI8sXq5xAtAw91MY865f8/Sji8jT0s26vDcFMRa\naOB/6eGy6Iip8CPPBHyD7UbI9wKBgQDJbd1pN5M2GlXWggSFAEE2tEUfhXWUxNOo\nnRz+Ai4iRsPdUzN1HjxePAT8V0F8QjdwgsNNN3FBPDMnoC9P97p5ktdq4S+Lr6kx\nrJSSh+mycjuB2lEBFsLTL4u2klyoaYuFnkl0eEGtDUs5j8DmQKUTp53qyOM+4M/O\nZe2NpA87awKBgFAKg6jRjZmsNYtgxyOAN9uU+mq2Fs3lpJNneYQWlB8Iwl4/Ov4B\ncaB0xtBBFLexH574hsh5KuSei0LYgropMUGaj2lkI5d+N14ktVU18nd5Z3dP8/wP\nmmPwBYbnrbr3Jq1/zz1fxM2q6TkKu8uzLuOB9D/lOdBh2HInjGDKlyEDAoGAeOJx\nZWrP80E80J543eT4Pj9T2IX8ucqiB+g6dQqT60gy1cnP8PKzYg59I3+uMkd/BAvF\n77pdQrxBKv/MRR60D7Abje4U3a0PSlt7UrE0hD5gDh8aTB//zkQTgf82km+9JvSG\nutpM9/EpeyMVrlmPeEs4z6W+E4dRz1mGhmG2Ln8CgYEAp8EEOUMGvonVlTXJ2Mp7\nZ/iEtOnMGbWF2w+AOtuPTDT3g1I45IC5Zvenkq3Hntq4WTMEZiC62mQQjNCL2dBc\ng8Sw4Eys943NstCnRTVwypcnBBnDKWq4/bqMfmfYNpfN0uJYhnbHBZ/XMVRiXSwB\nwpMiVmsYVX3D2pJQ41eIDPM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-crashreporting-vgple@tech-portail-production.iam.gserviceaccount.com",
+  "client_id": "101118676106088615648",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-crashreporting-vgple%40tech-portail-production.iam.gserviceaccount.com"
+}

@@ -2,11 +2,13 @@
 //  AppDelegate.swift
 //  tech-portail-mobile-iOS
 //
-//  Created by Chaima Merbouh on 17-11-18.
+//  Created by Anas Merbouh on 17-11-18.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        FirebaseApp.configure()
+        
+        // Définir blanc comme couleur de la status bar
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        
+        // Vérifier si un utilisateur est connecté et le diriger vers le bon écran
+        if Auth.auth().currentUser != nil {
+            let tabBarCtrl = TabBarController.fromStoryboard()
+            
+            window?.rootViewController = tabBarCtrl
+        } else {
+            window?.rootViewController = LoginController()
+        }
+        
+        
         return true
     }
 
