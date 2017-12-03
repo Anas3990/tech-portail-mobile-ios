@@ -35,6 +35,9 @@ class NewInfosController: UITableViewController {
         
         self.title = new?.title
         
+        // Rendre la barre de navigation plus petite afin d'éviter d'empiéter sur le contenu
+        navigationItem.largeTitleDisplayMode = .never
+        
         self.authorNameLabel.text = new?.author["name"]
         self.authorEmailLabel.text = new?.author["email"]
         

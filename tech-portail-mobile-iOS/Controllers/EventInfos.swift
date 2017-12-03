@@ -12,11 +12,16 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class EventInfosController: UITableViewController {
-    // Références aux éléments de l'interface de l'application    
+    
+    // Références aux éléments de l'interface de l'application
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var authorEmailLabel: UILabel!
     
+    @IBOutlet weak var isUserAttendingLabel: UILabel!
     @IBOutlet weak var attendancesCountLabel: UILabel!
+    
+    @IBOutlet weak var attendingCheckButton: UIButton!
+    @IBOutlet weak var notAttendingCheckButton: UIButton!
     
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var endDate: UILabel!
@@ -34,31 +39,34 @@ class EventInfosController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .full
-        
+ 
         self.title = event?.title
         
+        // Rendre la barre de navigation plus petite afin d'éviter d'empiéter sur le contenu
+        navigationItem.largeTitleDisplayMode = .never
+        
+        //
         self.authorNameLabel.text = event?.author["name"]
         self.authorEmailLabel.text = event?.author["email"]
         
+        //        
         self.attendancesCountLabel.text = "personne(s) y participe(nt)"
         
-        self.startDate.text = dateFormatter.string(from: (event?.startDate)!)
-        self.endDate.text = dateFormatter.string(from: (event?.endDate)!)
+        //
+        let dateOnlyFormatter = DateFormatter()
+        let timeOnlyFormatter = DateFormatter()
         
+        //
+        dateOnlyFormatter.dateFormat = "EEEE dd MMMM"
+        timeOnlyFormatter.dateFormat = "hh:mm"
+        
+        self.startDate.text = "le " + dateOnlyFormatter.string(from: (event?.startDate)!) + ", " + " à " + timeOnlyFormatter.string(from: (event?.startDate)!)
+        self.endDate.text = "le " + dateOnlyFormatter.string(from: (event?.startDate)!) + ", " + " à " + timeOnlyFormatter.string(from: (event?.endDate)!)
+        
+        //
         self.descriptionTextView.text = event?.body
     }
-    
-  
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showAttendancesListSegue" {
-            let attendancesCtrl = AttendancesController()
-            
-            attendancesCtrl.eventReference = self.eventReference
-        }
-    }
+
     
     @IBAction func presentTapped(_ sender: Any) {
         let addAttendanceCtrl = AddAttendanceController()
@@ -76,37 +84,29 @@ class EventInfosController: UITableViewController {
         let attendancesCollection = reference.collection("attendances")
         let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
         
-        let firestore = Firestore.firestore()
-        firestore.runTransaction({ (transaction, errorPointer) -> Any? in
-            let eventSnapshot: DocumentSnapshot
-            do {
-                try eventSnapshot = transaction.getDocument(reference)
-            } catch let error as NSError {
-                errorPointer?.pointee = error
-                return nil
-            }
-            
-            guard let event = EventObject(dictionary: eventSnapshot.data()) else {
-                let error = NSError(domain: "TechPortailErrorDomain", code: 0, userInfo: [
-                    NSLocalizedDescriptionKey: "Unable to write to attendance at Firestore path: \(reference.path)"
-                ])
-                errorPointer?.pointee = error
-                return nil
-            }
-            
-            transaction.setData(["nonAttendantName": "Anas Merbouh", "present": false, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
-            
-            return nil
-        }) { (object, error) in
+        attendanceReference.setData(["nonAttendantName": "Anas Merbouh", "present": false, "confirmedAt": FieldValue.serverTimestamp()]) { (error) in
             if let error = error {
-                print(error)
-            } else {
-                print("Absence confirmée")
+                // Alerte à afficher si une erreur est survenue
+                let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de confirmation de votre absence : \(error.localizedDescription)" , preferredStyle: .alert)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(OKAction)
+                
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
     
-   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAttendancesSegue" {
+            guard let reference = eventReference else { return }
+            
+            let attendancesCtrl = AttendancesController.fromStoryboard()
+            attendancesCtrl.eventReference = reference
+        } else {
+            
+        }
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

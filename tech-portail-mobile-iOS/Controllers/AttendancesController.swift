@@ -62,9 +62,12 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
     
     //
     fileprivate func baseQuery() -> Query {
-        let reference = eventReference
+        guard let reference = eventReference else {
+            print("Document reference not found")
+            return Firestore.firestore().collection("events")
+        }
         
-        let attendancesCollection = reference!.collection("attendances").whereField("present", isEqualTo: true)
+        let attendancesCollection = reference.collection("attendances").whereField("present", isEqualTo: true)
         
        return attendancesCollection
     }

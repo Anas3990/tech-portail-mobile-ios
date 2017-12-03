@@ -13,6 +13,7 @@ struct AttendanceObject {
     var attendanceEndsAt: Date
     var confirmedAt: Date
     var attendantName: String
+    var present: Bool
     
     
     var dictionary: [String: Any] {
@@ -20,7 +21,8 @@ struct AttendanceObject {
             "attendanceStartsAt": attendanceStartsAt,
             "attendanceEndsAt": attendanceEndsAt,
             "confirmedAt": confirmedAt,
-            "attendantName": attendantName
+            "attendantName": attendantName,
+            "present": present
         ]
     }
 }
@@ -30,8 +32,9 @@ extension AttendanceObject: DocumentSerializable {
         guard let attendanceStartsAt = dictionary["attendanceStartsAt"] as? Date,
             let attendanceEndsAt = dictionary["attendanceEndsAt"] as? Date,
             let confirmedAt = dictionary["confirmedAt"] as? Date,
-            let attendantName = dictionary["attendantName"] as? String else { return nil }
+            let attendantName = dictionary["attendantName"] as? String,
+            let present = dictionary["present"] as? Bool else { return nil }
         
-        self.init(attendanceStartsAt: attendanceStartsAt, attendanceEndsAt: attendanceEndsAt, confirmedAt: confirmedAt, attendantName: attendantName)
+        self.init(attendanceStartsAt: attendanceStartsAt, attendanceEndsAt: attendanceEndsAt, confirmedAt: confirmedAt, attendantName: attendantName, present: present)
     }
 }

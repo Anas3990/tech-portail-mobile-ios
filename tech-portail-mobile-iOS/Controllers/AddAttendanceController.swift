@@ -15,6 +15,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class AddAttendanceController: FormViewController {
+    
     //
     var eventReference: DocumentReference?
     var eventStartDate: Date?
@@ -65,29 +66,7 @@ class AddAttendanceController: FormViewController {
                 let attendancesCollection = reference.collection("attendances")
                 let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
                 
-                let firestore = Firestore.firestore()
-                
-                firestore.runTransaction({ (transaction, errorPointer) -> Any? in
-                    let eventSnapshot: DocumentSnapshot
-                    do {
-                        try eventSnapshot = transaction.getDocument(reference)
-                    } catch let error as NSError {
-                        errorPointer?.pointee = error
-                        return nil
-                    }
-                    
-                    guard let event = EventObject(dictionary: eventSnapshot.data()) else {
-                        let error = NSError(domain: "TechPortailErrorDomain", code: 0, userInfo: [
-                            NSLocalizedDescriptionKey: "Unable to write to attendance at Firestore path: \(reference.path)"
-                            ])
-                        errorPointer?.pointee = error
-                        return nil
-                    }
-                    
-                    transaction.setData(["attendantName": "Anas Merbouh", "present": true, "attendanceStartsAt": attendanceStartsAt, "attendanceEndsAt": attendanceEndsAt, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
-                    
-                    return nil
-                }) { (object, error) in
+                attendanceReference.setData(["attendantName": "Anas Merbouh", "present": true, "attendanceStartsAt": attendanceStartsAt, "attendanceEndsAt": attendanceEndsAt, "confirmedAt": FieldValue.serverTimestamp()], completion: { (error) in
                     if let error = error {
                         // Alerte à afficher si une erreur est survenue
                         let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de confirmation de votre présence : \(error.localizedDescription)" , preferredStyle: .alert)
@@ -97,9 +76,9 @@ class AddAttendanceController: FormViewController {
                         
                         self.present(alertController, animated: true, completion: nil)
                     } else {
-                        self.dismiss(animated: true, completion: nil)
+                       self.dismiss(animated: true, completion: nil)
                     }
-                }
+                })
             } else {
                 // Alerte à afficher si les champs requis ne sont pas remplis
                 let alertController = UIAlertController(title: "Oups !", message: "Veuillez vous assurer que tous les champs obligatoires soient remplis avant de confirmer votre présence." , preferredStyle: .alert)

@@ -37,7 +37,7 @@ extension EventObject: DocumentSerializable {
             let endDate = dictionary["endDate"] as? Date,
             let startDate = dictionary["startDate"] as? Date,
             let author = dictionary["author"] as? [String: String],
-            let timestamp = dictionary["timestamp"] as? Any else { return nil }
+            let timestamp = dictionary["timestamp"] else { return nil }
         
         self.init(past: past, author: author, body: body, endDate: endDate, startDate: startDate, timestamp: timestamp, title: title)
     }

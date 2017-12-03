@@ -14,8 +14,6 @@
 		11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */; };
 		11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */; };
 		11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5D1FCC02E9001187C8 /* Attendance.swift */; };
-		11B5428B1FCFAD2100AD9A18 /* DocumentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5428A1FCFAD2100AD9A18 /* DocumentsController.swift */; };
-		11B5428D1FCFAD8A00AD9A18 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5428C1FCFAD8A00AD9A18 /* Folder.swift */; };
 		764455131FC13FDA0070E831 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455121FC13FDA0070E831 /* NewsController.swift */; };
 		764455151FC140250070E831 /* AddNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455141FC140250070E831 /* AddNewController.swift */; };
 		764455171FC1451A0070E831 /* TeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455161FC1451A0070E831 /* TeamController.swift */; };
@@ -66,8 +64,6 @@
 		11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAttendanceController.swift; sourceTree = "<group>"; };
 		11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendancesController.swift; sourceTree = "<group>"; };
 		11A3DF5D1FCC02E9001187C8 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
-		11B5428A1FCFAD2100AD9A18 /* DocumentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsController.swift; sourceTree = "<group>"; };
-		11B5428C1FCFAD8A00AD9A18 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		2661BCFCEA204A0AA42AE5CF /* Pods-tech-portail-mobile-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOS/Pods-tech-portail-mobile-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		622136DDA3611C3DE029042D /* Pods-tech-portail-mobile-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSTests/Pods-tech-portail-mobile-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7434BC649BA002BCA480452D /* Pods-tech-portail-mobile-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSTests/Pods-tech-portail-mobile-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -212,7 +208,6 @@
 				76A365471FC13A440091EA54 /* New.swift */,
 				76A3654B1FC13A600091EA54 /* User.swift */,
 				11A3DF5D1FCC02E9001187C8 /* Attendance.swift */,
-				11B5428C1FCFAD8A00AD9A18 /* Folder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,7 +225,6 @@
 				764455181FC147DD0070E831 /* AddEventController.swift */,
 				11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */,
 				11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */,
-				11B5428A1FCFAD2100AD9A18 /* DocumentsController.swift */,
 				764455161FC1451A0070E831 /* TeamController.swift */,
 				1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */,
 				76BEABF91FC1341E00F39BC1 /* TabBarController.swift */,
@@ -606,12 +600,10 @@
 				76A365481FC13A440091EA54 /* New.swift in Sources */,
 				11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */,
 				11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */,
-				11B5428D1FCFAD8A00AD9A18 /* Folder.swift in Sources */,
 				76A365461FC13A3D0091EA54 /* Event.swift in Sources */,
 				1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */,
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
 				7644551B1FC148830070E831 /* EventsController.swift in Sources */,
-				11B5428B1FCFAD2100AD9A18 /* DocumentsController.swift in Sources */,
 				764455191FC147DD0070E831 /* AddEventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

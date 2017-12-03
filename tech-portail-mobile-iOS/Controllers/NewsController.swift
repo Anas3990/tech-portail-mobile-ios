@@ -113,6 +113,31 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
         return news.count
     }
     
+    // Fonction qui permet de supprimer/modifier une nouvelle
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alertVC = UIAlertController(title: "Supprimer la nouvelle", message: "Êtes-vous sûr de vouloir supprimer cette nouvelle ? Cette action est irréversible", preferredStyle: .alert)
+            
+            let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
+            alertVC.addAction(alertActionCancel)
+            
+            // Action à effectuer si le bouton "Envoyer" est appuyé
+            let alertActionDelete = UIAlertAction(title: "Oui", style: .default) {
+                (_) in
+                // Supprimer la nouvelle de Firebase
+                self.documents[indexPath.row].reference.delete();
+                
+                // Supprimer la rangée de la table de données
+                self.news.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            alertVC.addAction(alertActionDelete)
+            
+            
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
     // Populer la cellule des informations sur la nouvelle
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newCell", for: indexPath) as! NewCell
@@ -146,7 +171,7 @@ class NewCell: UITableViewCell {
     
     func populate(new: NewObject) {
         // 
-        dateLabel.text = "Le lundi 25 décembre 2017"
+        dateLabel.text = "Le " + String(describing: new.timestamp)
         titleLabel.text = new.title
         bodyLabel.text = new.body
     }

@@ -14,6 +14,10 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     
     // Référence aux éléments de l'interface de l'application
     @IBOutlet var eventsTableView: UITableView!
+    @IBOutlet weak var eventsFilterSegmentedControl: UISegmentedControl!
+    
+    //
+    let backgroundView = UIImageView()
     
     // Déclaration de l'array d'évènements
     private var events = [EventObject]()
@@ -32,6 +36,11 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //
+        backgroundView.contentMode = .scaleAspectFit
+        backgroundView.alpha = 0.5
+        eventsTableView.backgroundView = backgroundView
         
         //
         eventsTableView.dataSource = self
@@ -85,10 +94,20 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
             self.events = models
             self.documents = snapshot.documents
             
+            if self.documents.count > 0 {
+                self.eventsTableView.backgroundView = nil
+            } else {
+                self.eventsTableView.backgroundView = self.backgroundView
+            }
+            
             DispatchQueue.main.async {
                 self.eventsTableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func eventsFilterSegmentedControlSwitch(_ sender: UISegmentedControl) {
+        
     }
     
     @IBAction func addEventTapped(_ sender: Any) {
@@ -102,6 +121,32 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
+    
+
+    // Fonction qui permet de supprimer/modifier un évènement
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alertVC = UIAlertController(title: "Supprimer l'évènement", message: "Êtes-vous sûr de vouloir supprimer cet évènement ? Cette action est irréversible", preferredStyle: .alert)
+            
+            let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
+            alertVC.addAction(alertActionCancel)
+            
+            // Action à effectuer si le bouton "Envoyer" est appuyé
+            let alertActionDelete = UIAlertAction(title: "Oui", style: .default) {
+                (_) in
+                // Supprimer l'évènement de Firebase
+                self.documents[indexPath.row].reference.delete();
+                
+                // Supprimer la rangée de la table de données
+                self.events.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            alertVC.addAction(alertActionDelete)
+            
+            
+            self.present(alertVC, animated: true, completion: nil)
+        }
+     }
     
     // Populer la cellule des informations sur la nouvelle
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -134,7 +179,14 @@ class EventCell: UITableViewCell {
     
     func populate(event: EventObject) {
         //
-        dateLabel.text = "Le lundi 25 décembre 2017"
+        let dateOnlyFormatter = DateFormatter()
+        let timeOnlyFormatter = DateFormatter()
+        
+        dateOnlyFormatter.dateFormat = "EEEE dd MMMM"
+        timeOnlyFormatter.dateFormat = "hh:mm"
+        
+        //
+        dateLabel.text = "Le " + dateOnlyFormatter.string(from: event.startDate) + ", de " + timeOnlyFormatter.string(from: event.startDate) + " à " + timeOnlyFormatter.string(from: event.endDate)
         titleLabel.text = event.title
         bodyLabel.text = event.body
     }
