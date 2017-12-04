@@ -23,6 +23,8 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     private var events = [EventObject]()
     private var documents: [DocumentSnapshot] = []
     
+    private var listener: ListenerRegistration?
+    
     fileprivate var query: Query? {
         didSet {
             if let listener = listener {
@@ -31,9 +33,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
             }
         }
     }
-    
-    private var listener: ListenerRegistration?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

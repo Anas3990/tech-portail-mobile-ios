@@ -11,6 +11,7 @@
 		1134BEB51FCB6A1B00D8FBBF /* NewInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */; };
 		1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB61FCB73C400D8FBBF /* EventInfos.swift */; };
 		1134BEB91FCB7E0900D8FBBF /* UserInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */; };
+		115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */; };
 		11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */; };
 		11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */; };
 		11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5D1FCC02E9001187C8 /* Attendance.swift */; };
@@ -61,6 +62,7 @@
 		1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfosController.swift; sourceTree = "<group>"; };
 		1134BEB61FCB73C400D8FBBF /* EventInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfos.swift; sourceTree = "<group>"; };
 		1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfosController.swift; sourceTree = "<group>"; };
+		115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonAttendance.swift; sourceTree = "<group>"; };
 		11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAttendanceController.swift; sourceTree = "<group>"; };
 		11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendancesController.swift; sourceTree = "<group>"; };
 		11A3DF5D1FCC02E9001187C8 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				76A365471FC13A440091EA54 /* New.swift */,
 				76A3654B1FC13A600091EA54 /* User.swift */,
 				11A3DF5D1FCC02E9001187C8 /* Attendance.swift */,
+				115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				76A365481FC13A440091EA54 /* New.swift in Sources */,
 				11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */,
 				11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */,
+				115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */,
 				76A365461FC13A3D0091EA54 /* Event.swift in Sources */,
 				1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */,
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
