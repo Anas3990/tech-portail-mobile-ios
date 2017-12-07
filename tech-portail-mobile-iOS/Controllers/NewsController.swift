@@ -179,7 +179,7 @@ class NewCell: UITableViewCell {
     
     func populate(new: NewObject) {
         // 
-        dateLabel.text = "Le " + String(describing: new.timestamp)
+        dateLabel.text = "Le \(new.timestamp)"
         titleLabel.text = new.title
         bodyLabel.text = new.body
     }

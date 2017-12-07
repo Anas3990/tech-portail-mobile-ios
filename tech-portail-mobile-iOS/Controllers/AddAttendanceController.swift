@@ -47,14 +47,12 @@ class AddAttendanceController: FormViewController {
                 
                 startDateRow.value = eventStartDate
                 startDateRow.minimumDate = eventStartDate
-                startDateRow.maximumDate = eventEndDate
             }
             <<< TimeInlineRow() { endDateRow in
                 endDateRow.title = "À"
                 endDateRow.tag = "attendanceEndsAt"
                 
                 endDateRow.value = eventEndDate
-                endDateRow.minimumDate = eventStartDate
                 endDateRow.maximumDate = eventEndDate
             }
     }

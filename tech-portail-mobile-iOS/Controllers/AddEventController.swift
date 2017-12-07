@@ -58,6 +58,7 @@ class AddEventController: FormViewController {
                 endDateRow.title = "Fin"
                 endDateRow.tag = "endDate"
                 
+                endDateRow.value = Date() + 3600
             }
             +++ Section()
             <<< TextAreaRow() {
@@ -74,7 +75,7 @@ class AddEventController: FormViewController {
             if let title = titleRow.value, let startDate = startDateRow.value, let endDate = endDateRow.value, let description = descriptionRow.value {
                 // Envoyer les informations stockées dans la constante "event" sur Firebase
                 dbService.writeEvent(withTitle: title, startDate: startDate, endDate: endDate, body: description)
-                
+                    
                 //
                 dismiss(animated: true, completion: nil)
             } else if let title = titleRow.value, let startDate = startDateRow.value, let endDate = endDateRow.value {

@@ -142,10 +142,12 @@ class EventInfosController: UITableViewController {
         
         self.present(activityViewController, animated: true, completion: nil)
     }
-    
+        
+    // Fonction qui permet à un utilisateur d'ajouter un évènement à son calendrier personnel
     func addEventToCalendar(title: String, body: String?, startDate: Date, endDate: Date) {
         let eventStore = EKEventStore()
         
+        //
         eventStore.requestAccess(to: .event, completion: { (granted, error) in
             if (granted) && (error == nil) {
                 let event = EKEvent(eventStore: eventStore)
@@ -155,8 +157,9 @@ class EventInfosController: UITableViewController {
                 
                 event.notes = body
                 
-                
                 event.calendar = eventStore.defaultCalendarForNewEvents
+                
+                //
                 do {
                     try eventStore.save(event, span: .thisEvent)
                 } catch let error as NSError {
@@ -199,14 +202,14 @@ class EventInfosController: UITableViewController {
         }
     }
     
+    //
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAttendancesSegue" {
-            guard let reference = eventReference else { return }
-            
-            let attendancesCtrl = AttendancesController.fromStoryboard()
-            attendancesCtrl.eventReference = reference
-        } else {
-            
+            if let vc = segue.destination as? AttendancesController {
+                guard let reference = self.eventReference else { return }
+                
+                vc.eventReference = reference
+            }
         }
     }
     

@@ -171,6 +171,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     // Action à effectuer lorsqu'une cellule a été sélectionnée
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventInfosCtrl = EventInfosController.fromStoryboard()
+        
         eventInfosCtrl.event = events[indexPath.row]
         eventInfosCtrl.eventReference = documents[indexPath.row].reference
         

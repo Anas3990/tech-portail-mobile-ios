@@ -476,7 +476,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="DYV-Mh-WPi" rowHeight="57" style="IBUITableViewCellStyleDefault" id="dhe-Qh-9qz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="DYV-Mh-WPi" rowHeight="57" style="IBUITableViewCellStyleDefault" id="dhe-Qh-9qz">
                                         <rect key="frame" x="0.0" y="183" width="414" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dhe-Qh-9qz" id="L07-hs-4Ln">
@@ -608,7 +608,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54I-ci-48u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="911"/>
+            <point key="canvasLocation" x="1802.8985507246377" y="910.59782608695662"/>
         </scene>
         <!--Liste des présences-->
         <scene sceneID="rPx-vc-aST">
@@ -971,6 +971,13 @@
                             <outlet property="delegate" destination="mEz-HL-dK9" id="5K3-dP-Pi8"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="kO7-rV-6tI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="jhr-bG-BDc">
+                            <connections>
+                                <action selector="sendMailBarButtonItemTapped:" destination="mEz-HL-dK9" id="Nkg-Dd-i8h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailLabel" destination="UrE-gP-CB8" id="dOZ-zV-xZL"/>
                         <outlet property="firstNameLabel" destination="gQ4-Le-xfL" id="KpE-dA-GcO"/>

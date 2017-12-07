@@ -140,8 +140,12 @@ class AttendanceCell: UITableViewCell {
     
     func populate(attendance: AttendanceObject) {
         //
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "hh:mm"
+        
+        //
         attendantNameLabel.text = attendance.attendantName
-        attendanceLengthLabel.text = "De \(attendance.attendanceStartsAt) à \(attendance.attendanceEndsAt)"
+        attendanceLengthLabel.text = "De \(timeFormatter.string(from: (attendance.attendanceStartsAt))) à \(timeFormatter.string(from: attendance.attendanceEndsAt))"
     }
     
     override func prepareForReuse() {

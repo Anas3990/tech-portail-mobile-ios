@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Cette application désire accéder à votre calendrier personnel afin que vous puissiez y ajouter des évènements.</string>
 	<key>CFBundleDevelopmentRegion</key>
