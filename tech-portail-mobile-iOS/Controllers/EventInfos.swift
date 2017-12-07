@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 import FirebaseFirestore
 import FirebaseAuth
@@ -127,6 +128,48 @@ class EventInfosController: UITableViewController {
         }
     }
     
+    // Action à effectuer lorsque l'utilisateur appuie sur l'icône "Partager" (soit montrer un action sheet similaire à celui que l'on retrouve sur l'application Photos)
+    @IBAction func shareBarButtonItemTapped(_ sender: UIBarButtonItem) {
+        guard let title = self.event?.title else {
+            return
+        }
+        
+        guard let body = self.event?.body else {
+            return
+        }
+        
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [title, body], applicationActivities: nil)
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func addEventToCalendar(title: String, body: String?, startDate: Date, endDate: Date) {
+        let eventStore = EKEventStore()
+        
+        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            if (granted) && (error == nil) {
+                let event = EKEvent(eventStore: eventStore)
+                event.title = title
+                event.startDate = startDate
+                event.endDate = endDate
+                
+                event.notes = body
+                
+                
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                do {
+                    try eventStore.save(event, span: .thisEvent)
+                } catch let error as NSError {
+                    print(error)
+                    return
+                }
+            } else {
+                
+            }
+        })
+    }
+    
+    //
     @IBAction func presentTapped(_ sender: Any) {
         let addAttendanceCtrl = AddAttendanceController()
         let navController = UINavigationController(rootViewController: addAttendanceCtrl)

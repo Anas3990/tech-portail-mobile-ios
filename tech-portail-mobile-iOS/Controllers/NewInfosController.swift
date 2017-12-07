@@ -44,6 +44,20 @@ class NewInfosController: UITableViewController {
         self.descriptionTextView.text = new?.body
     }
     
+    @IBAction func shareBarButtonItemTapped(_ sender: UIBarButtonItem) {
+        guard let title = self.new?.title else {
+            return
+        }
+        
+        guard let body = self.new?.body else {
+            return
+        }
+        
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [title, body], applicationActivities: nil)
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

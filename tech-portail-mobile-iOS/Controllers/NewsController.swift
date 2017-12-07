@@ -114,8 +114,15 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // Fonction qui permet de supprimer/modifier une nouvelle
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let modifyAction = UITableViewRowAction(style: .normal, title: "Modifier") { (action, index) in
+            print("Modify action tapped")
+        }
+        
+        // Couleur du boutton pour modifier une nouvelle
+        modifyAction.backgroundColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Supprimer") { (action, index) in
             let alertVC = UIAlertController(title: "Supprimer la nouvelle", message: "Êtes-vous sûr de vouloir supprimer cette nouvelle ? Cette action est irréversible", preferredStyle: .alert)
             
             let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
@@ -133,9 +140,10 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             alertVC.addAction(alertActionDelete)
             
-            
             self.present(alertVC, animated: true, completion: nil)
         }
+        
+        return [deleteAction, modifyAction]
     }
     
     // Populer la cellule des informations sur la nouvelle

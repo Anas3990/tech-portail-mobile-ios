@@ -34,6 +34,9 @@ class UserInfosController: UITableViewController {
         
         self.title = user?.firstName
         
+        //
+        
+        
         // Rendre la barre de navigation plus petite afin d'éviter d'empiéter sur le contenu
         navigationItem.largeTitleDisplayMode = .never
         

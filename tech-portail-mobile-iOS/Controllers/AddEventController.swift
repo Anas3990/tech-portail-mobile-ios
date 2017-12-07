@@ -13,7 +13,7 @@ import Eureka
 class AddEventController: FormViewController {
     //
     let dbService = DatabaseService()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +58,6 @@ class AddEventController: FormViewController {
                 endDateRow.title = "Fin"
                 endDateRow.tag = "endDate"
                 
-                endDateRow.value = Date() + 3600
             }
             +++ Section()
             <<< TextAreaRow() {
@@ -66,8 +65,9 @@ class AddEventController: FormViewController {
                 $0.tag = "Description"
         }
     }
+
     
-    // Todo: transformer tout ça en une fonction réutilisable
+    //
     @objc func handlePost() {
         // Récupérer les information saisies dans les champs
         if let titleRow: TextRow = form.rowBy(tag: "Title"), let startDateRow: DateTimeInlineRow = form.rowBy(tag: "startDate"), let endDateRow: TimeInlineRow = form.rowBy(tag: "endDate"), let descriptionRow: TextAreaRow = form.rowBy(tag: "Description") {

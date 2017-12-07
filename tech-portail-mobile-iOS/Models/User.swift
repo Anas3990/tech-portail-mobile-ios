@@ -12,7 +12,7 @@ struct UserObject {
     var firstName: String
     var name: String
     var email: String
-    
+
     var dictionary: [String: Any] {
         return [
             "firstName": firstName,
