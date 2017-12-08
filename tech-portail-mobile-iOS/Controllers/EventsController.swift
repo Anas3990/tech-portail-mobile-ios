@@ -125,11 +125,17 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     // Fonction qui permet de supprimer/modifier un évènement
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let modifyAction = UITableViewRowAction(style: .normal, title: "Modifier") { (action, index) in
-            print("Modify action tapped")
+            let editEventCtrl = EditEventController()
+            let navController = UINavigationController(rootViewController: editEventCtrl)
+            
+            editEventCtrl.event = self.events[indexPath.row]
+            editEventCtrl.eventReference = self.documents[indexPath.row].reference
+            
+            self.present(navController, animated: true, completion: nil)
         }
         
         // Couleur du boutton pour modifier un évènement
-        modifyAction.backgroundColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
+        modifyAction.backgroundColor = .black
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Supprimer") { (action, index) in
             let alertVC = UIAlertController(title: "Supprimer l'évènement", message: "Êtes-vous sûr de vouloir supprimer cet évènement ? Cette action est irréversible", preferredStyle: .alert)
@@ -151,7 +157,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
             
             self.present(alertVC, animated: true, completion: nil)
         }
-        
+
         return [deleteAction, modifyAction]
     }
     

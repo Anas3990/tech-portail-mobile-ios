@@ -116,11 +116,17 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Fonction qui permet de supprimer/modifier une nouvelle
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let modifyAction = UITableViewRowAction(style: .normal, title: "Modifier") { (action, index) in
-            print("Modify action tapped")
+            let editNewCtrl = EditNewController()
+            let navController = UINavigationController(rootViewController: editNewCtrl)
+             
+            editNewCtrl.new = self.news[indexPath.row]
+            editNewCtrl.newReference = self.documents[indexPath.row].reference
+            
+            self.present(navController, animated: true, completion: nil)
         }
         
         // Couleur du boutton pour modifier une nouvelle
-        modifyAction.backgroundColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
+        modifyAction.backgroundColor = .black
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Supprimer") { (action, index) in
             let alertVC = UIAlertController(title: "Supprimer la nouvelle", message: "Êtes-vous sûr de vouloir supprimer cette nouvelle ? Cette action est irréversible", preferredStyle: .alert)
@@ -128,7 +134,7 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
             let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
             alertVC.addAction(alertActionCancel)
             
-            // Action à effectuer si le bouton "Envoyer" est appuyé
+            // Action à effectuer si le bouton "Oui" est appuyé
             let alertActionDelete = UIAlertAction(title: "Oui", style: .default) {
                 (_) in
                 // Supprimer la nouvelle de Firebase

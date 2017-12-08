@@ -134,16 +134,21 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
 // Classe de la cellule d'une présence
 class AttendanceCell: UITableViewCell {
     // Référence aux éléments de l'interface de l'application
+    @IBOutlet weak var attendanceConfirmedAtLabel: UILabel!
     @IBOutlet weak var attendantNameLabel: UILabel!
     @IBOutlet weak var attendanceLengthLabel: UILabel!
 
     
     func populate(attendance: AttendanceObject) {
         //
+        let dateTimeFormatter = DateFormatter()
         let timeFormatter = DateFormatter()
+        
+        dateTimeFormatter.dateFormat = "EEEE dd MMMM, à hh:mm"
         timeFormatter.dateFormat = "hh:mm"
         
         //
+        attendanceConfirmedAtLabel.text = "Confirmé le \(dateTimeFormatter.string(from: attendance.confirmedAt))"
         attendantNameLabel.text = attendance.attendantName
         attendanceLengthLabel.text = "De \(timeFormatter.string(from: (attendance.attendanceStartsAt))) à \(timeFormatter.string(from: attendance.attendanceEndsAt))"
     }

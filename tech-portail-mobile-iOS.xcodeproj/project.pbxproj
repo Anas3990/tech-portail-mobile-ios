@@ -12,6 +12,7 @@
 		1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB61FCB73C400D8FBBF /* EventInfos.swift */; };
 		1134BEB91FCB7E0900D8FBBF /* UserInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */; };
 		115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */; };
+		115C27561FDA137600073372 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C27551FDA137600073372 /* EditEventController.swift */; };
 		116751511FD8B345007A2E85 /* EditNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116751501FD8B345007A2E85 /* EditNewController.swift */; };
 		11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */; };
 		11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */; };
@@ -64,6 +65,7 @@
 		1134BEB61FCB73C400D8FBBF /* EventInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfos.swift; sourceTree = "<group>"; };
 		1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfosController.swift; sourceTree = "<group>"; };
 		115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonAttendance.swift; sourceTree = "<group>"; };
+		115C27551FDA137600073372 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
 		116751501FD8B345007A2E85 /* EditNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNewController.swift; sourceTree = "<group>"; };
 		11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAttendanceController.swift; sourceTree = "<group>"; };
 		11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendancesController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				7644551A1FC148830070E831 /* EventsController.swift */,
 				1134BEB61FCB73C400D8FBBF /* EventInfos.swift */,
 				764455181FC147DD0070E831 /* AddEventController.swift */,
+				115C27551FDA137600073372 /* EditEventController.swift */,
 				11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */,
 				11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */,
 				764455161FC1451A0070E831 /* TeamController.swift */,
@@ -610,6 +613,7 @@
 				76A365461FC13A3D0091EA54 /* Event.swift in Sources */,
 				1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */,
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
+				115C27561FDA137600073372 /* EditEventController.swift in Sources */,
 				7644551B1FC148830070E831 /* EventsController.swift in Sources */,
 				116751511FD8B345007A2E85 /* EditNewController.swift in Sources */,
 				764455191FC147DD0070E831 /* AddEventController.swift in Sources */,
