@@ -7,16 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110A03BA1FDBAAA700202483 /* ImageCheckerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110A03B91FDBAAA700202483 /* ImageCheckerRow.swift */; };
 		1134BEB31FCB3F9700D8FBBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1134BEB21FCB3F9700D8FBBF /* Main.storyboard */; };
 		1134BEB51FCB6A1B00D8FBBF /* NewInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */; };
 		1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB61FCB73C400D8FBBF /* EventInfos.swift */; };
 		1134BEB91FCB7E0900D8FBBF /* UserInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */; };
+		115555561FDDDF290013A4C0 /* EditEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115555551FDDDF290013A4C0 /* EditEmailController.swift */; };
+		115555581FDDE5A00013A4C0 /* EditPhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115555571FDDE5A00013A4C0 /* EditPhoneNumberController.swift */; };
 		115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */; };
 		115C27561FDA137600073372 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C27551FDA137600073372 /* EditEventController.swift */; };
+		115D6DD81FDCB16C008EF5E8 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D6DD71FDCB16C008EF5E8 /* Teams.swift */; };
 		116751511FD8B345007A2E85 /* EditNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116751501FD8B345007A2E85 /* EditNewController.swift */; };
 		11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */; };
 		11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */; };
 		11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5D1FCC02E9001187C8 /* Attendance.swift */; };
+		11ADA9B21FDDCE99004CE8CF /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA9B11FDDCE99004CE8CF /* SettingsController.swift */; };
 		764455131FC13FDA0070E831 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455121FC13FDA0070E831 /* NewsController.swift */; };
 		764455151FC140250070E831 /* AddNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455141FC140250070E831 /* AddNewController.swift */; };
 		764455171FC1451A0070E831 /* TeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455161FC1451A0070E831 /* TeamController.swift */; };
@@ -60,16 +65,21 @@
 
 /* Begin PBXFileReference section */
 		0422C232C601DB6FD2B3126E /* Pods-tech-portail-mobile-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSUITests/Pods-tech-portail-mobile-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		110A03B91FDBAAA700202483 /* ImageCheckerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCheckerRow.swift; sourceTree = "<group>"; };
 		1134BEB21FCB3F9700D8FBBF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfosController.swift; sourceTree = "<group>"; };
 		1134BEB61FCB73C400D8FBBF /* EventInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfos.swift; sourceTree = "<group>"; };
 		1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfosController.swift; sourceTree = "<group>"; };
+		115555551FDDDF290013A4C0 /* EditEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmailController.swift; sourceTree = "<group>"; };
+		115555571FDDE5A00013A4C0 /* EditPhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhoneNumberController.swift; sourceTree = "<group>"; };
 		115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonAttendance.swift; sourceTree = "<group>"; };
 		115C27551FDA137600073372 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
+		115D6DD71FDCB16C008EF5E8 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		116751501FD8B345007A2E85 /* EditNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNewController.swift; sourceTree = "<group>"; };
 		11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAttendanceController.swift; sourceTree = "<group>"; };
 		11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendancesController.swift; sourceTree = "<group>"; };
 		11A3DF5D1FCC02E9001187C8 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
+		11ADA9B11FDDCE99004CE8CF /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		2661BCFCEA204A0AA42AE5CF /* Pods-tech-portail-mobile-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOS/Pods-tech-portail-mobile-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		622136DDA3611C3DE029042D /* Pods-tech-portail-mobile-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSTests/Pods-tech-portail-mobile-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7434BC649BA002BCA480452D /* Pods-tech-portail-mobile-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSTests/Pods-tech-portail-mobile-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +143,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		110A03B81FDBAA8D00202483 /* Custom Rows */ = {
+			isa = PBXGroup;
+			children = (
+				110A03B91FDBAAA700202483 /* ImageCheckerRow.swift */,
+			);
+			path = "Custom Rows";
+			sourceTree = "<group>";
+		};
+		115D6DD51FDCB151008EF5E8 /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				115D6DD71FDCB16C008EF5E8 /* Teams.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
 		119A78AA1FC2704600841A4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,9 +203,11 @@
 			children = (
 				766F15031FC1304700A8197B /* AppDelegate.swift */,
 				76BEABF51FC1330800F39BC1 /* Controllers */,
+				110A03B81FDBAA8D00202483 /* Custom Rows */,
 				119A78AA1FC2704600841A4D /* Views */,
 				76BEABF81FC1335500F39BC1 /* Services */,
 				76A365441FC13A170091EA54 /* Models */,
+				115D6DD51FDCB151008EF5E8 /* Enumerations */,
 				1134BEB21FCB3F9700D8FBBF /* Main.storyboard */,
 				766F150A1FC1304700A8197B /* Assets.xcassets */,
 				766F150C1FC1304700A8197B /* LaunchScreen.storyboard */,
@@ -236,6 +264,9 @@
 				11A3DF591FCBC3E4001187C8 /* AddAttendanceController.swift */,
 				764455161FC1451A0070E831 /* TeamController.swift */,
 				1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */,
+				11ADA9B11FDDCE99004CE8CF /* SettingsController.swift */,
+				115555551FDDDF290013A4C0 /* EditEmailController.swift */,
+				115555571FDDE5A00013A4C0 /* EditPhoneNumberController.swift */,
 				76BEABF91FC1341E00F39BC1 /* TabBarController.swift */,
 			);
 			path = Controllers;
@@ -602,16 +633,21 @@
 				11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */,
 				76BEABFC1FC1354D00F39BC1 /* DashboardController.swift in Sources */,
 				76A3654C1FC13A600091EA54 /* User.swift in Sources */,
+				115555561FDDDF290013A4C0 /* EditEmailController.swift in Sources */,
+				110A03BA1FDBAAA700202483 /* ImageCheckerRow.swift in Sources */,
 				76A365501FC13B230091EA54 /* DatabaseService.swift in Sources */,
 				1134BEB91FCB7E0900D8FBBF /* UserInfosController.swift in Sources */,
 				766F15041FC1304700A8197B /* AppDelegate.swift in Sources */,
 				764455171FC1451A0070E831 /* TeamController.swift in Sources */,
 				76A365481FC13A440091EA54 /* New.swift in Sources */,
+				11ADA9B21FDDCE99004CE8CF /* SettingsController.swift in Sources */,
 				11A3DF5A1FCBC3E4001187C8 /* AddAttendanceController.swift in Sources */,
 				11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */,
 				115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */,
+				115555581FDDE5A00013A4C0 /* EditPhoneNumberController.swift in Sources */,
 				76A365461FC13A3D0091EA54 /* Event.swift in Sources */,
 				1134BEB71FCB73C400D8FBBF /* EventInfos.swift in Sources */,
+				115D6DD81FDCB16C008EF5E8 /* Teams.swift in Sources */,
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
 				115C27561FDA137600073372 /* EditEventController.swift in Sources */,
 				7644551B1FC148830070E831 /* EventsController.swift in Sources */,

@@ -63,7 +63,6 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
     //
     fileprivate func baseQuery() -> Query {
         guard let reference = eventReference else {
-            print("Document reference not found")
             return Firestore.firestore().collection("events")
         }
         
@@ -80,9 +79,6 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
     //
     func observeAttendances() {
         guard let query = query else { return }
-        
-        guard let reference = eventReference else { return }
-        
         stopObserving()
         
         listener = query.addSnapshotListener { snapshot, error in

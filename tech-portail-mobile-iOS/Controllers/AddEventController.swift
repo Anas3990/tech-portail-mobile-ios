@@ -5,7 +5,7 @@
 //  Created by Anas MERBOUH on 17-10-13.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
-import UIKit
+import Foundation
 
 // Importation de modules supplémentaires pour construire des formulaires plus facilement
 import Eureka
@@ -36,7 +36,7 @@ class AddEventController: FormViewController {
         form +++ Section()
             <<< TextRow() { titleRow in
                 titleRow.title = "Titre"
-                titleRow.tag = "Title"
+                titleRow.tag = "title"
                 
                 titleRow.add(rule: RuleRequired())
                 titleRow.validationOptions = .validatesOnChange
@@ -46,7 +46,6 @@ class AddEventController: FormViewController {
                     }
             }
             +++ Section()
-            
             <<< DateTimeInlineRow() { startDateRow in
                 startDateRow.title = "Début"
                 startDateRow.tag = "startDate"
@@ -61,20 +60,20 @@ class AddEventController: FormViewController {
                 endDateRow.value = Date() + 3600
             }
             +++ Section()
-            <<< TextAreaRow() {
+            <<< TextAreaRow(){
                 $0.placeholder = "Description"
-                $0.tag = "Description"
-        }
+                $0.tag = "body"
+            }
     }
 
     
     //
     @objc func handlePost() {
         // Récupérer les information saisies dans les champs
-        if let titleRow: TextRow = form.rowBy(tag: "Title"), let startDateRow: DateTimeInlineRow = form.rowBy(tag: "startDate"), let endDateRow: TimeInlineRow = form.rowBy(tag: "endDate"), let descriptionRow: TextAreaRow = form.rowBy(tag: "Description") {
-            if let title = titleRow.value, let startDate = startDateRow.value, let endDate = endDateRow.value, let description = descriptionRow.value {
+        if let titleRow: TextRow = form.rowBy(tag: "title"), let startDateRow: DateTimeInlineRow = form.rowBy(tag: "startDate"), let endDateRow: TimeInlineRow = form.rowBy(tag: "endDate"), let bodyRow: TextAreaRow = form.rowBy(tag: "body") {            
+            if let title = titleRow.value, let startDate = startDateRow.value, let endDate = endDateRow.value, let body = bodyRow.value {
                 // Envoyer les informations stockées dans la constante "event" sur Firebase
-                dbService.writeEvent(withTitle: title, startDate: startDate, endDate: endDate, body: description)
+                dbService.writeEvent(withTitle: title, startDate: startDate, endDate: endDate, body: body)
                     
                 //
                 dismiss(animated: true, completion: nil)
@@ -100,3 +99,4 @@ class AddEventController: FormViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
