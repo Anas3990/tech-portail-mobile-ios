@@ -138,24 +138,12 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
         modifyAction.backgroundColor = .black
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Supprimer") { (action, index) in
-            let alertVC = UIAlertController(title: "Supprimer l'évènement", message: "Êtes-vous sûr de vouloir supprimer cet évènement ? Cette action est irréversible", preferredStyle: .alert)
-            
-            let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
-            alertVC.addAction(alertActionCancel)
-            
-            // Action à effectuer si le bouton "Envoyer" est appuyé
-            let alertActionDelete = UIAlertAction(title: "Oui", style: .default) {
-                (_) in
-                // Supprimer l'évènement de Firebase
-                self.documents[indexPath.row].reference.delete();
+            // Supprimer l'évènement de Firebase
+            self.documents[indexPath.row].reference.delete();
                 
-                // Supprimer la rangée de la table de données
-                self.events.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            alertVC.addAction(alertActionDelete)
-            
-            self.present(alertVC, animated: true, completion: nil)
+            // Supprimer la rangée de la table de données
+            self.events.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
 
         return [deleteAction, modifyAction]

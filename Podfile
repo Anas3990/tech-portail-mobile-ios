@@ -13,7 +13,7 @@ target 'tech-portail-mobile-iOS' do
     pod 'Firebase/RemoteConfig'
     pod 'Firebase/Crash'
     pod 'Eureka'
-    pod 'Neon'
+    pod 'StatusAlert', '~> 0.9.2'
 
   target 'tech-portail-mobile-iOSTests' do
     inherit! :search_paths

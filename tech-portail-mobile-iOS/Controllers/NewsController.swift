@@ -129,26 +129,14 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
         modifyAction.backgroundColor = .black
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Supprimer") { (action, index) in
-            let alertVC = UIAlertController(title: "Supprimer la nouvelle", message: "Êtes-vous sûr de vouloir supprimer cette nouvelle ? Cette action est irréversible", preferredStyle: .alert)
-            
-            let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
-            alertVC.addAction(alertActionCancel)
-            
-            // Action à effectuer si le bouton "Oui" est appuyé
-            let alertActionDelete = UIAlertAction(title: "Oui", style: .default) {
-                (_) in
-                // Supprimer la nouvelle de Firebase
-                self.documents[indexPath.row].reference.delete();
+            // Supprimer la nouvelle de Firebase
+            self.documents[indexPath.row].reference.delete();
                 
-                // Supprimer la rangée de la table de données
-                self.news.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            alertVC.addAction(alertActionDelete)
-            
-            self.present(alertVC, animated: true, completion: nil)
+            // Supprimer la rangée de la table de données
+            self.news.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        
+                
         return [deleteAction, modifyAction]
     }
     
@@ -184,8 +172,12 @@ class NewCell: UITableViewCell {
     
     
     func populate(new: NewObject) {
-        // 
-        dateLabel.text = "Le \(new.timestamp)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE dd MMMM yyyy"
+
+        
+        //
+        dateLabel.text = "Le " + dateFormatter.string(from: new.timestamp)
         titleLabel.text = new.title
         bodyLabel.text = new.body
     }

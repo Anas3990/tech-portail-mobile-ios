@@ -21,7 +21,7 @@ class DatabaseService {
     func writeNew(withTitle title: String, body: String) {
         dbRef = Firestore.firestore().collection("news")
         
-        let new = NewObject(title: title, body: body, author: author, timestamp: timestamp)
+        let new = NewObject(title: title, body: body, author: author, timestamp: Date())
         
         // Ajouter le post à la collection des nouvelles
         dbRef.addDocument(data: new.dictionary) { (error) in
@@ -34,7 +34,7 @@ class DatabaseService {
     func writeEvent(withTitle title: String, startDate: Date, endDate: Date, body: String) {
          dbRef = Firestore.firestore().collection("events")
         
-        let event = EventObject(past: false, author: author, body: body, endDate: endDate, startDate: startDate, timestamp: timestamp, title: title)
+        let event = EventObject(past: false, author: author, body: body, endDate: endDate, startDate: startDate, timestamp: Date(), title: title)
         
         // Ajouter le post à la collection des nouvelles
         dbRef.addDocument(data: event.dictionary) { (error) in

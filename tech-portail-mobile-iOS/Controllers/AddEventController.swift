@@ -80,7 +80,7 @@ class AddEventController: FormViewController {
             } else if let title = titleRow.value, let startDate = startDateRow.value, let endDate = endDateRow.value {
                 // Envoyer les informations stockées dans la constante "event" sur Firebase
                 dbService.writeEvent(withTitle: title, startDate: startDate, endDate: endDate, body: "Aucune description n'a été fournie.")
-                    
+                
                 //
                 dismiss(animated: true, completion: nil)
             } else {

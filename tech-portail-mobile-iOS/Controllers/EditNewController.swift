@@ -80,10 +80,10 @@ class EditNewController: FormViewController {
                         
                         self.present(alertController, animated: true, completion: nil)
                         return
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
-                
-                self.dismiss(animated: true, completion: nil)
             } else if let title = titleRow.value {
                 // Appeler la fonction qui rajoute une nouvelle sur la base de données
                 guard let reference = newReference else { return }
@@ -98,10 +98,10 @@ class EditNewController: FormViewController {
                         
                         self.present(alertController, animated: true, completion: nil)
                         return
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
-                
-                self.dismiss(animated: true, completion: nil)
             } else {
                 // Alerte à afficher si aucun titre n'est fourni
                 let alertController = UIAlertController(title: "Oups !", message: "Veuillez vous assurer de donner un titre à votre nouvelle." , preferredStyle: .alert)

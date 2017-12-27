@@ -21,7 +21,7 @@ class UserInfosController: UITableViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var mobilePhoneNumberLabel: UITableViewCell!
+    @IBOutlet weak var mobilePhoneNumberLabel: UILabel!
     @IBOutlet weak var homePhoneNumber1Label: UILabel!
     @IBOutlet weak var homePhoneNumber2Label: UILabel!
     
@@ -41,6 +41,10 @@ class UserInfosController: UITableViewController, MFMailComposeViewControllerDel
         self.firstNameLabel.text = user?.firstName
         self.nameLabel.text = user?.name
         self.emailLabel.text = user?.email
+        
+        self.mobilePhoneNumberLabel.text = user?.mobilePhoneNumber
+        self.homePhoneNumber1Label.text = user?.homePhoneNumber1
+        self.homePhoneNumber2Label.text = user?.homePhoneNumber2
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

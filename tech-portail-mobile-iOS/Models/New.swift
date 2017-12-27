@@ -16,7 +16,7 @@ struct NewObject {
     var title: String
     var body: String
     var author: [String: String]
-    var timestamp: Any
+    var timestamp: Date
     
     
     var dictionary: [String: Any] {
@@ -34,7 +34,7 @@ extension NewObject: DocumentSerializable {
         guard let title = dictionary["title"] as? String,
               let body = dictionary["body"] as? String,
               let author = dictionary["author"] as? [String: String],
-              let timestamp = dictionary["timestamp"] as? Any else { return nil }
+              let timestamp = dictionary["timestamp"] as? Date else { return nil }
         
         self.init(title: title, body: body, author: author, timestamp: timestamp)
     }

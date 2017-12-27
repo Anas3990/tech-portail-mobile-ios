@@ -6,7 +6,9 @@
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
 import UIKit
+
 import FirebaseAuth
+import FirebaseFirestore
 
 class LoginController: UIViewController {
     let inputsContainerView: UIView = {
@@ -75,16 +77,23 @@ class LoginController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if let error = error {
                     //
-                    print(error.localizedDescription)
+                    let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de création de votre compte." , preferredStyle: .alert)
+                    
+                    let OKAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(OKAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
                     return
                 } else if let user = user {
-                    let changeRequest = user.createProfileChangeRequest()
-                    changeRequest.displayName = userName
-                    changeRequest.commitChanges { (error) in
+                    let userDoc = Firestore.firestore().collection("users").document(user.uid)
+                    
+                    userDoc.updateData(["firstName": "Anas", "name": "Merbouh"], completion: { (error) in
                         if let error = error {
-                            print(error.localizedDescription)
+                            print(error)
+                        } else {
+                            print("Compte update")
                         }
-                    }
+                    })
                 }
                 
             }

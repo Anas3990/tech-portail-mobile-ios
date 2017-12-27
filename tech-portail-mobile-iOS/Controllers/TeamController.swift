@@ -62,7 +62,7 @@ class TeamController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("users").whereField("role", isEqualTo: "junior_mentor").order(by: "name")
+        return Firestore.firestore().collection("users").whereField("approved", isEqualTo: true).whereField("roles.mentor", isEqualTo: false).order(by: "name")
     }
     
     //
@@ -101,38 +101,7 @@ class TeamController: UIViewController, UITableViewDataSource, UITableViewDelega
     deinit {
         listener?.remove()
     }
-    
-    @IBAction func logoutTapped(_ sender: Any) {
-        let alertVC = UIAlertController(title: "Se déconnecter", message: "Êtes-vous sûrs de vouloir vous déconnecter du Tech Portail ?", preferredStyle: .alert)
         
-        let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
-        alertVC.addAction(alertActionCancel)
-        
-        // Action à effectuer si le bouton "Envoyer" est appuyé
-        let alertActionConfirm = UIAlertAction(title: "Oui", style: .default) {
-            (_) in
-            // Stocker la valeur retournée par la fonction "doLogout()" dans la constante "isLogoutSuccessful"
-            let isLogoutSuccessful = self.authService.logout()
-            
-            // Si l'utilisateur a été capable de se déconnecter, enlever son token et le rediriger vers la page de connexion
-            if isLogoutSuccessful == true {
-                let loginCtrl = LoginController()
-                self.present(loginCtrl, animated: true, completion: nil)
-            } else {
-                let alertVC = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de déconnexion !", preferredStyle: .alert)
-                
-                let alertActionOkay = UIAlertAction(title: "Non", style: .default, handler: nil)
-                alertVC.addAction(alertActionOkay)
-                
-                self.present(alertVC, animated: true, completion: nil)
-            }
-        }
-        alertVC.addAction(alertActionConfirm)
-        
-        
-        self.present(alertVC, animated: true, completion: nil)
-    }
-    
     // Retourner autant de cellules qu'il y a de nouvelles
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
@@ -165,6 +134,7 @@ class UserCell: UITableViewCell {
     // Référence aux éléments de l'interface de l'application
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    
     
     func populate(user: UserObject) {
         //

@@ -32,6 +32,9 @@ class AddNewController: FormViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Ajouter", style: .plain, target: self, action: #selector(handlePost))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancel))
         
+        //
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
         // Formulaire
         form +++ Section()
             <<< TextRow() { row in
@@ -43,6 +46,9 @@ class AddNewController: FormViewController {
                 } .cellUpdate { cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
+                        self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    } else if row.isValid {
+                        self.navigationItem.rightBarButtonItem?.isEnabled = true
                     }
             }
             +++ Section()
@@ -51,7 +57,7 @@ class AddNewController: FormViewController {
                 $0.tag = "Description"
         }
     }
-    
+        
     @objc func handlePost() {
         // Récupérer les information saisies dans les champs
         if let titleRow: TextRow = form.rowBy(tag: "Title"), let descriptionRow: TextAreaRow = form.rowBy(tag: "Description") {
