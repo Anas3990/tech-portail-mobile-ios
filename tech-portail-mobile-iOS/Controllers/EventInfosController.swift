@@ -130,8 +130,10 @@ class EventInfosController: UITableViewController {
         }
     }
     
+    
     @IBAction func absentTapped(_ sender: Any) {
         guard let reference = eventReference else { return }
+        
         let attendancesCollection = reference.collection("attendances")
         let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
         
@@ -166,9 +168,12 @@ class EventInfosController: UITableViewController {
             if let vc = segue.destination as? AttendanceStartDatePopupController {
                 guard let reference = self.eventReference else { return }
                 
-                vc.eventStartDate = self.event?.startDate
-                vc.eventEndDate = self.event?.endDate
-                vc.eventReference = reference
+                if let event = self.event {
+                    vc.event = event
+                    vc.eventReference = reference
+                } else {
+                    
+                }
             }
         }
     }

@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class AttendancesController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Référence aux éléments de l'interface de l'application
+    @IBOutlet weak var attendancesFilterSegmentedControl: UISegmentedControl!
     @IBOutlet var attendancesTableView: UITableView!
     
     //
@@ -46,6 +47,18 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
         
         //
         query = baseQuery()
+    }
+    
+    //
+    @IBAction func attendancesFilterSegmentedControlSwitched(_ sender: Any) {
+        switch attendancesFilterSegmentedControl.selectedSegmentIndex {
+            case 0:
+                self.query = baseQuery()
+            case 1:
+                self.query =  Firestore.firestore().collection("events").document(eventReference!.documentID).collection("attendances").whereField("present", isEqualTo: false)
+            default:
+                break
+        }
     }
     
     // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone

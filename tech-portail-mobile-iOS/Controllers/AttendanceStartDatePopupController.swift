@@ -19,23 +19,16 @@ class AttendanceStartDatePopupController: UIViewController {
     
     //
     var eventReference: DocumentReference?
-    var eventStartDate: Date?
-    var eventEndDate: Date?
+    var event: EventObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventScheduleLabel.text = "Début de l'évènement"
         
-        
-        if let eventStartDate = eventStartDate {
-            attendanceStartDatePicker.date = eventStartDate
-            eventScheduleDateLabel.text = DateFormatter.localizedString(from: eventStartDate, dateStyle: .none, timeStyle: .short)
-        } else {
-            attendanceStartDatePicker.date = Date()
-            attendanceStartDatePicker.minimumDate = Date()
-            eventScheduleDateLabel.text = "N/A"
-        }
+        attendanceStartDatePicker.date = self.event.startDate
+        eventScheduleDateLabel.text = DateFormatter.localizedString(from: self.event.startDate, dateStyle: .none, timeStyle: .short)
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,17 +40,13 @@ class AttendanceStartDatePopupController: UIViewController {
             if let vc = segue.destination as? AttendanceEndDatePopupController {
                 //
                 self.eventScheduleLabel.text = "Fin de l'évènement"
-                
-                
-                if let eventEndDate = eventEndDate {
-                    self.eventScheduleDateLabel.text = DateFormatter.localizedString(from: eventEndDate, dateStyle: .none, timeStyle: .short)
-                } else {
-                    eventScheduleDateLabel.text = "N/A"
-                }
-                
+                self.eventScheduleDateLabel.text = DateFormatter.localizedString(from: self.event.endDate, dateStyle: .none, timeStyle: .short)
+
                 //
                 vc.attendanceStartDate = self.attendanceStartDatePicker.date
-                vc.attendanceEndDate = self.eventEndDate
+                vc.attendanceEndDate = self.event.endDate
+                
+                vc.event = self.event
                 vc.eventReference = self.eventReference
             }
         }

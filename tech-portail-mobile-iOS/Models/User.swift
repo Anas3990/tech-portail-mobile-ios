@@ -21,7 +21,7 @@ struct UserObject {
     var professionalTitle: String
     var roles: [String: Bool]
     var uid: String
-
+    
     var dictionary: [String: Any] {
         return [
             "approved": approved,
@@ -56,7 +56,7 @@ extension UserObject: DocumentSerializable {
             let uid = dictionary["uid"] as? String else { return nil }
         
         
-            self.init(approved: approved, email: email, firstName: firstName, group: group, homePhoneNumber1: homePhoneNumber1, homePhoneNumber2: homePhoneNumber2, mobilePhoneNumber: mobilePhoneNumber, name: name, photoUrl: photoUrl, professionalTitle: professionalTitle, roles: roles, uid: uid)
+        self.init(approved: approved, email: email, firstName: firstName, group: group, homePhoneNumber1: homePhoneNumber1, homePhoneNumber2: homePhoneNumber2, mobilePhoneNumber: mobilePhoneNumber, name: name, photoUrl: photoUrl, professionalTitle: professionalTitle, roles: roles, uid: uid)
     }
 }
 

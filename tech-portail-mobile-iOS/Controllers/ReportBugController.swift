@@ -10,4 +10,8 @@ import UIKit
 
 class ReportBugController: UIViewController {
     
+    
+    @IBAction func cancelBarButtonItemTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

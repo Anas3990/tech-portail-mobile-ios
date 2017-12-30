@@ -22,6 +22,7 @@ class AttendanceEndDatePopupController: UIViewController {
     
     //
     var eventReference: DocumentReference?
+    var event: EventObject!
     var attendanceStartDate: Date!
     var attendanceEndDate: Date!
     
@@ -33,10 +34,22 @@ class AttendanceEndDatePopupController: UIViewController {
     
     @IBAction func postAttendanceButtonTapped(_ sender: Any) {
         guard let reference = eventReference else { return }
+        
+        //
+        let batch = Firestore.firestore().batch()
+        
         let attendancesCollection = reference.collection("attendances")
         let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
         
-        attendanceReference.setData(["attendantName": "Anas Merbouh", "present": true, "attendanceStartsAt": attendanceStartDate, "attendanceEndsAt": attendanceEndDatePicker.date, "confirmedAt": FieldValue.serverTimestamp()], completion: { (error) in
+        batch.setData(["attendantName": "Anas Merbouh", "present": true, "attendanceStartsAt": attendanceStartDate, "attendanceEndsAt": attendanceEndDatePicker.date, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
+        
+        let usersCollection = Firestore.firestore().collection("users")
+        let currentUserAttendancesEventDocument = usersCollection.document(Auth.auth().currentUser!.uid).collection("attendances").document(reference.documentID)
+        
+        batch.setData(["eventTitle": self.event.title, "eventStartDate": self.event.startDate, "eventEndDate": self.event.endDate, "eventBody": self.event.body, "attendanceStartsAt": attendanceStartDate, "attendanceEndsAt": attendanceEndDatePicker.date, "confirmedAt": FieldValue.serverTimestamp()], forDocument: currentUserAttendancesEventDocument)
+        
+
+        batch.commit { (error) in
             if let error = error {
                 // Alerte à afficher si une erreur est survenue
                 let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de confirmation de votre présence : \(error.localizedDescription)" , preferredStyle: .alert)
@@ -51,11 +64,8 @@ class AttendanceEndDatePopupController: UIViewController {
                 
                 //
                 statusAlert.show()
-                
-                //
-                self.dismiss(animated: true, completion: nil)
             }
-        })
+        }
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {

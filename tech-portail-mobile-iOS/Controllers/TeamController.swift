@@ -12,6 +12,7 @@ import FirebaseCrash
 
 class TeamController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Référence aux éléments de l'interface de l'application
+    @IBOutlet var usersFilterSegmentedControl: UISegmentedControl!
     @IBOutlet var usersTableView: UITableView!
     
     //
@@ -46,6 +47,18 @@ class TeamController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //
         query = baseQuery()
+    }
+    
+    //
+    @IBAction func usersFilterSegmentedControlSwitch(_ sender: UISegmentedControl) {
+        switch usersFilterSegmentedControl.selectedSegmentIndex {
+            case 0:
+                self.query = baseQuery()
+            case 1:
+                self.query = Firestore.firestore().collection("users").whereField("approved", isEqualTo: true).whereField("roles.mentor", isEqualTo: true).order(by: "name")
+            default:
+                break;
+        }
     }
     
     // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone
@@ -134,7 +147,6 @@ class UserCell: UITableViewCell {
     // Référence aux éléments de l'interface de l'application
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    
     
     func populate(user: UserObject) {
         //

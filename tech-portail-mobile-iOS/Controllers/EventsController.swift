@@ -13,9 +13,9 @@ import FirebaseCrash
 class EventsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // Référence aux éléments de l'interface de l'application
-    @IBOutlet var eventsTableView: UITableView!
     @IBOutlet weak var eventsFilterSegmentedControl: UISegmentedControl!
-    
+    @IBOutlet var eventsTableView: UITableView!
+
     //
     let backgroundView = UIImageView()
     
@@ -50,6 +50,18 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
         query = baseQuery()
     }
     
+    //
+    @IBAction func eventsFilterSegmentedControlSwitch(_ sender: UISegmentedControl) {
+        switch eventsFilterSegmentedControl.selectedSegmentIndex {
+            case 0:
+                self.query = baseQuery()
+            case 1:
+                self.query = Firestore.firestore().collection("events").whereField("startDate", isLessThan: Date())
+            default:
+                break;
+        }
+    }
+    
     // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone
     override func viewWillAppear(_ animated: Bool) {
         //
@@ -64,9 +76,10 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     
     //
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("events").whereField("past", isEqualTo: false).order(by: "timestamp", descending: true)
+        return Firestore.firestore().collection("events").whereField("startDate", isGreaterThan: Date())
     }
     
+
     //
     fileprivate func stopObserving() {
         listener?.remove()
@@ -104,10 +117,6 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
                 self.eventsTableView.reloadData()
             }
         }
-    }
-    
-    @IBAction func eventsFilterSegmentedControlSwitch(_ sender: UISegmentedControl) {
-        
     }
     
     @IBAction func addEventTapped(_ sender: Any) {

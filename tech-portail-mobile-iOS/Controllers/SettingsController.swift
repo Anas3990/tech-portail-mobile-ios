@@ -61,7 +61,8 @@ class SettingsController: UITableViewController {
                         
                         return
                     } else {
-                        if let userDocument = document.flatMap({ UserObject(dictionary: $0.data()) }) {
+                        if document?.exists ==  true {
+                            let userDocument = document.flatMap({ UserObject(dictionary: $0.data()) })
                             let accountSettingsCtrl = AccountSettingsController()
                             
                             accountSettingsCtrl.currentUser = userDocument

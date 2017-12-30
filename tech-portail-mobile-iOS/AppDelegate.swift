@@ -57,5 +57,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        switch shortcutItem.type {
+            case "com.team3990.techportail.ConsultEvents":
+                if Auth.auth().currentUser != nil {
+                    let tabBarCtrl = TabBarController.fromStoryboard()
+                    tabBarCtrl.selectedIndex = 3
+                    
+                    window?.rootViewController = tabBarCtrl
+                } else {
+                    window?.rootViewController = LoginController()
+                }
+            case "com.team3990.techportail.ConsultMyAttendances":
+                if Auth.auth().currentUser != nil {
+                    let tabBarCtrl = TabBarController.fromStoryboard()
+                    tabBarCtrl.selectedIndex = 2
+                    
+                    window?.rootViewController = tabBarCtrl
+                } else {
+                    window?.rootViewController = LoginController()
+                }
+            default:
+                break
+        }
+    }
 }
 

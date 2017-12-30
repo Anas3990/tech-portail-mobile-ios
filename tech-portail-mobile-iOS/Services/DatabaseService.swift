@@ -14,9 +14,8 @@ class DatabaseService {
     var dbRef: CollectionReference!
     
     //
-    let author = ["uid": Auth.auth().currentUser!.uid, "email": Auth.auth().currentUser!.email!]
-    let timestamp = FieldValue.serverTimestamp()
-    
+    let author = ["uid": Auth.auth().currentUser!.uid, "email": Auth.auth().currentUser!.email!, "photoUrl": "https://firebasestorage.googleapis.com/v0/b/tech-portail-production.appspot.com/o/profiles-images%2Fdefault-image%2Fplaceholder-profile-image.jpg?alt=media&token=ef4fc919-1169-4cf9-8ce2-2c3792609757"]
+
     // Fonction qui permet de rajouter une nouvelle sur la base de données
     func writeNew(withTitle title: String, body: String) {
         dbRef = Firestore.firestore().collection("news")
