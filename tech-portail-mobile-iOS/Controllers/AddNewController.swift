@@ -10,9 +10,19 @@ import UIKit
 // Importation de modules supplémentaires pour construire des formulaires plus facilement
 import Eureka
 
+//
+import FirebaseFirestore
+
 class AddNewController: FormViewController {
+    
     //
-    let dbService = DatabaseService()
+    var newsRef: CollectionReference?
+    
+    // Déclaration de l'objet AuthService
+    let authService = AuthService()
+    
+    // Déclaration de la variable qui contient les données sur l'auteur
+    var authorData: UserObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +42,13 @@ class AddNewController: FormViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Ajouter", style: .plain, target: self, action: #selector(handlePost))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancel))
         
-        //
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        // Initialisation de la variable eventsRef
+        newsRef = Firestore.firestore().collection("news")
+        
+        // Initialisation de la variable authorData à l'aide de la méthode getCurrentUserData() du AuthService
+        authService.getCurrentUserData { (retrievedData) in
+            self.authorData = retrievedData
+        }
         
         // Formulaire
         form +++ Section()
@@ -46,15 +61,15 @@ class AddNewController: FormViewController {
                 } .cellUpdate { cell, row in
                     if !row.isValid {
                         cell.titleLabel?.textColor = .red
-                        self.navigationItem.rightBarButtonItem?.isEnabled = false
-                    } else if row.isValid {
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
                     }
             }
             +++ Section()
             <<< TextAreaRow() {
                 $0.placeholder = "Description"
                 $0.tag = "Description"
+                
+                let dynamicHeight: TextAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 100)
+                $0.textAreaHeight = dynamicHeight
         }
     }
         
@@ -62,15 +77,48 @@ class AddNewController: FormViewController {
         // Récupérer les information saisies dans les champs
         if let titleRow: TextRow = form.rowBy(tag: "Title"), let descriptionRow: TextAreaRow = form.rowBy(tag: "Description") {
             if let title = titleRow.value, let description = descriptionRow.value {
-                // Appeler la fonction qui rajoute une nouvelle sur la base de données
-                dbService.writeNew(withTitle: title, body: description)
-                
-                self.dismiss(animated: true, completion: nil)
+                //
+                if let authorData = authorData {
+                    if let newsRef = self.newsRef {
+                        newsRef.addDocument(data: ["author": ["name": "\(authorData.firstName) \(authorData.name)", "email": authorData.email], "title": title, "body": description, "timestamp": FieldValue.serverTimestamp()], completion: { (error) in
+                            if let error = error {
+                                //
+                                let alertController = UIAlertController(title: "Oups !", message: "La nouvelle n'a pas pu être publiée : \(error.localizedDescription)" , preferredStyle: .alert)
+                                
+                                let OKAction = UIAlertAction(title: "OK", style: .default)
+                                alertController.addAction(OKAction)
+                                
+                                self.present(alertController, animated: true, completion: nil)
+                            } else {
+                                //
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        })
+                    }
+                } else {
+                    return
+                }
             } else if let title = titleRow.value {
-                // Appeler la fonction qui rajoute une nouvelle sur la base de données
-                dbService.writeNew(withTitle: title, body: "Aucune description n'a été fournie.")
-                
-                self.dismiss(animated: true, completion: nil)
+                //
+                if let authorData = authorData {
+                    if let newsRef = self.newsRef {
+                        newsRef.addDocument(data: ["author": ["name": "\(authorData.firstName) \(authorData.name)", "email": authorData.email], "title": title, "body": "Aucune description n'a été fournie.", "timestamp": FieldValue.serverTimestamp()], completion: { (error) in
+                            if let error = error {
+                                //
+                                let alertController = UIAlertController(title: "Oups !", message: "La nouvelle n'a pas pu être publiée : \(error.localizedDescription)" , preferredStyle: .alert)
+                                
+                                let OKAction = UIAlertAction(title: "OK", style: .default)
+                                alertController.addAction(OKAction)
+                                
+                                self.present(alertController, animated: true, completion: nil)
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        })
+                    }
+                } else {
+                    return
+                }
             } else {
                 // Alerte à afficher si aucun titre n'est fourni
                 let alertController = UIAlertController(title: "Oups !", message: "Veuillez vous assurer de donner un titre à votre nouvelle." , preferredStyle: .alert)

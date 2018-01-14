@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Définir blanc comme couleur de la status bar
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .default
         
         
         // Vérifier si un utilisateur est connecté et le diriger vers le bon écran
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case "com.team3990.techportail.ConsultEvents":
                 if Auth.auth().currentUser != nil {
                     let tabBarCtrl = TabBarController.fromStoryboard()
-                    tabBarCtrl.selectedIndex = 3
+                    tabBarCtrl.selectedIndex = 2
                     
                     window?.rootViewController = tabBarCtrl
                 } else {
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case "com.team3990.techportail.ConsultMyAttendances":
                 if Auth.auth().currentUser != nil {
                     let tabBarCtrl = TabBarController.fromStoryboard()
-                    tabBarCtrl.selectedIndex = 2
+                    tabBarCtrl.selectedIndex = 0
                     
                     window?.rootViewController = tabBarCtrl
                 } else {

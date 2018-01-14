@@ -80,6 +80,10 @@ class EditEventController: FormViewController {
                 
                 //
                 descriptionRow.value = self.event?.body
+                
+                //
+                let dynamicHeight: TextAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 100)
+                descriptionRow.textAreaHeight = dynamicHeight
         }
     }
     
@@ -95,7 +99,7 @@ class EditEventController: FormViewController {
                 reference.updateData(["title": title, "startDate": startDate, "endDate": endDate, "body": description], completion: { (error) in
                     if let error = error {
                         // Alerte à afficher si une erreur est survenue lors de la tentative de modification
-                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de l'évènement." , preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de l'évènement : \(error.localizedDescription)" , preferredStyle: .alert)
                         
                         let OKAction = UIAlertAction(title: "OK", style: .default)
                         alertController.addAction(OKAction)
@@ -114,7 +118,7 @@ class EditEventController: FormViewController {
                 reference.updateData(["title": title, "startDate": startDate, "endDate": endDate, "body": "Aucune description n'a été fournie."], completion: { (error) in
                     if let error = error {
                         // Alerte à afficher si une erreur est survenue lors de la tentative de modification
-                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de l'évènement." , preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de l'évènement : \(error.localizedDescription)" , preferredStyle: .alert)
                         
                         let OKAction = UIAlertAction(title: "OK", style: .default)
                         alertController.addAction(OKAction)

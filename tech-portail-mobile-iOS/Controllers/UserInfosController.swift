@@ -17,15 +17,20 @@ class UserInfosController: UITableViewController {
     var userReference: DocumentReference?
     
     //
-    @IBOutlet weak var profilePictureImageView: UIImageView!
-    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var roleLabel: UILabel!
-  
+    @IBOutlet weak var additionalDataTitle: UILabel!
+    @IBOutlet weak var additionalDataLabel: UILabel!
+    
     @IBOutlet weak var mobilePhoneNumberLabel: UILabel!
     @IBOutlet weak var homePhoneNumber1Label: UILabel!
     @IBOutlet weak var homePhoneNumber2Label: UILabel!
+    
+    @IBOutlet weak var homePhoneNumber1Cell: UITableViewCell!
+    @IBOutlet weak var homePhoneNumber2Cell: UITableViewCell!
+    
     
     static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)) -> UserInfosController {
         let controller = storyboard.instantiateViewController(withIdentifier: "UserInfosController") as! UserInfosController
@@ -42,22 +47,24 @@ class UserInfosController: UITableViewController {
         
         //
         if let user = user {
-        profilePictureImageView.loadImageUsingCacheWithUrlString(urlString: user.photoUrl)
-            self.fullNameLabel.text = "\(user.firstName) \(user.name)"
+            self.firstNameLabel.text = user.firstName
+            self.nameLabel.text = user.name
             self.emailLabel.text = user.email
             
             if user.roles["mentor"] != true {
-                self.roleLabel.text = "Élève"
+                self.additionalDataTitle.text = "Groupe"
+                self.additionalDataLabel.text = user.group
                 
                 self.mobilePhoneNumberLabel.text = user.mobilePhoneNumber
                 self.homePhoneNumber1Label.text = user.homePhoneNumber1
                 self.homePhoneNumber2Label.text = user.homePhoneNumber2
             } else {
-                self.roleLabel.text = "Mentor"
+                self.additionalDataTitle.text = "Titre professionnel"
+                self.additionalDataLabel.text = user.professionalTitle
                 
                 self.mobilePhoneNumberLabel.text = user.mobilePhoneNumber
-                self.homePhoneNumber1Label.isHidden = true
-                self.homePhoneNumber2Label.isHidden = true
+                self.homePhoneNumber1Cell.isHidden = true
+                self.homePhoneNumber2Cell.isHidden = true
             }
         } else {
             

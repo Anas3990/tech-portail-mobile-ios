@@ -8,7 +8,6 @@
 import Foundation
 
 struct EventObject {
-    var past: Bool
     var author: [String: String]
     var body: String
     var endDate: Date
@@ -18,7 +17,6 @@ struct EventObject {
     
     var dictionary: [String: Any] {
         return [
-            "past": past,
             "title": title,
             "body": body,
             "endDate": endDate,
@@ -32,13 +30,12 @@ struct EventObject {
 extension EventObject: DocumentSerializable {
     init?(dictionary: [String : Any]) {
         guard let title = dictionary["title"] as? String,
-            let past = dictionary["past"] as? Bool,
             let body = dictionary["body"] as? String,
             let endDate = dictionary["endDate"] as? Date,
             let startDate = dictionary["startDate"] as? Date,
             let author = dictionary["author"] as? [String: String],
             let timestamp = dictionary["timestamp"] as? Date else { return nil }
         
-        self.init(past: past, author: author, body: body, endDate: endDate, startDate: startDate, timestamp: timestamp, title: title)
+        self.init(author: author, body: body, endDate: endDate, startDate: startDate, timestamp: timestamp, title: title)
     }
 }

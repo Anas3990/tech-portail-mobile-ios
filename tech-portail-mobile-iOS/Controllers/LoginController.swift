@@ -77,25 +77,14 @@ class LoginController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if let error = error {
                     //
-                    let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de création de votre compte." , preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de création de votre compte : \(error.localizedDescription)" , preferredStyle: .alert)
                     
                     let OKAction = UIAlertAction(title: "OK", style: .default)
                     alertController.addAction(OKAction)
                     
                     self.present(alertController, animated: true, completion: nil)
                     return
-                } else if let user = user {
-                    let userDoc = Firestore.firestore().collection("users").document(user.uid)
-                    
-                    userDoc.updateData(["firstName": "Anas", "name": "Merbouh"], completion: { (error) in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            print("Compte update")
-                        }
-                    })
                 }
-                
             }
         } else {
             let alertController = UIAlertController(title: "Oups !", message: "Veuillez vous assurer que tous les champs soient correctement remplis avant de soumettre votre formulaire d'inscription." , preferredStyle: .alert)
@@ -141,7 +130,7 @@ class LoginController: UIViewController {
             if let email = emailTextField.text {
                 Auth.auth().sendPasswordReset(withEmail: email, completion: { (error) in
                     if let error = error {
-                        let alertController = UIAlertController(title: "Courriel envoyé !", message: "Le courriel de réinitialisation de votre mot de passe a été envoyé avec succès !" , preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Oups !", message: "Le courriel de réinitialisation de votre mot de passe n'a pas pu être envoyé : \(error.localizedDescription)" , preferredStyle: .alert)
                         
                         let OKAction = UIAlertAction(title: "OK", style: .default)
                         alertController.addAction(OKAction)
@@ -177,6 +166,7 @@ class LoginController: UIViewController {
         tf.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
         tf.autocapitalizationType = .words
         tf.autocorrectionType = .no
+        tf.keyboardAppearance = .dark
         
         tf.translatesAutoresizingMaskIntoConstraints = false
         
@@ -199,6 +189,7 @@ class LoginController: UIViewController {
         tf.keyboardType = .emailAddress
         tf.autocorrectionType = .no
         tf.autocapitalizationType = .none
+        tf.keyboardAppearance = .dark
         
         tf.translatesAutoresizingMaskIntoConstraints = false
         
@@ -219,6 +210,7 @@ class LoginController: UIViewController {
         tf.placeholder = "Mot de passe"
         tf.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
         tf.isSecureTextEntry = true
+        tf.keyboardAppearance = .dark
         
         tf.translatesAutoresizingMaskIntoConstraints = false
         

@@ -7,26 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11127B3C1FF5FCCF00800013 /* MyAttendancesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11127B3B1FF5FCCF00800013 /* MyAttendancesController.swift */; };
 		11127B3E1FF6063300800013 /* UserAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11127B3D1FF6063300800013 /* UserAttendance.swift */; };
 		11127B401FF60F5100800013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11127B3F1FF60F5100800013 /* Assets.xcassets */; };
-		11127B421FF6FAA100800013 /* MyAttendancesInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11127B411FF6FAA100800013 /* MyAttendancesInfosController.swift */; };
+		1112964C1FFF3ED000AD4B13 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1112964A1FFF3ED000AD4B13 /* Interface.storyboard */; };
+		1112964E1FFF3ED000AD4B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1112964D1FFF3ED000AD4B13 /* Assets.xcassets */; };
+		111296551FFF3ED000AD4B13 /* tech-portail-watch-OS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 111296541FFF3ED000AD4B13 /* tech-portail-watch-OS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1112965C1FFF3ED000AD4B13 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112965B1FFF3ED000AD4B13 /* ExtensionDelegate.swift */; };
+		1112965E1FFF3ED000AD4B13 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112965D1FFF3ED000AD4B13 /* NotificationController.swift */; };
+		111296601FFF3ED000AD4B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1112965F1FFF3ED000AD4B13 /* Assets.xcassets */; };
+		111296651FFF3ED000AD4B13 /* tech-portail-watch-OS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 111296481FFF3ED000AD4B13 /* tech-portail-watch-OS.app */; };
 		1133952D1FDF898E009CDE65 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133952C1FDF898E009CDE65 /* EditPasswordController.swift */; };
 		1134BEB31FCB3F9700D8FBBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1134BEB21FCB3F9700D8FBBF /* Main.storyboard */; };
 		1134BEB51FCB6A1B00D8FBBF /* NewInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */; };
 		1134BEB71FCB73C400D8FBBF /* EventInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB61FCB73C400D8FBBF /* EventInfosController.swift */; };
 		1134BEB91FCB7E0900D8FBBF /* UserInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */; };
-		113909AF1FF4855E007B8F99 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113909AE1FF4855E007B8F99 /* Message.swift */; };
 		115555561FDDDF290013A4C0 /* EditEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115555551FDDDF290013A4C0 /* EditEmailController.swift */; };
-		115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */; };
 		115C27561FDA137600073372 /* EditEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C27551FDA137600073372 /* EditEventController.swift */; };
 		115D6DD81FDCB16C008EF5E8 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D6DD71FDCB16C008EF5E8 /* Teams.swift */; };
 		115EF0C21FF22586002AB4F1 /* AttendanceStartDatePopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115EF0C11FF22586002AB4F1 /* AttendanceStartDatePopupController.swift */; };
 		115EF0C41FF2432E002AB4F1 /* AttendanceEndDatePopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115EF0C31FF2432E002AB4F1 /* AttendanceEndDatePopupController.swift */; };
 		116751511FD8B345007A2E85 /* EditNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116751501FD8B345007A2E85 /* EditNewController.swift */; };
 		116F04121FF36DB40071162E /* AccountSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F04111FF36DB40071162E /* AccountSettingsController.swift */; };
-		116F04161FF3818E0071162E /* ReportBugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F04151FF3818E0071162E /* ReportBugController.swift */; };
-		116F04181FF381E40071162E /* ReportPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F04171FF381E40071162E /* ReportPopupController.swift */; };
 		118542381FF4467D0077CE5A /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118542371FF4467D0077CE5A /* ImageViewExtension.swift */; };
 		119F17A21FEF331C0079A191 /* EditNotificationsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F17A11FEF331C0079A191 /* EditNotificationsSettings.swift */; };
 		11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */; };
@@ -56,6 +57,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		111296561FFF3ED000AD4B13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 766F14F81FC1304700A8197B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 111296531FFF3ED000AD4B13;
+			remoteInfo = "tech-portail-watch-OS Extension";
+		};
+		111296631FFF3ED000AD4B13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 766F14F81FC1304700A8197B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 111296471FFF3ED000AD4B13;
+			remoteInfo = "tech-portail-watch-OS";
+		};
 		766F15151FC1304700A8197B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 766F14F81FC1304700A8197B /* Project object */;
@@ -72,28 +87,57 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1112966B1FFF3ED000AD4B13 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				111296551FFF3ED000AD4B13 /* tech-portail-watch-OS Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F6E03F1FFEDB7500A3F058 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				111296651FFF3ED000AD4B13 /* tech-portail-watch-OS.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0422C232C601DB6FD2B3126E /* Pods-tech-portail-mobile-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSUITests/Pods-tech-portail-mobile-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
-		11127B3B1FF5FCCF00800013 /* MyAttendancesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAttendancesController.swift; sourceTree = "<group>"; };
 		11127B3D1FF6063300800013 /* UserAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttendance.swift; sourceTree = "<group>"; };
 		11127B3F1FF60F5100800013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		11127B411FF6FAA100800013 /* MyAttendancesInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAttendancesInfosController.swift; sourceTree = "<group>"; };
+		111296481FFF3ED000AD4B13 /* tech-portail-watch-OS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tech-portail-watch-OS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1112964B1FFF3ED000AD4B13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		1112964D1FFF3ED000AD4B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1112964F1FFF3ED000AD4B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		111296541FFF3ED000AD4B13 /* tech-portail-watch-OS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "tech-portail-watch-OS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1112965B1FFF3ED000AD4B13 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		1112965D1FFF3ED000AD4B13 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		1112965F1FFF3ED000AD4B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		111296611FFF3ED000AD4B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		111296621FFF3ED000AD4B13 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1133952C1FDF898E009CDE65 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
 		1134BEB21FCB3F9700D8FBBF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfosController.swift; sourceTree = "<group>"; };
 		1134BEB61FCB73C400D8FBBF /* EventInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfosController.swift; sourceTree = "<group>"; };
 		1134BEB81FCB7E0900D8FBBF /* UserInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfosController.swift; sourceTree = "<group>"; };
-		113909AE1FF4855E007B8F99 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		115555551FDDDF290013A4C0 /* EditEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmailController.swift; sourceTree = "<group>"; };
-		115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonAttendance.swift; sourceTree = "<group>"; };
 		115C27551FDA137600073372 /* EditEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventController.swift; sourceTree = "<group>"; };
 		115D6DD71FDCB16C008EF5E8 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		115EF0C11FF22586002AB4F1 /* AttendanceStartDatePopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStartDatePopupController.swift; sourceTree = "<group>"; };
 		115EF0C31FF2432E002AB4F1 /* AttendanceEndDatePopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceEndDatePopupController.swift; sourceTree = "<group>"; };
 		116751501FD8B345007A2E85 /* EditNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNewController.swift; sourceTree = "<group>"; };
 		116F04111FF36DB40071162E /* AccountSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsController.swift; sourceTree = "<group>"; };
-		116F04151FF3818E0071162E /* ReportBugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBugController.swift; sourceTree = "<group>"; };
-		116F04171FF381E40071162E /* ReportPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupController.swift; sourceTree = "<group>"; };
 		118542371FF4467D0077CE5A /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		119F17A11FEF331C0079A191 /* EditNotificationsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationsSettings.swift; sourceTree = "<group>"; };
 		11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendancesController.swift; sourceTree = "<group>"; };
@@ -134,6 +178,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		111296511FFF3ED000AD4B13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		766F14FD1FC1304700A8197B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +212,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		111296491FFF3ED000AD4B13 /* tech-portail-watch-OS */ = {
+			isa = PBXGroup;
+			children = (
+				1112964A1FFF3ED000AD4B13 /* Interface.storyboard */,
+				1112964D1FFF3ED000AD4B13 /* Assets.xcassets */,
+				1112964F1FFF3ED000AD4B13 /* Info.plist */,
+			);
+			path = "tech-portail-watch-OS";
+			sourceTree = "<group>";
+		};
+		111296581FFF3ED000AD4B13 /* tech-portail-watch-OS Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1112965B1FFF3ED000AD4B13 /* ExtensionDelegate.swift */,
+				1112965D1FFF3ED000AD4B13 /* NotificationController.swift */,
+				1112965F1FFF3ED000AD4B13 /* Assets.xcassets */,
+				111296611FFF3ED000AD4B13 /* Info.plist */,
+				111296621FFF3ED000AD4B13 /* PushNotificationPayload.apns */,
+			);
+			path = "tech-portail-watch-OS Extension";
+			sourceTree = "<group>";
+		};
 		115D6DD51FDCB151008EF5E8 /* Enumerations */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +273,8 @@
 				766F15021FC1304700A8197B /* tech-portail-mobile-iOS */,
 				766F15171FC1304700A8197B /* tech-portail-mobile-iOSTests */,
 				766F15221FC1304700A8197B /* tech-portail-mobile-iOSUITests */,
+				111296491FFF3ED000AD4B13 /* tech-portail-watch-OS */,
+				111296581FFF3ED000AD4B13 /* tech-portail-watch-OS Extension */,
 				766F15011FC1304700A8197B /* Products */,
 				99E95E712D1CEA6851CCCA78 /* Pods */,
 				63765B24CDA9361D8920C7CF /* Frameworks */,
@@ -212,6 +287,8 @@
 				766F15001FC1304700A8197B /* tech-portail-mobile-iOS.app */,
 				766F15141FC1304700A8197B /* tech-portail-mobile-iOSTests.xctest */,
 				766F151F1FC1304700A8197B /* tech-portail-mobile-iOSUITests.xctest */,
+				111296481FFF3ED000AD4B13 /* tech-portail-watch-OS.app */,
+				111296541FFF3ED000AD4B13 /* tech-portail-watch-OS Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -261,8 +338,6 @@
 				76A3654B1FC13A600091EA54 /* User.swift */,
 				11127B3D1FF6063300800013 /* UserAttendance.swift */,
 				11A3DF5D1FCC02E9001187C8 /* Attendance.swift */,
-				115B81B61FD4EE4300BDDC3A /* NonAttendance.swift */,
-				113909AE1FF4855E007B8F99 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,8 +351,6 @@
 				1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */,
 				764455141FC140250070E831 /* AddNewController.swift */,
 				116751501FD8B345007A2E85 /* EditNewController.swift */,
-				11127B3B1FF5FCCF00800013 /* MyAttendancesController.swift */,
-				11127B411FF6FAA100800013 /* MyAttendancesInfosController.swift */,
 				7644551A1FC148830070E831 /* EventsController.swift */,
 				1134BEB61FCB73C400D8FBBF /* EventInfosController.swift */,
 				764455181FC147DD0070E831 /* AddEventController.swift */,
@@ -292,8 +365,6 @@
 				115555551FDDDF290013A4C0 /* EditEmailController.swift */,
 				119F17A11FEF331C0079A191 /* EditNotificationsSettings.swift */,
 				1133952C1FDF898E009CDE65 /* EditPasswordController.swift */,
-				116F04171FF381E40071162E /* ReportPopupController.swift */,
-				116F04151FF3818E0071162E /* ReportBugController.swift */,
 				76BEABF91FC1341E00F39BC1 /* TabBarController.swift */,
 			);
 			path = Controllers;
@@ -324,6 +395,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		111296471FFF3ED000AD4B13 /* tech-portail-watch-OS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1112966C1FFF3ED000AD4B13 /* Build configuration list for PBXNativeTarget "tech-portail-watch-OS" */;
+			buildPhases = (
+				111296461FFF3ED000AD4B13 /* Resources */,
+				1112966B1FFF3ED000AD4B13 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				111296571FFF3ED000AD4B13 /* PBXTargetDependency */,
+			);
+			name = "tech-portail-watch-OS";
+			productName = "tech-portail-watch-OS";
+			productReference = 111296481FFF3ED000AD4B13 /* tech-portail-watch-OS.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		111296531FFF3ED000AD4B13 /* tech-portail-watch-OS Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1112966A1FFF3ED000AD4B13 /* Build configuration list for PBXNativeTarget "tech-portail-watch-OS Extension" */;
+			buildPhases = (
+				111296501FFF3ED000AD4B13 /* Sources */,
+				111296511FFF3ED000AD4B13 /* Frameworks */,
+				111296521FFF3ED000AD4B13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "tech-portail-watch-OS Extension";
+			productName = "tech-portail-watch-OS Extension";
+			productReference = 111296541FFF3ED000AD4B13 /* tech-portail-watch-OS Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		766F14FF1FC1304700A8197B /* tech-portail-mobile-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 766F15281FC1304700A8197B /* Build configuration list for PBXNativeTarget "tech-portail-mobile-iOS" */;
@@ -335,10 +440,12 @@
 				7337EADB044742EE58F3DAF5 /* [CP] Embed Pods Frameworks */,
 				460B98B8FA77C5A5C9FD78BD /* [CP] Copy Pods Resources */,
 				11A073E41FCAA2370062AB65 /* Upload symbols to Crash Report */,
+				11F6E03F1FFEDB7500A3F058 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				111296641FFF3ED000AD4B13 /* PBXTargetDependency */,
 			);
 			name = "tech-portail-mobile-iOS";
 			productName = "tech-portail-mobile-iOS";
@@ -393,13 +500,26 @@
 		766F14F81FC1304700A8197B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Équipe Team 3990 : Tech For Kids";
 				TargetAttributes = {
+					111296471FFF3ED000AD4B13 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					111296531FFF3ED000AD4B13 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					766F14FF1FC1304700A8197B = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					766F15131FC1304700A8197B = {
 						CreatedOnToolsVersion = 9.1;
@@ -429,11 +549,30 @@
 				766F14FF1FC1304700A8197B /* tech-portail-mobile-iOS */,
 				766F15131FC1304700A8197B /* tech-portail-mobile-iOSTests */,
 				766F151E1FC1304700A8197B /* tech-portail-mobile-iOSUITests */,
+				111296471FFF3ED000AD4B13 /* tech-portail-watch-OS */,
+				111296531FFF3ED000AD4B13 /* tech-portail-watch-OS Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		111296461FFF3ED000AD4B13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1112964E1FFF3ED000AD4B13 /* Assets.xcassets in Resources */,
+				1112964C1FFF3ED000AD4B13 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		111296521FFF3ED000AD4B13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				111296601FFF3ED000AD4B13 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		766F14FE1FC1304700A8197B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -648,6 +787,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		111296501FFF3ED000AD4B13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1112965E1FFF3ED000AD4B13 /* NotificationController.swift in Sources */,
+				1112965C1FFF3ED000AD4B13 /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		766F14FC1FC1304700A8197B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -660,24 +808,19 @@
 				76A3654E1FC13A9D0091EA54 /* AuthService.swift in Sources */,
 				11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */,
 				76BEABFC1FC1354D00F39BC1 /* DashboardController.swift in Sources */,
-				11127B3C1FF5FCCF00800013 /* MyAttendancesController.swift in Sources */,
 				76A3654C1FC13A600091EA54 /* User.swift in Sources */,
 				115EF0C41FF2432E002AB4F1 /* AttendanceEndDatePopupController.swift in Sources */,
 				1133952D1FDF898E009CDE65 /* EditPasswordController.swift in Sources */,
-				116F04181FF381E40071162E /* ReportPopupController.swift in Sources */,
 				115555561FDDDF290013A4C0 /* EditEmailController.swift in Sources */,
 				76A365501FC13B230091EA54 /* DatabaseService.swift in Sources */,
 				1134BEB91FCB7E0900D8FBBF /* UserInfosController.swift in Sources */,
 				766F15041FC1304700A8197B /* AppDelegate.swift in Sources */,
 				764455171FC1451A0070E831 /* TeamController.swift in Sources */,
-				11127B421FF6FAA100800013 /* MyAttendancesInfosController.swift in Sources */,
 				118542381FF4467D0077CE5A /* ImageViewExtension.swift in Sources */,
 				76A365481FC13A440091EA54 /* New.swift in Sources */,
 				116F04121FF36DB40071162E /* AccountSettingsController.swift in Sources */,
 				11ADA9B21FDDCE99004CE8CF /* SettingsController.swift in Sources */,
-				113909AF1FF4855E007B8F99 /* Message.swift in Sources */,
 				11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */,
-				115B81B71FD4EE4300BDDC3A /* NonAttendance.swift in Sources */,
 				76A365461FC13A3D0091EA54 /* Event.swift in Sources */,
 				1134BEB71FCB73C400D8FBBF /* EventInfosController.swift in Sources */,
 				115D6DD81FDCB16C008EF5E8 /* Teams.swift in Sources */,
@@ -686,7 +829,6 @@
 				115C27561FDA137600073372 /* EditEventController.swift in Sources */,
 				115EF0C21FF22586002AB4F1 /* AttendanceStartDatePopupController.swift in Sources */,
 				7644551B1FC148830070E831 /* EventsController.swift in Sources */,
-				116F04161FF3818E0071162E /* ReportBugController.swift in Sources */,
 				116751511FD8B345007A2E85 /* EditNewController.swift in Sources */,
 				764455191FC147DD0070E831 /* AddEventController.swift in Sources */,
 			);
@@ -711,6 +853,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		111296571FFF3ED000AD4B13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 111296531FFF3ED000AD4B13 /* tech-portail-watch-OS Extension */;
+			targetProxy = 111296561FFF3ED000AD4B13 /* PBXContainerItemProxy */;
+		};
+		111296641FFF3ED000AD4B13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 111296471FFF3ED000AD4B13 /* tech-portail-watch-OS */;
+			targetProxy = 111296631FFF3ED000AD4B13 /* PBXContainerItemProxy */;
+		};
 		766F15161FC1304700A8197B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 766F14FF1FC1304700A8197B /* tech-portail-mobile-iOS */;
@@ -724,6 +876,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1112964A1FFF3ED000AD4B13 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1112964B1FFF3ED000AD4B13 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		766F150C1FC1304700A8197B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -735,6 +895,80 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		111296661FFF3ED000AD4B13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AS7FHN2WK6;
+				IBSC_MODULE = tech_portail_watch_OS_Extension;
+				INFOPLIST_FILE = "tech-portail-watch-OS/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.team3990.techportail.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		111296671FFF3ED000AD4B13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AS7FHN2WK6;
+				IBSC_MODULE = tech_portail_watch_OS_Extension;
+				INFOPLIST_FILE = "tech-portail-watch-OS/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.team3990.techportail.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		111296681FFF3ED000AD4B13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AS7FHN2WK6;
+				INFOPLIST_FILE = "tech-portail-watch-OS Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.team3990.techportail.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		111296691FFF3ED000AD4B13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AS7FHN2WK6;
+				INFOPLIST_FILE = "tech-portail-watch-OS Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.team3990.techportail.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
 		766F15261FC1304700A8197B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -943,6 +1177,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1112966A1FFF3ED000AD4B13 /* Build configuration list for PBXNativeTarget "tech-portail-watch-OS Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				111296681FFF3ED000AD4B13 /* Debug */,
+				111296691FFF3ED000AD4B13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1112966C1FFF3ED000AD4B13 /* Build configuration list for PBXNativeTarget "tech-portail-watch-OS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				111296661FFF3ED000AD4B13 /* Debug */,
+				111296671FFF3ED000AD4B13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		766F14FB1FC1304700A8197B /* Build configuration list for PBXProject "tech-portail-mobile-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

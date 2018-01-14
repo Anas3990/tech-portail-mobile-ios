@@ -60,6 +60,10 @@ class EditNewController: FormViewController {
                 
                 //
                 $0.value = self.new?.body
+                
+                //
+                let dynamicHeight: TextAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 100)
+                $0.textAreaHeight = dynamicHeight
         }
     }
     
@@ -73,7 +77,7 @@ class EditNewController: FormViewController {
                 reference.updateData(["title": title, "body": description], completion: { (error) in
                     if let error = error {
                         // Alerte à afficher si une erreur est survenue lors de la tentative de modification
-                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de la nouvelle." , preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de la nouvelle : \(error.localizedDescription)" , preferredStyle: .alert)
                         
                         let OKAction = UIAlertAction(title: "OK", style: .default)
                         alertController.addAction(OKAction)
@@ -91,7 +95,7 @@ class EditNewController: FormViewController {
                 reference.updateData(["title": title, "body": "Aucune description n'a été fournie."], completion: { (error) in
                     if let error = error {
                         // Alerte à afficher si une erreur est survenue lors de la tentative de modification
-                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de la nouvelle." , preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de la nouvelle : \(error.localizedDescription)" , preferredStyle: .alert)
                         
                         let OKAction = UIAlertAction(title: "OK", style: .default)
                         alertController.addAction(OKAction)

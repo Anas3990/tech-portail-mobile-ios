@@ -4,10 +4,43 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>tech-portail-mobile-iOS.xcscheme</key>
+		<key>Tech Portail Watch App.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>tech-portail-mobile-iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>tech-portail-watch-OS (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>tech-portail-watch-OS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>766F14FF1FC1304700A8197B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>766F15131FC1304700A8197B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>766F151E1FC1304700A8197B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

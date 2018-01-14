@@ -17,12 +17,15 @@ import StatusAlert
 
 class EventInfosController: UITableViewController {
     
+    // Déclaration de l'objet AuthService
+    let authService = AuthService()
+    
     // Références aux éléments de l'interface de l'application
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var authorEmailLabel: UILabel!
     
     @IBOutlet weak var isUserAttendingLabel: UILabel!
-    @IBOutlet weak var attendancesCountLabel: UILabel!
+    @IBOutlet weak var attendanceCommentLabel: UILabel!
     
     @IBOutlet weak var attendingCheckButton: UIButton!
     @IBOutlet weak var notAttendingCheckButton: UIButton!
@@ -35,6 +38,10 @@ class EventInfosController: UITableViewController {
     //
     var event: EventObject?
     var eventReference: DocumentReference?
+    var attendanceReference: DocumentReference?
+    var currentUserAttendancesEventDocument: DocumentReference?
+    
+    var currentUserFullName: String?
     
     private var listener: ListenerRegistration?
     
@@ -55,31 +62,43 @@ class EventInfosController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        // Configuration du titre de la vue
         self.title = event?.title
         
         // Rendre la barre de navigation plus petite afin d'éviter d'empiéter sur le contenu
         navigationItem.largeTitleDisplayMode = .never
         
         //
-        self.authorNameLabel.text = event?.author["name"]
-        self.authorEmailLabel.text = event?.author["email"]
+        guard let reference = eventReference else { return }
+        
+        attendanceReference = reference.collection("attendances").document(Auth.auth().currentUser!.uid)
+        currentUserAttendancesEventDocument = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("attendances").document(reference.documentID)
+        
+        //
+        authService.getCurrentUserData { (userData) in
+            self.currentUserFullName = "\(userData.firstName) \(userData.name)"
+        }
+        
+        //
+        authorNameLabel.text = event?.author["name"]
+        authorEmailLabel.text = event?.author["email"]
         
         //        
-        self.attendancesCountLabel.text = "personne(s) y participe(nt)"
+        attendanceCommentLabel.text = "Confirmer votre présence"
         
         //
         let dateOnlyFormatter = DateFormatter()
         let timeOnlyFormatter = DateFormatter()
         
         //
-        dateOnlyFormatter.dateFormat = "EEEE dd MMMM"
+        dateOnlyFormatter.dateFormat = "EEEE d MMMM"
         timeOnlyFormatter.dateFormat = "hh:mm"
         
-        self.startDate.text = "le " + dateOnlyFormatter.string(from: (event?.startDate)!) + ", " + " à " + timeOnlyFormatter.string(from: (event?.startDate)!)
-        self.endDate.text = "le " + dateOnlyFormatter.string(from: (event?.startDate)!) + ", " + " à " + timeOnlyFormatter.string(from: (event?.endDate)!)
+        startDate.text = "le " + dateOnlyFormatter.string(from: (event?.startDate)!) + ", " + " à " + timeOnlyFormatter.string(from: (event?.startDate)!)
+        endDate.text = "le " + dateOnlyFormatter.string(from: (event?.startDate)!) + ", " + " à " + timeOnlyFormatter.string(from: (event?.endDate)!)
         
         //
-        self.descriptionTextView.text = event?.body
+        descriptionTextView.text = event?.body
     }
 
     // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone
@@ -104,7 +123,8 @@ class EventInfosController: UITableViewController {
         guard let reference = eventReference else { return }
         
         let attendancesCollection = reference.collection("attendances")
-        let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
+        let attendanceReference =
+            attendancesCollection.document(Auth.auth().currentUser!.uid)
         
         listener = attendanceReference.addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
@@ -117,11 +137,13 @@ class EventInfosController: UITableViewController {
                 
                 if attendance != true {
                     self.isUserAttendingLabel.text = "Vous ne participez pas à l'évènement"
+                    self.attendanceCommentLabel.text = "Nous sommes tristes. Revenez !"
                     self.notAttendingCheckButton.setImage(#imageLiteral(resourceName: "absentSelectedCellIcon"), for: .normal)
                     
                     self.attendingCheckButton.setImage(#imageLiteral(resourceName: "presentCellIcon"), for: .normal)
                 } else {
                     self.isUserAttendingLabel.text = "Vous participez à l'évènement"
+                    self.attendanceCommentLabel.text = "Merci de participer à l'évènement !"
                     self.attendingCheckButton.setImage(#imageLiteral(resourceName: "presentSelectedCellIcon"), for: .normal)
                     
                     self.notAttendingCheckButton.setImage(#imageLiteral(resourceName: "absentCellIcon"), for: .normal)
@@ -129,15 +151,20 @@ class EventInfosController: UITableViewController {
             }
         }
     }
-    
-    
+        
     @IBAction func absentTapped(_ sender: Any) {
-        guard let reference = eventReference else { return }
+        //
+        let batch = Firestore.firestore().batch()
         
-        let attendancesCollection = reference.collection("attendances")
-        let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
+        //
+        guard let currentUserAttendancesEventDocument = currentUserAttendancesEventDocument else { return }
+        guard let attendanceReference = attendanceReference else { return }
+
+        //
+        batch.setData(["nonAttendantName": self.currentUserFullName ?? "", "present": false, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
+        batch.deleteDocument(currentUserAttendancesEventDocument)
         
-        attendanceReference.setData(["nonAttendantName": "Anas Merbouh", "present": false, "confirmedAt": FieldValue.serverTimestamp()]) { (error) in
+        batch.commit { (error) in
             if let error = error {
                 // Alerte à afficher si une erreur est survenue
                 let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de confirmation de votre absence : \(error.localizedDescription)" , preferredStyle: .alert)
@@ -150,7 +177,7 @@ class EventInfosController: UITableViewController {
                 //
                 let statusAlert = StatusAlert.instantiate(withImage: #imageLiteral(resourceName: "abscenceConfirmedIcon"), title: "Absent", message: "Votre absence a été confirmée avec succès.")
                 
-                // 
+                //
                 statusAlert.show()
             }
         }

@@ -24,7 +24,7 @@ class AccountSettingsController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
+        // Configuration générale de la vue
         self.title = "Mon compte"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminé", style: .plain, target: self, action: #selector(handleEditAccount))
         

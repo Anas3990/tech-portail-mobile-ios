@@ -173,7 +173,7 @@ class NewCell: UITableViewCell {
     
     func populate(new: NewObject) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE dd MMMM yyyy"
+        dateFormatter.dateFormat = "EEEE d MMMM yyyy"
 
         
         //

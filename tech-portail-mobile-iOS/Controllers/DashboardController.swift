@@ -9,20 +9,26 @@ import UIKit
 
 //
 import FirebaseFirestore
+import FirebaseAuth
 
-class DashBoardController: UIViewController  {
+class DashBoardController: UIViewController, UITableViewDataSource, UITableViewDelegate   {
+    
+    // Référence aux éléments de l'interface de l'application
+    @IBOutlet weak var upComingUserAttendancesTableView: UITableView!
     
     //
-    private var events: [EventObject] = []
+    let backgroundView = UIImageView()
+    
+    //
+    private var upComingUserAttendances: [UserAttendanceObject] = []
     private var documents: [DocumentSnapshot] = []
     
-
     //
     fileprivate var query: Query? {
         didSet {
             if let listener = listener {
                 listener.remove()
-                observeRecentEvents()
+                observeUpComingUserAttendances()
             }
         }
     }
@@ -33,9 +39,9 @@ class DashBoardController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Définir le nom de la vue
-        self.title = "Accueil"
-        
+        //
+        upComingUserAttendancesTableView.dataSource = self
+        upComingUserAttendancesTableView.delegate = self
     
         //
         query = baseQuery()
@@ -44,7 +50,7 @@ class DashBoardController: UIViewController  {
     // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone
     override func viewWillAppear(_ animated: Bool) {
         //
-        observeRecentEvents()
+        observeUpComingUserAttendances()
     }
     
     // Détacher le listener lorsque la vue disparaît afin de ne pas abuser de la mémoire du téléphone et de la bande passante du réseau
@@ -55,7 +61,7 @@ class DashBoardController: UIViewController  {
     
     //
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("events").order(by: "timestamp", descending: true).limit(to: 7)
+        return Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("attendances").whereField("eventStartDate", isGreaterThan: Date())
     }
     
     //
@@ -64,7 +70,7 @@ class DashBoardController: UIViewController  {
     }
     
     //
-    func observeRecentEvents() {
+    func observeUpComingUserAttendances() {
         guard let query = query else { return }
         stopObserving()
         
@@ -73,19 +79,19 @@ class DashBoardController: UIViewController  {
                 print("Error fetching snapshot results: \(error!)")
                 return
             }
-            let models = snapshot.documents.map { (document) -> EventObject in
-                if let model = EventObject(dictionary: document.data()) {
+            let models = snapshot.documents.map { (document) -> UserAttendanceObject in
+                if let model = UserAttendanceObject(dictionary: document.data()) {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
-                    fatalError("Unable to initialize type \(EventObject.self) with dictionary \(document.data())")
+                    fatalError("Unable to initialize type \(UserAttendanceObject.self) with dictionary \(document.data())")
                 }
             }
-            self.events = models
+            self.upComingUserAttendances = models
             self.documents = snapshot.documents
             
             DispatchQueue.main.async {
-                
+                self.upComingUserAttendancesTableView.reloadData()
             }
         }
     }
@@ -93,5 +99,37 @@ class DashBoardController: UIViewController  {
     //
     deinit {
         listener?.remove()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return upComingUserAttendances.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "upComingUserAttendanceCell", for: indexPath) as! UpComingUserAttendanceCell
+        
+        //
+        let upComingUserAttendance = upComingUserAttendances[indexPath.row]
+        
+        //
+        cell.populate(upComingUserAttendance: upComingUserAttendance)
+        
+        //
+        return cell
+    }
+}
+
+class UpComingUserAttendanceCell: UITableViewCell {
+    @IBOutlet weak var upComingEventTitleLabel: UILabel!
+    @IBOutlet weak var upComingEventBodyLabel: UILabel!
+    
+    func populate(upComingUserAttendance: UserAttendanceObject) {
+        //
+        upComingEventTitleLabel.text = upComingUserAttendance.eventTitle
+        upComingEventBodyLabel.text = upComingUserAttendance.eventBody
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
 }

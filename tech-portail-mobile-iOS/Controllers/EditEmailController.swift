@@ -74,7 +74,7 @@ class EditEmailController: FormViewController {
                         
                         self.user.reauthenticate(with: credential, completion: { (error) in
                             if let error = error {
-                                let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de vérification de votre identité." , preferredStyle: .alert)
+                                let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de vérification de votre identité : \(error.localizedDescription)" , preferredStyle: .alert)
                                 
                                 let OKAction = UIAlertAction(title: "OK", style: .default)
                                 alertController.addAction(OKAction)
@@ -86,7 +86,7 @@ class EditEmailController: FormViewController {
                                 self.user.updateEmail(to: newEmail, completion: { (error) in
                                     if let error = error {
                                         // Alerte à afficher si la tentative de modification du courriel a échouée
-                                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de votre courriel." , preferredStyle: .alert)
+                                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de votre courriel : \(error.localizedDescription)" , preferredStyle: .alert)
                                         
                                         let OKAction = UIAlertAction(title: "OK", style: .default)
                                         alertController.addAction(OKAction)

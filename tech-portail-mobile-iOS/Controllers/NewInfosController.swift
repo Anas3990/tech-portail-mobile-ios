@@ -42,7 +42,7 @@ class NewInfosController: UITableViewController {
         self.authorEmailLabel.text = new?.author["email"]
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE dd MMMM yyyy"
+        dateFormatter.dateFormat = "EEEE d MMMM yyyy"
         
         self.creationDateLabel.text = "le " + dateFormatter.string(from: new!.timestamp)
         

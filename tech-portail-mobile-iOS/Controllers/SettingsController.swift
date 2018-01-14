@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class SettingsController: UITableViewController {
+    
     // Référence à la classe AuthService
     let authService = AuthService()
     
@@ -90,7 +91,7 @@ class SettingsController: UITableViewController {
                 
                 self.navigationController?.pushViewController(editNotificationsSettingsCtrl, animated: true)
             default:
-                break;
+                break
             }
         case 2:
             switch indexPath.row {
@@ -150,8 +151,6 @@ class SettingsController: UITableViewController {
                 alertController.addAction(alertActionModify)
                 
                 self.present(alertController, animated: true, completion: nil)
-            case 1:
-                break
             default:
                 break
             }

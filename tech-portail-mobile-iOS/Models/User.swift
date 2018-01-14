@@ -20,6 +20,7 @@ struct UserObject {
     var photoUrl: String
     var professionalTitle: String
     var roles: [String: Bool]
+    var timestamp: Date
     var uid: String
     
     var dictionary: [String: Any] {
@@ -35,6 +36,7 @@ struct UserObject {
             "photoUrl": photoUrl,
             "professionalTitle": professionalTitle,
             "roles": roles,
+            "timestamp": timestamp,
             "uid": uid
         ]
     }
@@ -53,10 +55,11 @@ extension UserObject: DocumentSerializable {
             let photoUrl = dictionary["photoUrl"] as? String,
             let professionalTitle = dictionary["professionalTitle"] as? String,
             let roles = dictionary["roles"] as? [String: Bool],
+            let timestamp = dictionary["timestamp"] as? Date,
             let uid = dictionary["uid"] as? String else { return nil }
         
         
-        self.init(approved: approved, email: email, firstName: firstName, group: group, homePhoneNumber1: homePhoneNumber1, homePhoneNumber2: homePhoneNumber2, mobilePhoneNumber: mobilePhoneNumber, name: name, photoUrl: photoUrl, professionalTitle: professionalTitle, roles: roles, uid: uid)
+        self.init(approved: approved, email: email, firstName: firstName, group: group, homePhoneNumber1: homePhoneNumber1, homePhoneNumber2: homePhoneNumber2, mobilePhoneNumber: mobilePhoneNumber, name: name, photoUrl: photoUrl, professionalTitle: professionalTitle, roles: roles, timestamp: timestamp, uid: uid)
     }
 }
 

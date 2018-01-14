@@ -21,7 +21,7 @@ class EditPasswordController: FormViewController {
         // Configuration générale de la vue
         self.title = "Modifier mon mot de passe"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminé", style: .plain, target: self, action: #selector(handleEditPassword))
-        
+                
         // Formulaire
         form +++ Section(footer: "Vous devez choisir un mot de passe d'au minimum 6 caractères.")
             <<< PasswordRow() { row in

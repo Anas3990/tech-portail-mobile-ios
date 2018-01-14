@@ -17,6 +17,9 @@ import StatusAlert
 
 class AttendanceEndDatePopupController: UIViewController {
     
+    // Déclaration de l'objet AuthService
+    let authService = AuthService()
+    
     //
     @IBOutlet weak var attendanceEndDatePicker: UIDatePicker!
     
@@ -26,8 +29,15 @@ class AttendanceEndDatePopupController: UIViewController {
     var attendanceStartDate: Date!
     var attendanceEndDate: Date!
     
+    var currentUserFullName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //
+        authService.getCurrentUserData { (userData) in
+            self.currentUserFullName = "\(userData.firstName) \(userData.name)"
+        }
         
         attendanceEndDatePicker.date = attendanceEndDate
     }
@@ -38,10 +48,11 @@ class AttendanceEndDatePopupController: UIViewController {
         //
         let batch = Firestore.firestore().batch()
         
+        //
         let attendancesCollection = reference.collection("attendances")
         let attendanceReference = attendancesCollection.document(Auth.auth().currentUser!.uid)
         
-        batch.setData(["attendantName": "Anas Merbouh", "present": true, "attendanceStartsAt": attendanceStartDate, "attendanceEndsAt": attendanceEndDatePicker.date, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
+        batch.setData(["attendantName": self.currentUserFullName ?? "", "present": true, "attendanceStartsAt": attendanceStartDate, "attendanceEndsAt": attendanceEndDatePicker.date, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
         
         let usersCollection = Firestore.firestore().collection("users")
         let currentUserAttendancesEventDocument = usersCollection.document(Auth.auth().currentUser!.uid).collection("attendances").document(reference.documentID)

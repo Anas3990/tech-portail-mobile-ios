@@ -15,7 +15,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     // Référence aux éléments de l'interface de l'application
     @IBOutlet weak var eventsFilterSegmentedControl: UISegmentedControl!
     @IBOutlet var eventsTableView: UITableView!
-
+    
     //
     let backgroundView = UIImageView()
     
@@ -40,12 +40,12 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
         //
         backgroundView.contentMode = .scaleAspectFit
         backgroundView.alpha = 0.5
-        eventsTableView.backgroundView = backgroundView
         
         //
         eventsTableView.dataSource = self
         eventsTableView.delegate = self
-        
+        eventsTableView.backgroundView = backgroundView
+
         //
         query = baseQuery()
     }
@@ -118,7 +118,8 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
             }
         }
     }
-    
+
+    //
     @IBAction func addEventTapped(_ sender: Any) {
         let addEventController = AddEventController()
         let navController = UINavigationController(rootViewController: addEventController)
@@ -193,7 +194,7 @@ class EventCell: UITableViewCell {
         let dateOnlyFormatter = DateFormatter()
         let timeOnlyFormatter = DateFormatter()
         
-        dateOnlyFormatter.dateFormat = "EEEE dd MMMM"
+        dateOnlyFormatter.dateFormat = "EEEE d MMMM"
         timeOnlyFormatter.dateFormat = "hh:mm"
         
         //
