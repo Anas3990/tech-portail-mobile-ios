@@ -2,7 +2,7 @@
 //  NotificationController.swift
 //  tech-portail-watch-OS Extension
 //
-//  Created by Hicham MERBOUH on 18-01-05.
+//  Created by Anas MERBOUH on 18-01-05.
 //  Copyright © 2018 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
 
