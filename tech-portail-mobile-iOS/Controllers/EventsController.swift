@@ -5,22 +5,20 @@
 //  Created by Anas MERBOUH on 17-10-12.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
-import UIKit
 
+import UIKit
 import FirebaseFirestore
-import FirebaseCrash
 
 class EventsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // Référence aux éléments de l'interface de l'application
-    @IBOutlet weak var eventsFilterSegmentedControl: UISegmentedControl!
     @IBOutlet var eventsTableView: UITableView!
     
     //
     let backgroundView = UIImageView()
     
     // Déclaration de l'array d'évènements
-    private var events = [EventObject]()
+    private var events = [Event]()
     private var documents: [DocumentSnapshot] = []
     
     private var listener: ListenerRegistration?
@@ -48,18 +46,6 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
 
         //
         query = baseQuery()
-    }
-    
-    //
-    @IBAction func eventsFilterSegmentedControlSwitch(_ sender: UISegmentedControl) {
-        switch eventsFilterSegmentedControl.selectedSegmentIndex {
-            case 0:
-                self.query = baseQuery()
-            case 1:
-                self.query = Firestore.firestore().collection("events").whereField("startDate", isLessThan: Date())
-            default:
-                break;
-        }
     }
     
     // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone
@@ -95,13 +81,12 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
                 print("Error fetching snapshot results: \(error!)")
                 return
             }
-            let models = snapshot.documents.map { (document) -> EventObject in
-                if let model = EventObject(dictionary: document.data()) {
+            let models = snapshot.documents.map { (document) -> Event in
+                if let model = Event(dictionary: document.data()) {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
-                    FirebaseCrashMessage("Unable to initialize data with dictionary")
-                    fatalError("Unable to initialize type \(EventObject.self) with dictionary \(document.data())")
+                    fatalError("Unable to initialize type \(Event.self) with dictionary \(document.data())")
                 }
             }
             self.events = models
@@ -135,13 +120,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     // Fonction qui permet de supprimer/modifier un évènement
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let modifyAction = UITableViewRowAction(style: .normal, title: "Modifier") { (action, index) in
-            let editEventCtrl = EditEventController()
-            let navController = UINavigationController(rootViewController: editEventCtrl)
             
-            editEventCtrl.event = self.events[indexPath.row]
-            editEventCtrl.eventReference = self.documents[indexPath.row].reference
-            
-            self.present(navController, animated: true, completion: nil)
         }
         
         // Couleur du boutton pour modifier un évènement
@@ -161,7 +140,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     
     // Populer la cellule des informations sur la nouvelle
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         
         //
         let event = events[indexPath.row]
@@ -180,30 +159,5 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
         eventInfosCtrl.eventReference = documents[indexPath.row].reference
         
         self.navigationController?.pushViewController(eventInfosCtrl, animated: true)
-    }
-}
-
-// Classe de la cellule d'un utilisateur
-class EventCell: UITableViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bodyLabel: UILabel!
-    
-    func populate(event: EventObject) {
-        //
-        let dateOnlyFormatter = DateFormatter()
-        let timeOnlyFormatter = DateFormatter()
-        
-        dateOnlyFormatter.dateFormat = "EEEE d MMMM"
-        timeOnlyFormatter.dateFormat = "hh:mm"
-        
-        //
-        dateLabel.text = "Le " + dateOnlyFormatter.string(from: event.startDate) + ", de " + timeOnlyFormatter.string(from: event.startDate) + " à " + timeOnlyFormatter.string(from: event.endDate)
-        titleLabel.text = event.title
-        bodyLabel.text = event.body
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
     }
 }

@@ -7,12 +7,11 @@
 //
 
 import UIKit
-
 import FirebaseFirestore
 
 class NewInfosController: UITableViewController {
     //
-    var new: NewObject?
+    var new: New?
     var newReference: DocumentReference?
     
     //
@@ -54,7 +53,6 @@ class NewInfosController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return UITableViewAutomaticDimension
     }
 }

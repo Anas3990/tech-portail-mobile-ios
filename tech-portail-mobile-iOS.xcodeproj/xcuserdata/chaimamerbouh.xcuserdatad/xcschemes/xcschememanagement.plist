@@ -7,6 +7,16 @@
 		<key>tech-portail-mobile-iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>tech-portail-watch-OS (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>tech-portail-watch-OS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
 	</dict>

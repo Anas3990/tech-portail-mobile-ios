@@ -5,8 +5,8 @@
 //  Created by Anas MERBOUH on 17-10-14.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
-import UIKit
 
+import UIKit
 import FirebaseFirestore
 
 class NewsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -18,7 +18,7 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
     let backgroundView = UIImageView()
     
     // Déclaration de l'array de nouvelles
-    private var news: [NewObject] = []
+    private var news: [New] = []
     private var documents: [DocumentSnapshot] = []
     
     //
@@ -77,12 +77,12 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
                 print("Error fetching snapshot results: \(error!)")
                 return
             }
-            let models = snapshot.documents.map { (document) -> NewObject in
-                if let model = NewObject(dictionary: document.data()) {
+            let models = snapshot.documents.map { (document) -> New in
+                if let model = New(dictionary: document.data()) {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
-                    fatalError("Unable to initialize type \(NewObject.self) with dictionary \(document.data())")
+                    fatalError("Unable to initialize type \(New.self) with dictionary \(document.data())")
                 }
             }
             self.news = models
@@ -116,13 +116,7 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Fonction qui permet de supprimer/modifier une nouvelle
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let modifyAction = UITableViewRowAction(style: .normal, title: "Modifier") { (action, index) in
-            let editNewCtrl = EditNewController()
-            let navController = UINavigationController(rootViewController: editNewCtrl)
-             
-            editNewCtrl.new = self.news[indexPath.row]
-            editNewCtrl.newReference = self.documents[indexPath.row].reference
-            
-            self.present(navController, animated: true, completion: nil)
+           
         }
         
         // Couleur du boutton pour modifier une nouvelle
@@ -142,7 +136,7 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Populer la cellule des informations sur la nouvelle
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newCell", for: indexPath) as! NewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newCell", for: indexPath) as! NewTableViewCell
         
         //
         let new = news[indexPath.row]
@@ -160,29 +154,5 @@ class NewsController: UIViewController, UITableViewDataSource, UITableViewDelega
         newInfosCtrl.newReference = documents[indexPath.row].reference
         
         self.navigationController?.pushViewController(newInfosCtrl, animated: true)
-    }
-}
-
-// Classe de la cellule d'une nouvelle
-class NewCell: UITableViewCell {
-    // Référence aux éléments de l'interface de l'application
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bodyLabel: UILabel!
-    
-    
-    func populate(new: NewObject) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE d MMMM yyyy"
-
-        
-        //
-        dateLabel.text = "Le " + dateFormatter.string(from: new.timestamp)
-        titleLabel.text = new.title
-        bodyLabel.text = new.body
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
     }
 }

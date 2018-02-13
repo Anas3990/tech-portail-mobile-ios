@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>503625371219-37r3u89akopprid6a9ifp73b7anshmqv.apps.googleusercontent.com</string>
+	<string>503625371219-qji5ivgrl8n7rr304ije762f2k9hadvv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.503625371219-37r3u89akopprid6a9ifp73b7anshmqv</string>
+	<string>com.googleusercontent.apps.503625371219-qji5ivgrl8n7rr304ije762f2k9hadvv</string>
 	<key>API_KEY</key>
 	<string>AIzaSyB3-s_0q0lmH_PKKbW4mM9y78SMRa9LhYI</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.team3990.techportail</string>
+	<string>com.team3990.techportailmobile</string>
 	<key>PROJECT_ID</key>
 	<string>tech-portail-production</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:503625371219:ios:e357ca46ff125996</string>
+	<string>1:503625371219:ios:6e416dba75cdc43d</string>
 	<key>DATABASE_URL</key>
 	<string>https://tech-portail-production.firebaseio.com</string>
 </dict>

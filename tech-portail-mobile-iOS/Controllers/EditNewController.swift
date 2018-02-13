@@ -7,17 +7,9 @@
 //
 
 import UIKit
-
-// Importation de modules supplémentaires pour construire des formulaires plus facilement
 import Eureka
 
-//
-import FirebaseFirestore
-
 class EditNewController: FormViewController {
-    //
-    var new: NewObject?
-    var newReference: DocumentReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +35,6 @@ class EditNewController: FormViewController {
                 row.title = "Titre"
                 row.tag = "Title"
                 
-                //
-                row.value = self.new?.title
-                
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
                 } .cellUpdate { cell, row in
@@ -59,64 +48,13 @@ class EditNewController: FormViewController {
                 $0.tag = "Description"
                 
                 //
-                $0.value = self.new?.body
-                
-                //
                 let dynamicHeight: TextAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 100)
                 $0.textAreaHeight = dynamicHeight
         }
     }
     
     @objc func handlePost() {
-        // Récupérer les information saisies dans les champs
-        if let titleRow: TextRow = form.rowBy(tag: "Title"), let descriptionRow: TextAreaRow = form.rowBy(tag: "Description") {
-            if let title = titleRow.value, let description = descriptionRow.value {
-                // Appeler la fonction qui rajoute une nouvelle sur la base de données
-                guard let reference = newReference else { return }
-                
-                reference.updateData(["title": title, "body": description], completion: { (error) in
-                    if let error = error {
-                        // Alerte à afficher si une erreur est survenue lors de la tentative de modification
-                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de la nouvelle : \(error.localizedDescription)" , preferredStyle: .alert)
-                        
-                        let OKAction = UIAlertAction(title: "OK", style: .default)
-                        alertController.addAction(OKAction)
-                        
-                        self.present(alertController, animated: true, completion: nil)
-                        return
-                    } else {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                })
-            } else if let title = titleRow.value {
-                // Appeler la fonction qui rajoute une nouvelle sur la base de données
-                guard let reference = newReference else { return }
-                
-                reference.updateData(["title": title, "body": "Aucune description n'a été fournie."], completion: { (error) in
-                    if let error = error {
-                        // Alerte à afficher si une erreur est survenue lors de la tentative de modification
-                        let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de modification de la nouvelle : \(error.localizedDescription)" , preferredStyle: .alert)
-                        
-                        let OKAction = UIAlertAction(title: "OK", style: .default)
-                        alertController.addAction(OKAction)
-                        
-                        self.present(alertController, animated: true, completion: nil)
-                        return
-                    } else {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                })
-            } else {
-                // Alerte à afficher si aucun titre n'est fourni
-                let alertController = UIAlertController(title: "Oups !", message: "Veuillez vous assurer de donner un titre à votre nouvelle." , preferredStyle: .alert)
-                
-                let OKAction = UIAlertAction(title: "OK", style: .default)
-                alertController.addAction(OKAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
-        }
+        
     }
     
     @objc func handleCancel() {

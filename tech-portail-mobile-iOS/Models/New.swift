@@ -5,14 +5,11 @@
 //  Created by Anas MERBOUH on 17-10-14.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
+
 import Foundation
 import FirebaseFirestore
 
-protocol DocumentSerializable {
-    init?(dictionary: [String: Any])
-}
-
-struct NewObject {
+struct New {
     var title: String
     var body: String
     var author: [String: String]
@@ -29,7 +26,7 @@ struct NewObject {
     }
 }
 
-extension NewObject: DocumentSerializable {
+extension New: DocumentSerializable {
     init?(dictionary: [String : Any]) {
         guard let title = dictionary["title"] as? String,
               let body = dictionary["body"] as? String,

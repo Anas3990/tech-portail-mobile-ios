@@ -5,72 +5,55 @@
 //  Created by Anas MERBOUH on 17-10-08.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
+
 import UIKit
-
-//
 import FirebaseFirestore
-import FirebaseAuth
 
-class DashBoardController: UIViewController, UITableViewDataSource, UITableViewDelegate   {
+class DashBoardController: UICollectionViewController {
     
-    // Référence aux éléments de l'interface de l'application
-    @IBOutlet weak var upComingUserAttendancesTableView: UITableView!
+    private var user = User()
     
-    //
-    let backgroundView = UIImageView()
+    private var upcomingEvents = [Event]()
+    private var recentNews = [New]()
     
-    //
-    private var upComingUserAttendances: [UserAttendanceObject] = []
-    private var documents: [DocumentSnapshot] = []
+    private var listener: ListenerRegistration?
     
-    //
     fileprivate var query: Query? {
         didSet {
             if let listener = listener {
                 listener.remove()
-                observeUpComingUserAttendances()
+                observeUpcomingEvents()
             }
         }
     }
     
-    //
-    private var listener: ListenerRegistration?
+    @IBOutlet weak var upcomingEventsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
-        upComingUserAttendancesTableView.dataSource = self
-        upComingUserAttendancesTableView.delegate = self
-    
-        //
         query = baseQuery()
     }
     
-    // Débuter le listener dans la méthode "viewWillAppear" à la place de la méthode "viewDidLoad" afin de préserver la batterie ainsi que l'usage de mémoire du téléphone
     override func viewWillAppear(_ animated: Bool) {
-        //
-        observeUpComingUserAttendances()
+        super.viewWillAppear(animated)
+        observeUpcomingEvents()
     }
     
-    // Détacher le listener lorsque la vue disparaît afin de ne pas abuser de la mémoire du téléphone et de la bande passante du réseau
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         stopObserving()
     }
     
-    //
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("attendances").whereField("eventStartDate", isGreaterThan: Date())
+        return Firestore.firestore().collection("events").whereField("startDate", isGreaterThan: Date()).limit(to: 5)
     }
     
-    //
     fileprivate func stopObserving() {
-        listener?.remove()
+        self.listener?.remove()
     }
     
-    //
-    func observeUpComingUserAttendances() {
+    private final func observeUpcomingEvents() {
         guard let query = query else { return }
         stopObserving()
         
@@ -79,57 +62,60 @@ class DashBoardController: UIViewController, UITableViewDataSource, UITableViewD
                 print("Error fetching snapshot results: \(error!)")
                 return
             }
-            let models = snapshot.documents.map { (document) -> UserAttendanceObject in
-                if let model = UserAttendanceObject(dictionary: document.data()) {
+            let models = snapshot.documents.map { (document) -> Event in
+                if let model = Event(dictionary: document.data()) {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
-                    fatalError("Unable to initialize type \(UserAttendanceObject.self) with dictionary \(document.data())")
+                    fatalError("Unable to initialize type \(Event.self) with dictionary \(document.data())")
                 }
             }
-            self.upComingUserAttendances = models
-            self.documents = snapshot.documents
+            self.upcomingEvents = models
             
             DispatchQueue.main.async {
-                self.upComingUserAttendancesTableView.reloadData()
+            self.upcomingEventsCollectionView.reloadData()
             }
         }
     }
     
-    //
-    deinit {
-        listener?.remove()
+    /* MARK: */
+    public final func showActivityDetail() {
+        let activityDetailCtrl = ActivityDetailController.fromStoryboard()
+        self.navigationController?.pushViewController(activityDetailCtrl, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return upComingUserAttendances.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "upComingUserAttendanceCell", for: indexPath) as! UpComingUserAttendanceCell
+    /* MARK: */
+    override internal final func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "collectionHeaderView", for: indexPath) as! CollectionViewHeader
         
-        //
-        let upComingUserAttendance = upComingUserAttendances[indexPath.row]
+        switch indexPath.section {
+        case 0:
+            headerView.populateHeader(withTitle: "Évènements à venir", subtitle: "Tous les évènenements à venir")
+        case 1:
+            headerView.populateHeader(withTitle: "Nouvelles", subtitle: "Toutes les nouvelles les plus récentes")
+        case 2:
+            headerView.populateHeader(withTitle: "Horaire atelier", subtitle: "Toutes les heures d'ouvertures de l'atelier à venir")
+        default:
+            headerView.populateHeader(withTitle: "N/A", subtitle: "N/A")
+        }
         
-        //
-        cell.populate(upComingUserAttendance: upComingUserAttendance)
-        
-        //
-        return cell
-    }
-}
-
-class UpComingUserAttendanceCell: UITableViewCell {
-    @IBOutlet weak var upComingEventTitleLabel: UILabel!
-    @IBOutlet weak var upComingEventBodyLabel: UILabel!
-    
-    func populate(upComingUserAttendance: UserAttendanceObject) {
-        //
-        upComingEventTitleLabel.text = upComingUserAttendance.eventTitle
-        upComingEventBodyLabel.text = upComingUserAttendance.eventBody
+        return headerView
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    override internal final func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
+    override internal final func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override internal final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingEventCellContainer", for: indexPath) as! UpcomingEventCollectionViewCellContainer
+    
+        cell.setupCollectionView()
+        cell.dashboardCtrl = self
+        
+        return cell 
     }
 }

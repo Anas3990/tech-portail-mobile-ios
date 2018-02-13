@@ -5,61 +5,102 @@
 //  Created by Anas MERBOUH on 17-10-08.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
+
 import Foundation
+import FirebaseAuth
 import FirebaseFirestore
 
-struct UserObject {
-    var approved: Bool
-    var email: String
-    var firstName: String
-    var group: String
-    var homePhoneNumber1: String
-    var homePhoneNumber2: String
-    var mobilePhoneNumber: String
-    var name: String
-    var photoUrl: String
-    var professionalTitle: String
-    var roles: [String: Bool]
-    var timestamp: Date
-    var uid: String
+struct User {
+    //
+    let currentUser = Auth.auth().currentUser
     
-    var dictionary: [String: Any] {
-        return [
-            "approved": approved,
-            "email": email,
-            "firstName": firstName,
-            "group": group,
-            "homePhoneNumber1": homePhoneNumber1,
-            "homePhoneNumber2": homePhoneNumber2,
-            "mobilePhoneNumber": mobilePhoneNumber,
-            "name": name,
-            "photoUrl": photoUrl,
-            "professionalTitle": professionalTitle,
-            "roles": roles,
-            "timestamp": timestamp,
-            "uid": uid
-        ]
+    public var group: String?
+    public var homePhoneNumber1: String?
+    public var homePhoneNumber2: String?
+    public var mobilePhoneNumber: String?
+    public var professionalTitle: String?
+    public var roles: [String: Bool]?
+    
+    public var uid: String {
+        guard let currentUser = self.currentUser else { return "No user found" }
+        
+        return currentUser.uid
+    }
+    
+    public var email: String {
+        guard let currentUser = self.currentUser else { return "No user found" }
+        guard let email = currentUser.email else { return "User has no email" }
+        
+        return email
+    }
+    
+    public var displayName: String {
+        guard let currentUser = self.currentUser else { return "No user found" }
+        guard let displayName = currentUser.displayName else { return "User has no display name" }
+        
+        return displayName
+    }
+
+    public func shouldSignIn() -> Bool {
+        if Auth.auth().currentUser != nil {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    public func attendToEvent(withPath eventReference: DocumentReference, from: Date, to: Date, completion: @escaping (Error?) -> Void) {
+        //
+        let batch = Firestore.firestore().batch()
+        let attendanceData: [String: Any] = ["attendant": self.displayName, "present": true, "from": from, "to": to, "timestamp": FieldValue.serverTimestamp()]
+        
+        //
+        let eventAttendanceReference = eventReference.collection("attendances").document(self.uid)
+        let userAttendanceReference = Firestore.firestore().collection("users").document(self.uid).collection("attendances").document(eventReference.documentID)
+        
+        batch.setData(attendanceData, forDocument: eventAttendanceReference)
+        batch.setData(attendanceData, forDocument: userAttendanceReference)
+        
+        batch.commit { (error) in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
+    public func signUp(withEmail email: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { (nil, error) in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
+    public func signIn(withEmail email: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (nil, error) in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
+    public func updateEmail(to email: String, completion: @escaping (Error?) -> Void) {
+        guard let currentUser = self.currentUser else { return }
+        
+        currentUser.updateEmail(to: email) { (error) in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
+    public func updatePassword(to password: String, completion: @escaping (Error?) -> Void) {
+        guard let currentUser = self.currentUser else { return }
+        
+        currentUser.updatePassword(to: password) { (error) in
+            if let error = error {
+                completion(error)
+            }
+        }
     }
 }
-
-extension UserObject: DocumentSerializable {
-    init?(dictionary: [String : Any]) {
-        guard let approved = dictionary["approved"] as? Bool,
-            let email = dictionary["email"] as? String,
-            let firstName = dictionary["firstName"] as? String,
-            let group = dictionary["group"] as? String,
-            let homePhoneNumber1 = dictionary["homePhoneNumber1"] as? String,
-            let homePhoneNumber2 = dictionary["homePhoneNumber2"] as? String,
-            let mobilePhoneNumber = dictionary["mobilePhoneNumber"] as? String,
-            let name = dictionary["name"] as? String,
-            let photoUrl = dictionary["photoUrl"] as? String,
-            let professionalTitle = dictionary["professionalTitle"] as? String,
-            let roles = dictionary["roles"] as? [String: Bool],
-            let timestamp = dictionary["timestamp"] as? Date,
-            let uid = dictionary["uid"] as? String else { return nil }
-        
-        
-        self.init(approved: approved, email: email, firstName: firstName, group: group, homePhoneNumber1: homePhoneNumber1, homePhoneNumber2: homePhoneNumber2, mobilePhoneNumber: mobilePhoneNumber, name: name, photoUrl: photoUrl, professionalTitle: professionalTitle, roles: roles, timestamp: timestamp, uid: uid)
-    }
-}
-

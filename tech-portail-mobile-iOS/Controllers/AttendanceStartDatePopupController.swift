@@ -7,8 +7,6 @@
 //
 
 import UIKit
-
-//
 import FirebaseFirestore
 
 class AttendanceStartDatePopupController: UIViewController {
@@ -19,7 +17,7 @@ class AttendanceStartDatePopupController: UIViewController {
     
     //
     var eventReference: DocumentReference?
-    var event: EventObject!
+    var event: Event!
     
     override func viewDidLoad() {
         super.viewDidLoad()

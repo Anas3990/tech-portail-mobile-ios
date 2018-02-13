@@ -5,9 +5,10 @@
 //  Created by Anas MERBOUH on 17-10-12.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
+
 import Foundation
 
-struct EventObject {
+struct Event {
     var author: [String: String]
     var body: String
     var endDate: Date
@@ -27,7 +28,7 @@ struct EventObject {
     }
 }
 
-extension EventObject: DocumentSerializable {
+extension Event: DocumentSerializable {
     init?(dictionary: [String : Any]) {
         guard let title = dictionary["title"] as? String,
             let body = dictionary["body"] as? String,

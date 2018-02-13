@@ -5,8 +5,8 @@
 //  Created by Anas MERBOUH on 17-10-08.
 //  Copyright © 2017 Équipe Team 3990 : Tech For Kids. All rights reserved.
 //
-import UIKit
 
+import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -48,7 +48,15 @@ class LoginController: UIViewController {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             // Appeler la fonction qui fait partie de la classe AuthService et qui s'occupe de connecter un utilisateur à Firebase
             if let email = emailTextField.text, let password = passwordTextField.text {
-                handleLogin(email: email, password: password)
+                User().signIn(withEmail: email, password: password, completion: { (error) in
+                    if let error = error {
+                        print(error)
+                        return
+                    } else {
+                        let tabBarCtrl = TabBarController.fromStoryboard()
+                        self.present(tabBarCtrl, animated: true, completion: nil)
+                    }
+                })
             }
         } else {
             // Appeler la fonction qui s'occupe de rajouter l'utilisateur sur Firebase
@@ -57,20 +65,7 @@ class LoginController: UIViewController {
             }
         }
     }
-    
-    // Fonction qui s'occupe de connecter un utilisateur sur l'application
-    func handleLogin(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            let tabBarCtrl = TabBarController.fromStoryboard()
-            self.present(tabBarCtrl, animated: true, completion: nil)
-        }
-    }
-    
+        
     // Fonction qui s'occupe de rajouter un utilisateur sur Firebase
     func handleRegister(email: String, password: String, userName: String) {
         if userName != "" {

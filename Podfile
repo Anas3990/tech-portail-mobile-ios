@@ -9,12 +9,8 @@ target 'tech-portail-mobile-iOS' do
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
-    pod 'Firebase/Storage'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Crash'
     pod 'Eureka'
-    pod 'StatusAlert', '~> 0.9.2'
-
+ 
   target 'tech-portail-mobile-iOSTests' do
     inherit! :search_paths
     # Pods for testing

@@ -8,33 +8,38 @@
 
 import Foundation
 
-struct AttendanceObject {
-    var attendanceStartsAt: Date
-    var attendanceEndsAt: Date
+struct Attendance {
+    var eventName: String
+    var eventBody: String
+    var startsAt: Date
+    var endsAt: Date
     var confirmedAt: Date
-    var attendantName: String
-    var present: Bool
-    
-    
+    var userName: String
+    var attending: Bool
+
     var dictionary: [String: Any] {
         return [
-            "attendanceStartsAt": attendanceStartsAt,
-            "attendanceEndsAt": attendanceEndsAt,
+            "eventName": eventName,
+            "eventBody": eventBody,
+            "startsAt": startsAt,
+            "endsAt": endsAt,
             "confirmedAt": confirmedAt,
-            "attendantName": attendantName,
-            "present": present
+            "userName": userName,
+            "attending": attending
         ]
     }
 }
 
-extension AttendanceObject: DocumentSerializable {
+extension Attendance: DocumentSerializable {
     init?(dictionary: [String : Any]) {
-        guard let attendanceStartsAt = dictionary["attendanceStartsAt"] as? Date,
-            let attendanceEndsAt = dictionary["attendanceEndsAt"] as? Date,
+        guard let eventName = dictionary["eventName"] as? String,
+            let eventBody = dictionary["eventBody"] as? String,
+            let startsAt = dictionary["startsAt"] as? Date,
+            let endsAt = dictionary["endsAt"] as? Date,
             let confirmedAt = dictionary["confirmedAt"] as? Date,
-            let attendantName = dictionary["attendantName"] as? String,
-            let present = dictionary["present"] as? Bool else { return nil }
+            let userName = dictionary["userName"] as? String,
+            let attending = dictionary["attending"] as? Bool else { return nil }
         
-        self.init(attendanceStartsAt: attendanceStartsAt, attendanceEndsAt: attendanceEndsAt, confirmedAt: confirmedAt, attendantName: attendantName, present: present)
+        self.init(eventName: eventName, eventBody: eventBody, startsAt: startsAt, endsAt: endsAt, confirmedAt: confirmedAt, userName: userName, attending: attending)
     }
 }

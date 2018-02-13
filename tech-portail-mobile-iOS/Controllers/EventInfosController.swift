@@ -7,18 +7,10 @@
 //
 
 import UIKit
-
-//
 import FirebaseFirestore
 import FirebaseAuth
 
-//
-import StatusAlert
-
 class EventInfosController: UITableViewController {
-    
-    // Déclaration de l'objet AuthService
-    let authService = AuthService()
     
     // Références aux éléments de l'interface de l'application
     @IBOutlet weak var authorNameLabel: UILabel!
@@ -36,7 +28,7 @@ class EventInfosController: UITableViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     //
-    var event: EventObject?
+    var event: Event?
     var eventReference: DocumentReference?
     var attendanceReference: DocumentReference?
     var currentUserAttendancesEventDocument: DocumentReference?
@@ -73,11 +65,6 @@ class EventInfosController: UITableViewController {
         
         attendanceReference = reference.collection("attendances").document(Auth.auth().currentUser!.uid)
         currentUserAttendancesEventDocument = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("attendances").document(reference.documentID)
-        
-        //
-        authService.getCurrentUserData { (userData) in
-            self.currentUserFullName = "\(userData.firstName) \(userData.name)"
-        }
         
         //
         authorNameLabel.text = event?.author["name"]
@@ -133,7 +120,7 @@ class EventInfosController: UITableViewController {
             }
             
             if document.exists {
-                guard let attendance = document.data() ["present"] as? Bool else { return }
+                guard let attendance = document.data()! ["present"] as? Bool else { return }
                 
                 if attendance != true {
                     self.isUserAttendingLabel.text = "Vous ne participez pas à l'évènement"
@@ -153,34 +140,7 @@ class EventInfosController: UITableViewController {
     }
         
     @IBAction func absentTapped(_ sender: Any) {
-        //
-        let batch = Firestore.firestore().batch()
         
-        //
-        guard let currentUserAttendancesEventDocument = currentUserAttendancesEventDocument else { return }
-        guard let attendanceReference = attendanceReference else { return }
-
-        //
-        batch.setData(["nonAttendantName": self.currentUserFullName ?? "", "present": false, "confirmedAt": FieldValue.serverTimestamp()], forDocument: attendanceReference)
-        batch.deleteDocument(currentUserAttendancesEventDocument)
-        
-        batch.commit { (error) in
-            if let error = error {
-                // Alerte à afficher si une erreur est survenue
-                let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de confirmation de votre absence : \(error.localizedDescription)" , preferredStyle: .alert)
-                
-                let OKAction = UIAlertAction(title: "OK", style: .default)
-                alertController.addAction(OKAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-            } else {
-                //
-                let statusAlert = StatusAlert.instantiate(withImage: #imageLiteral(resourceName: "abscenceConfirmedIcon"), title: "Absent", message: "Votre absence a été confirmée avec succès.")
-                
-                //
-                statusAlert.show()
-            }
-        }
     }
     
     //

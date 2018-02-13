@@ -8,30 +8,23 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    override init() {
+        super.init()
+        
         FirebaseApp.configure()
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+         // FirebaseApp.configure()
         
         // Définir blanc comme couleur de la status bar
-        UIApplication.shared.statusBarStyle = .default
-        
-        
-        // Vérifier si un utilisateur est connecté et le diriger vers le bon écran
-        if Auth.auth().currentUser != nil {
-            let tabBarCtrl = TabBarController.fromStoryboard()
-            
-            window?.rootViewController = tabBarCtrl
-        } else {
-            window?.rootViewController = LoginController()
-        }
-        
+        UIApplication.shared.statusBarStyle = .lightContent
         
         return true
     }
@@ -56,31 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        switch shortcutItem.type {
-            case "com.team3990.techportail.ConsultEvents":
-                if Auth.auth().currentUser != nil {
-                    let tabBarCtrl = TabBarController.fromStoryboard()
-                    tabBarCtrl.selectedIndex = 2
-                    
-                    window?.rootViewController = tabBarCtrl
-                } else {
-                    window?.rootViewController = LoginController()
-                }
-            case "com.team3990.techportail.ConsultMyAttendances":
-                if Auth.auth().currentUser != nil {
-                    let tabBarCtrl = TabBarController.fromStoryboard()
-                    tabBarCtrl.selectedIndex = 0
-                    
-                    window?.rootViewController = tabBarCtrl
-                } else {
-                    window?.rootViewController = LoginController()
-                }
-            default:
-                break
-        }
     }
 }
 

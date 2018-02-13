@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import FirebaseFirestore
 
 class AttendancesController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -19,7 +18,7 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
     var eventReference: DocumentReference?
     
     //
-    private var attendances: [AttendanceObject] = []
+    private var attendances: [Attendance] = []
     private var documents: [DocumentSnapshot] = []
     
     fileprivate var query: Query? {
@@ -87,12 +86,12 @@ class AttendancesController: UIViewController, UITableViewDataSource, UITableVie
                 print("Error fetching snapshot results: \(error!)")
                 return
             }
-            let models = snapshot.documents.map { (document) -> AttendanceObject in
-                if let model = AttendanceObject(dictionary: document.data()) {
+            let models = snapshot.documents.map { (document) -> Attendance in
+                if let model = Attendance(dictionary: document.data()) {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
-                    fatalError("Unable to initialize type \(AttendanceObject.self) with dictionary \(document.data())")
+                    fatalError("Unable to initialize type \(Attendance.self) with dictionary \(document.data())")
                 }
             }
             self.attendances = models
@@ -136,7 +135,7 @@ class AttendanceCell: UITableViewCell {
     @IBOutlet weak var attendanceLengthLabel: UILabel!
 
     
-    func populate(attendance: AttendanceObject) {
+    func populate(attendance: Attendance) {
         //
         let dateTimeFormatter = DateFormatter()
         let timeFormatter = DateFormatter()
@@ -146,8 +145,8 @@ class AttendanceCell: UITableViewCell {
         
         //
         attendanceConfirmedAtLabel.text = "Confirmé le \(dateTimeFormatter.string(from: attendance.confirmedAt))"
-        attendantNameLabel.text = attendance.attendantName
-        attendanceLengthLabel.text = "De \(timeFormatter.string(from: (attendance.attendanceStartsAt))) à \(timeFormatter.string(from: attendance.attendanceEndsAt))"
+        attendantNameLabel.text = attendance.userName
+        attendanceLengthLabel.text = "De \(timeFormatter.string(from: (attendance.startsAt))) à \(timeFormatter.string(from: attendance.endsAt))"
     }
     
     override func prepareForReuse() {
