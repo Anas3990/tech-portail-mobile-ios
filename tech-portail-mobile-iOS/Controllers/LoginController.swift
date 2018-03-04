@@ -223,6 +223,23 @@ class LoginController: UIViewController {
         return imageView
     }()
     
+    let loaderContainer: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = UIColor.green
+        view.layer.cornerRadius = 6.0
+        
+        return view
+    }()
+    
+    let loader: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        
+        return indicator
+    }()
+    
     lazy var loginRegisterSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Se connecter", "S'inscrire"])
         sc.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
@@ -279,6 +296,7 @@ class LoginController: UIViewController {
         view.backgroundColor = UIColor(red: 0.13, green: 0.12, blue: 0.12, alpha: 1.0)
         
         // Ajouter les vues à la vue parent
+        view.addSubview(loader)
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImageView)
@@ -293,7 +311,12 @@ class LoginController: UIViewController {
         setupForgotPasswordButton()
     }
     
-    func setupProfileImageView() {
+    private final func setupLoaderView() {
+        loader.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loader.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    private final func setupProfileImageView() {
         // x, y, width, height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -5).isActive = true
@@ -301,7 +324,7 @@ class LoginController: UIViewController {
         profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
-    func setupLoginRegisterSegmentedControl() {
+    private final func setupLoginRegisterSegmentedControl() {
         // x, y, width, height constraints
         loginRegisterSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginRegisterSegmentedControl.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true

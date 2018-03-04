@@ -7,14 +7,12 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
 struct New {
     var title: String
     var body: String
     var author: [String: String]
     var timestamp: Date
-    
     
     var dictionary: [String: Any] {
         return [

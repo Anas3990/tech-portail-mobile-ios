@@ -11,7 +11,9 @@ import Eureka
 
 class AddNewController: FormViewController {
     
-    override func viewDidLoad() {
+    private let dbProvider: DatabaseProvider = DatabaseProvider()
+    
+    override internal final func viewDidLoad() {
         super.viewDidLoad()
         
         // Configuration générale de la vue
@@ -33,7 +35,7 @@ class AddNewController: FormViewController {
         form +++ Section()
             <<< TextRow() { row in
                 row.title = "Titre"
-                row.tag = "Title"
+                row.tag = "title"
                 
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -45,18 +47,29 @@ class AddNewController: FormViewController {
             +++ Section()
             <<< TextAreaRow() {
                 $0.placeholder = "Description"
-                $0.tag = "Description"
+                $0.tag = "body"
                 
                 let dynamicHeight: TextAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 100)
                 $0.textAreaHeight = dynamicHeight
         }
     }
         
-    @objc func handlePost() {
+    @objc private final func handlePost() {
+        guard let titleRow: TextRow = form.rowBy(tag: "title") else { return }
+        guard let bodyRow: TextRow = form.rowBy(tag: "body") else { return }
         
+        let new: New = New(title: titleRow.value ?? "Aucun titre n'a été fourni.", body: bodyRow.value ?? "Aucune description n'a été fournie.", author: ["name": "Anas Merbouh", "email": "anas.merbouh@outlook.com"], timestamp: Date())
+        
+        self.dbProvider.publsishNew(new) { (error) in
+            if let error = error {
+                print(error)
+                
+                return
+            }
+        }
     }
     
-    @objc func handleCancel() {
+    @objc private final func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
 }

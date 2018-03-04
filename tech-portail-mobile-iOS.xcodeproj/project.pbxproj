@@ -18,6 +18,11 @@
 		11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3DF5D1FCC02E9001187C8 /* Attendance.swift */; };
 		76248EAD202BF9A300B875B5 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76248EAC202BF9A300B875B5 /* EventTableViewCell.swift */; };
 		76248EAF202BFA2F00B875B5 /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76248EAE202BFA2F00B875B5 /* NewTableViewCell.swift */; };
+		762F4DE7204B161A00BC7812 /* ActivitiesContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F4DE6204B161A00BC7812 /* ActivitiesContainerTableViewCell.swift */; };
+		762F4DE9204B6AEA00BC7812 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F4DE8204B6AEA00BC7812 /* ActivityCollectionViewCell.swift */; };
+		762F4DEE204BC60100BC7812 /* DatabaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F4DED204BC60100BC7812 /* DatabaseProvider.swift */; };
+		762F4DF0204BC99700BC7812 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F4DEF204BC99700BC7812 /* AuthProvider.swift */; };
+		762F4DF2204BCB7E00BC7812 /* TeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F4DF1204BCB7E00BC7812 /* TeamController.swift */; };
 		764455131FC13FDA0070E831 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455121FC13FDA0070E831 /* NewsController.swift */; };
 		764455151FC140250070E831 /* AddNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455141FC140250070E831 /* AddNewController.swift */; };
 		764455191FC147DD0070E831 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455181FC147DD0070E831 /* AddEventController.swift */; };
@@ -35,10 +40,6 @@
 		76D18E6020309E6D00297273 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76D18E5F20309E6D00297273 /* GoogleService-Info.plist */; };
 		76F0C933202F3E0400368C99 /* DocumentSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F0C932202F3E0400368C99 /* DocumentSerializable.swift */; };
 		76F0C937202F5F2B00368C99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76F0C936202F5F2B00368C99 /* Main.storyboard */; };
-		76F0C939202F663200368C99 /* UpcomingEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F0C938202F663200368C99 /* UpcomingEventCollectionViewCell.swift */; };
-		76FC97742033587E00FFA91F /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC97732033587E00FFA91F /* CollectionViewHeader.swift */; };
-		76FC977620335FC100FFA91F /* UpcomingEventCollectionViewCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC977520335FC100FFA91F /* UpcomingEventCollectionViewCellContainer.swift */; };
-		76FC977A2033727400FFA91F /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC97792033727400FFA91F /* ActivityDetailController.swift */; };
 		96812D231D298E9E8FD7D816 /* Pods_tech_portail_mobile_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04E6A3BBE8D153D55AC5426 /* Pods_tech_portail_mobile_iOSUITests.framework */; };
 		DE21BA221C7B91A0E216140E /* Pods_tech_portail_mobile_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42140E6428E78B8ACEE99A0 /* Pods_tech_portail_mobile_iOSTests.framework */; };
 		E94E8A122515672243EFC9E5 /* Pods_tech_portail_mobile_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C10D72F1A07AE1957918A /* Pods_tech_portail_mobile_iOS.framework */; };
@@ -90,6 +91,11 @@
 		7434BC649BA002BCA480452D /* Pods-tech-portail-mobile-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSTests/Pods-tech-portail-mobile-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		76248EAC202BF9A300B875B5 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		76248EAE202BFA2F00B875B5 /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
+		762F4DE6204B161A00BC7812 /* ActivitiesContainerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesContainerTableViewCell.swift; sourceTree = "<group>"; };
+		762F4DE8204B6AEA00BC7812 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+		762F4DED204BC60100BC7812 /* DatabaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProvider.swift; sourceTree = "<group>"; };
+		762F4DEF204BC99700BC7812 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		762F4DF1204BCB7E00BC7812 /* TeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamController.swift; sourceTree = "<group>"; };
 		764455121FC13FDA0070E831 /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		764455141FC140250070E831 /* AddNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewController.swift; sourceTree = "<group>"; };
 		764455181FC147DD0070E831 /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
@@ -113,10 +119,6 @@
 		76D18E5F20309E6D00297273 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76F0C932202F3E0400368C99 /* DocumentSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSerializable.swift; sourceTree = "<group>"; };
 		76F0C936202F5F2B00368C99 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		76F0C938202F663200368C99 /* UpcomingEventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventCollectionViewCell.swift; sourceTree = "<group>"; };
-		76FC97732033587E00FFA91F /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
-		76FC977520335FC100FFA91F /* UpcomingEventCollectionViewCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventCollectionViewCellContainer.swift; sourceTree = "<group>"; };
-		76FC97792033727400FFA91F /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
 		8B71B4F6CA28351AE1862E39 /* Pods-tech-portail-mobile-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOS/Pods-tech-portail-mobile-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C5E8926E198145EF7513935B /* Pods-tech-portail-mobile-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSUITests/Pods-tech-portail-mobile-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E04E6A3BBE8D153D55AC5426 /* Pods_tech_portail_mobile_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tech_portail_mobile_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,13 +167,21 @@
 		76248EA5202BF69E00B875B5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				76FC97732033587E00FFA91F /* CollectionViewHeader.swift */,
-				76FC977520335FC100FFA91F /* UpcomingEventCollectionViewCellContainer.swift */,
-				76F0C938202F663200368C99 /* UpcomingEventCollectionViewCell.swift */,
+				762F4DE6204B161A00BC7812 /* ActivitiesContainerTableViewCell.swift */,
+				762F4DE8204B6AEA00BC7812 /* ActivityCollectionViewCell.swift */,
 				76248EAE202BFA2F00B875B5 /* NewTableViewCell.swift */,
 				76248EAC202BF9A300B875B5 /* EventTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		762F4DEC204BC5EB00BC7812 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				762F4DED204BC60100BC7812 /* DatabaseProvider.swift */,
+				762F4DEF204BC99700BC7812 /* AuthProvider.swift */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		766F14F71FC1304700A8197B = {
@@ -203,6 +213,7 @@
 				76A365441FC13A170091EA54 /* Models */,
 				76248EA5202BF69E00B875B5 /* Views */,
 				76BEABF51FC1330800F39BC1 /* Controllers */,
+				762F4DEC204BC5EB00BC7812 /* Providers */,
 				76F0C92F202F3D7E00368C99 /* Protocols */,
 				76F0C936202F5F2B00368C99 /* Main.storyboard */,
 				11127B3F1FF60F5100800013 /* Assets.xcassets */,
@@ -247,7 +258,6 @@
 			children = (
 				76BEABF61FC1332C00F39BC1 /* LoginController.swift */,
 				76BEABFB1FC1354D00F39BC1 /* DashboardController.swift */,
-				76FC97792033727400FFA91F /* ActivityDetailController.swift */,
 				764455121FC13FDA0070E831 /* NewsController.swift */,
 				1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */,
 				764455141FC140250070E831 /* AddNewController.swift */,
@@ -259,6 +269,7 @@
 				11A3DF5B1FCC00EC001187C8 /* AttendancesController.swift */,
 				115EF0C11FF22586002AB4F1 /* AttendanceStartDatePopupController.swift */,
 				115EF0C31FF2432E002AB4F1 /* AttendanceEndDatePopupController.swift */,
+				762F4DF1204BCB7E00BC7812 /* TeamController.swift */,
 				76BEABF91FC1341E00F39BC1 /* TabBarController.swift */,
 			);
 			path = Controllers;
@@ -608,6 +619,7 @@
 				764455151FC140250070E831 /* AddNewController.swift in Sources */,
 				76BEABF71FC1332C00F39BC1 /* LoginController.swift in Sources */,
 				76BEABFA1FC1341E00F39BC1 /* TabBarController.swift in Sources */,
+				762F4DEE204BC60100BC7812 /* DatabaseProvider.swift in Sources */,
 				1134BEB51FCB6A1B00D8FBBF /* NewInfosController.swift in Sources */,
 				11A3DF5C1FCC00EC001187C8 /* AttendancesController.swift in Sources */,
 				76BEABFC1FC1354D00F39BC1 /* DashboardController.swift in Sources */,
@@ -617,17 +629,17 @@
 				766F15041FC1304700A8197B /* AppDelegate.swift in Sources */,
 				76A365481FC13A440091EA54 /* New.swift in Sources */,
 				76F0C933202F3E0400368C99 /* DocumentSerializable.swift in Sources */,
+				762F4DE9204B6AEA00BC7812 /* ActivityCollectionViewCell.swift in Sources */,
 				11A3DF5E1FCC02E9001187C8 /* Attendance.swift in Sources */,
 				76A365461FC13A3D0091EA54 /* Event.swift in Sources */,
-				76FC977620335FC100FFA91F /* UpcomingEventCollectionViewCellContainer.swift in Sources */,
-				76FC977A2033727400FFA91F /* ActivityDetailController.swift in Sources */,
+				762F4DE7204B161A00BC7812 /* ActivitiesContainerTableViewCell.swift in Sources */,
 				1134BEB71FCB73C400D8FBBF /* EventInfosController.swift in Sources */,
+				762F4DF0204BC99700BC7812 /* AuthProvider.swift in Sources */,
+				762F4DF2204BCB7E00BC7812 /* TeamController.swift in Sources */,
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
 				115C27561FDA137600073372 /* EditEventController.swift in Sources */,
-				76F0C939202F663200368C99 /* UpcomingEventCollectionViewCell.swift in Sources */,
 				115EF0C21FF22586002AB4F1 /* AttendanceStartDatePopupController.swift in Sources */,
 				7644551B1FC148830070E831 /* EventsController.swift in Sources */,
-				76FC97742033587E00FFA91F /* CollectionViewHeader.swift in Sources */,
 				116751511FD8B345007A2E85 /* EditNewController.swift in Sources */,
 				76248EAF202BFA2F00B875B5 /* NewTableViewCell.swift in Sources */,
 				764455191FC147DD0070E831 /* AddEventController.swift in Sources */,

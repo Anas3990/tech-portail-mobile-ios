@@ -62,8 +62,9 @@ class EventInfosController: UITableViewController {
         
         //
         guard let reference = eventReference else { return }
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
         
-        attendanceReference = reference.collection("attendances").document(Auth.auth().currentUser!.uid)
+        attendanceReference = reference.collection("attendances").document(userUid)
         currentUserAttendancesEventDocument = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("attendances").document(reference.documentID)
         
         //
@@ -108,10 +109,11 @@ class EventInfosController: UITableViewController {
     //
     func observeUserAttendance() {
         guard let reference = eventReference else { return }
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
         
         let attendancesCollection = reference.collection("attendances")
         let attendanceReference =
-            attendancesCollection.document(Auth.auth().currentUser!.uid)
+            attendancesCollection.document(userUid)
         
         listener = attendanceReference.addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {

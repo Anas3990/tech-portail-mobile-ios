@@ -9,13 +9,10 @@
 import UIKit
 import FirebaseFirestore
 
-class EventsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class EventsController: UITableViewController {
     
     // Référence aux éléments de l'interface de l'application
     @IBOutlet var eventsTableView: UITableView!
-    
-    //
-    let backgroundView = UIImageView()
     
     // Déclaration de l'array d'évènements
     private var events = [Event]()
@@ -34,17 +31,9 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //
-        backgroundView.contentMode = .scaleAspectFit
-        backgroundView.alpha = 0.5
-        
-        //
+    
         eventsTableView.dataSource = self
-        eventsTableView.delegate = self
-        eventsTableView.backgroundView = backgroundView
 
-        //
         query = baseQuery()
     }
     
@@ -62,7 +51,7 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
     
     //
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("events").whereField("startDate", isGreaterThan: Date())
+        return Firestore.firestore().collection("events").whereField("startDate", isLessThan: Date())
     }
     
 
@@ -92,19 +81,12 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
             self.events = models
             self.documents = snapshot.documents
             
-            if self.documents.count > 0 {
-                self.eventsTableView.backgroundView = nil
-            } else {
-                self.eventsTableView.backgroundView = self.backgroundView
-            }
-            
             DispatchQueue.main.async {
                 self.eventsTableView.reloadData()
             }
         }
     }
 
-    //
     @IBAction func addEventTapped(_ sender: Any) {
         let addEventController = AddEventController()
         let navController = UINavigationController(rootViewController: addEventController)
@@ -112,13 +94,15 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
         present(navController, animated: true, completion: nil)
     }
     
-    // Retourner autant de cellules qu'il y a de nouvelles
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    /* MARK: Upcoming Attendances collection view */
+    
+    
+    /* MARK: Events table view */
+    override internal final func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
-    // Fonction qui permet de supprimer/modifier un évènement
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override internal final func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let modifyAction = UITableViewRowAction(style: .normal, title: "Modifier") { (action, index) in
             
         }
@@ -137,9 +121,8 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
 
         return [deleteAction, modifyAction]
     }
-    
-    // Populer la cellule des informations sur la nouvelle
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    override internal final func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         
         //
@@ -151,8 +134,8 @@ class EventsController: UIViewController, UITableViewDataSource, UITableViewDele
         return cell
     }
     
-    // Action à effectuer lorsqu'une cellule a été sélectionnée
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    /* MARK: Navigation */
+    override internal final func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventInfosCtrl = EventInfosController.fromStoryboard()
         
         eventInfosCtrl.event = events[indexPath.row]

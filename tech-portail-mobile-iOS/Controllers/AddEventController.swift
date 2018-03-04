@@ -11,6 +11,8 @@ import Eureka
 
 class AddEventController: FormViewController {
     
+    private let dbProvider: DatabaseProvider = DatabaseProvider()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,11 +69,22 @@ class AddEventController: FormViewController {
     }
 
     // Fontion qui permet de publier un évènement
-    @objc func handlePost() {
+    @objc private final func handlePost() {
+        guard let titleRow: TextRow = form.rowBy(tag: "title") else { return }
+        guard let startDateRow: DateTimeInlineRow = form.rowBy(tag: "startDate") else { return }
+        guard let endDateRow: TimeInlineRow = form.rowBy(tag: "endDate") else { return }
+        guard let descriptionRow: TextAreaRow = form.rowBy(tag: "body") else { return }
         
+        let event: Event = Event(author: ["name": "Anas Merbouh", "email": "anas.merbouh@outlook.com"], body: descriptionRow.value ?? "Aucune description n'a été fournie.", endDate: endDateRow.value ?? Date(), startDate: startDateRow.value ?? Date(), timestamp: Date(), title: titleRow.value ?? "Aucun titre n'a été fourni.")
+        
+        self.dbProvider.publishEvent(event) { (error) in
+            if let error = error {
+                print(error)
+            }
+        }
     }
  
-    @objc func handleCancel() {
+    @objc private final func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
 }
