@@ -8,6 +8,7 @@ target 'tech-portail-mobile-iOS' do
   # Pods for tech-portail-mobile-iOS
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
+    pod 'FirebaseUI', '~> 4.0'
     pod 'Firebase/Firestore'
     pod 'Eureka'
  
