@@ -15,6 +15,7 @@ class AuthProvider {
         do {
             try Auth.auth().signOut()
         } catch let error {
+            print(error)
             completion(error)
         }
     }

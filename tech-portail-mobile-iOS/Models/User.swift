@@ -11,7 +11,6 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct User {
-    //
     let currentUser = Auth.auth().currentUser
     
     public var group: String?
@@ -49,35 +48,35 @@ struct User {
         }
     }
     
-    public func attendToEvent(withPath eventReference: DocumentReference, from: Date, to: Date, completion: @escaping (Error?) -> Void) {
-        //
-        let batch = Firestore.firestore().batch()
-        let attendanceData: [String: Any] = ["attendant": self.displayName, "present": true, "from": from, "to": to, "timestamp": FieldValue.serverTimestamp()]
-        
-        //
-        let eventAttendanceReference = eventReference.collection("attendances").document(self.uid)
-        let userAttendanceReference = Firestore.firestore().collection("users").document(self.uid).collection("attendances").document(eventReference.documentID)
-        
-        batch.setData(attendanceData, forDocument: eventAttendanceReference)
-        batch.setData(attendanceData, forDocument: userAttendanceReference)
-        
-        batch.commit { (error) in
+    public func signUp(withDisplayName displayName: String, email: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 completion(error)
+                return
             }
-        }
-    }
-    
-    public func signUp(withEmail email: String, password: String, completion: @escaping (Error?) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) { (nil, error) in
-            if let error = error {
-                completion(error)
-            }
+            
+            
+            guard let user = user else { return }
+            user.createProfileChangeRequest().displayName = displayName
+            user.createProfileChangeRequest().commitChanges(completion: { (error) in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+            })
         }
     }
     
     public func signIn(withEmail email: String, password: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (nil, error) in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
+    public func sendPasswordReset(withEmail email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
                 completion(error)
             }
@@ -98,6 +97,25 @@ struct User {
         guard let currentUser = self.currentUser else { return }
         
         currentUser.updatePassword(to: password) { (error) in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
+    public func attendToEvent(withPath eventReference: DocumentReference, from: Date, to: Date, completion: @escaping (Error?) -> Void) {
+        //
+        let batch = Firestore.firestore().batch()
+        let attendanceData: [String: Any] = ["attendant": self.displayName, "present": true, "from": from, "to": to, "timestamp": FieldValue.serverTimestamp()]
+        
+        //
+        let eventAttendanceReference = eventReference.collection("attendances").document(self.uid)
+        let userAttendanceReference = Firestore.firestore().collection("users").document(self.uid).collection("attendances").document(eventReference.documentID)
+        
+        batch.setData(attendanceData, forDocument: eventAttendanceReference)
+        batch.setData(attendanceData, forDocument: userAttendanceReference)
+        
+        batch.commit { (error) in
             if let error = error {
                 completion(error)
             }

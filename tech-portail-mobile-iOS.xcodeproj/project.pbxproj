@@ -27,6 +27,7 @@
 		764455151FC140250070E831 /* AddNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455141FC140250070E831 /* AddNewController.swift */; };
 		764455191FC147DD0070E831 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764455181FC147DD0070E831 /* AddEventController.swift */; };
 		7644551B1FC148830070E831 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7644551A1FC148830070E831 /* EventsController.swift */; };
+		7666F5FC204DA3880001EC94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7666F5FB204DA3880001EC94 /* GoogleService-Info.plist */; };
 		766F15041FC1304700A8197B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F15031FC1304700A8197B /* AppDelegate.swift */; };
 		766F150E1FC1304700A8197B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766F150C1FC1304700A8197B /* LaunchScreen.storyboard */; };
 		766F15191FC1304700A8197B /* tech_portail_mobile_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F15181FC1304700A8197B /* tech_portail_mobile_iOSTests.swift */; };
@@ -37,7 +38,6 @@
 		76BEABF71FC1332C00F39BC1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BEABF61FC1332C00F39BC1 /* LoginController.swift */; };
 		76BEABFA1FC1341E00F39BC1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BEABF91FC1341E00F39BC1 /* TabBarController.swift */; };
 		76BEABFC1FC1354D00F39BC1 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BEABFB1FC1354D00F39BC1 /* DashboardController.swift */; };
-		76D18E6020309E6D00297273 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76D18E5F20309E6D00297273 /* GoogleService-Info.plist */; };
 		76F0C933202F3E0400368C99 /* DocumentSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F0C932202F3E0400368C99 /* DocumentSerializable.swift */; };
 		76F0C937202F5F2B00368C99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76F0C936202F5F2B00368C99 /* Main.storyboard */; };
 		96812D231D298E9E8FD7D816 /* Pods_tech_portail_mobile_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04E6A3BBE8D153D55AC5426 /* Pods_tech_portail_mobile_iOSUITests.framework */; };
@@ -100,6 +100,7 @@
 		764455141FC140250070E831 /* AddNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewController.swift; sourceTree = "<group>"; };
 		764455181FC147DD0070E831 /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		7644551A1FC148830070E831 /* EventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
+		7666F5FB204DA3880001EC94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		766F15001FC1304700A8197B /* tech-portail-mobile-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tech-portail-mobile-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766F15031FC1304700A8197B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766F150D1FC1304700A8197B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		76BEABF61FC1332C00F39BC1 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		76BEABF91FC1341E00F39BC1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		76BEABFB1FC1354D00F39BC1 /* DashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
-		76D18E5F20309E6D00297273 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76F0C932202F3E0400368C99 /* DocumentSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSerializable.swift; sourceTree = "<group>"; };
 		76F0C936202F5F2B00368C99 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8B71B4F6CA28351AE1862E39 /* Pods-tech-portail-mobile-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOS/Pods-tech-portail-mobile-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 				11127B3F1FF60F5100800013 /* Assets.xcassets */,
 				766F150C1FC1304700A8197B /* LaunchScreen.storyboard */,
 				766F150F1FC1304700A8197B /* Info.plist */,
-				76D18E5F20309E6D00297273 /* GoogleService-Info.plist */,
+				7666F5FB204DA3880001EC94 /* GoogleService-Info.plist */,
 			);
 			path = "tech-portail-mobile-iOS";
 			sourceTree = "<group>";
@@ -419,7 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				766F150E1FC1304700A8197B /* LaunchScreen.storyboard in Resources */,
-				76D18E6020309E6D00297273 /* GoogleService-Info.plist in Resources */,
+				7666F5FC204DA3880001EC94 /* GoogleService-Info.plist in Resources */,
 				11127B401FF60F5100800013 /* Assets.xcassets in Resources */,
 				76F0C937202F5F2B00368C99 /* Main.storyboard in Resources */,
 			);
@@ -808,7 +808,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.team3990.techportailmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -824,7 +824,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.team3990.techportailmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

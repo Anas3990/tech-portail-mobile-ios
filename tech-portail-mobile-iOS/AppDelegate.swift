@@ -15,16 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     override init() {
-        super.init()
-        
         FirebaseApp.configure()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-         // FirebaseApp.configure()
-        
         // Définir blanc comme couleur de la status bar
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        // Vérifier si un utilisateur est connecté et le rediriger vers la bonne page
+        if User().shouldSignIn() != true {
+            window?.rootViewController = TabBarController.fromStoryboard()
+        } else {
+            window?.rootViewController = LoginController()
+        }
         
         return true
     }

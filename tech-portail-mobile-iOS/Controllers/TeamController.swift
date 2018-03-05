@@ -18,14 +18,31 @@ class TeamController: UITableViewController {
     
     
     @IBAction func logoutTaped(_ sender: UIBarButtonItem) {
-        self.authProvider.disconnetUser { (error) in
-            if let error = error {
-                print(error)
+        let alertVC = UIAlertController(title: "Se déconnecter", message: "Êtes-vous sûrs de vouloir vous déconnecter du Tech Portail ?", preferredStyle: .alert)
+        
+        let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
+        alertVC.addAction(alertActionCancel)
+        
+        let alertActionConfirm = UIAlertAction(title: "Oui", style: .default) {
+            (_) in
+            self.authProvider.disconnetUser(completion: { (error) in
+                if let error = error {
+                    let alertVC = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de déconnexion : \(error.localizedDescription)", preferredStyle: .alert)
+                    
+                    let alertActionOkay = UIAlertAction(title: "Non", style: .default, handler: nil)
+                    alertVC.addAction(alertActionOkay)
+                    
+                    self.present(alertVC, animated: true, completion: nil)
+                    
+                    return
+                }
                 
-                return
-            }
-            
-            self.navigationController?.present(LoginController(), animated: true, completion: nil)
+                self.present(LoginController(), animated: true, completion: nil)
+            })
         }
+        alertVC.addAction(alertActionConfirm)
+        
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
