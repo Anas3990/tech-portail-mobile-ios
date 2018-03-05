@@ -13,4 +13,8 @@ class TabBarController: UITabBarController {
         let controller = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
         return controller
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

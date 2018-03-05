@@ -23,7 +23,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="g97-Uo-D1i">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="jXa-5B-0AR" customClass="TabBarController" customModule="tech_portail_mobile_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jXa-5B-0AR" customClass="TabBarController" customModule="tech_portail_mobile_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="wJQ-Ft-f9z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
