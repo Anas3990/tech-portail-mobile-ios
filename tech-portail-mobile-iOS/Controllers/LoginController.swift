@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuthUI
 
 class LoginController: UIViewController {
     
@@ -149,6 +148,8 @@ class LoginController: UIViewController {
         button.setTitleColor(UIColor(red:0.94, green:0.68, blue:0.31, alpha:1.0), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
         
+        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
+        
         return button
     }()
     
@@ -277,6 +278,10 @@ class LoginController: UIViewController {
         }
     }
     
+    @objc private final func handleSignup() {
+        
+    }
+    
     @objc private final func handleForgotPassword() {
         let alertVC = UIAlertController(title: "Mot de passe oublié", message: "Veuillez entrer votre courriel dans le champs ci-dessous.", preferredStyle: .alert)
         
@@ -333,11 +338,14 @@ class LoginController: UIViewController {
         self.view.endEditing(true)
     }
 
+    fileprivate(set) var authUI: FUIAuth?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Changer la couleur de fond de la vue
         view.backgroundColor = UIColor(red: 0.13, green: 0.12, blue: 0.12, alpha: 1.0)
+        
         
         // Ajouter les vues à la vue parent
         view.addSubview(logoImageView)

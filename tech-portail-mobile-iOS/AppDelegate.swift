@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Définir blanc comme couleur de la status bar
         UIApplication.shared.statusBarStyle = .lightContent
         
-        // Vérifier si un utilisateur est connecté et le rediriger vers la bonne page
+        // Vérifier si un utilisateur est connecté et le rediriger vers la bonne page        
         if User().shouldSignIn() != true {
             window?.rootViewController = TabBarController.fromStoryboard()
         } else {

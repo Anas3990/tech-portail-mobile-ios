@@ -28,10 +28,10 @@
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Nous avons besoin d'accéder à votre calendrier afin que vous puissiez y ajouter des évènements.</string>
+	<key>NSMainNibFile</key>
+	<string>Main</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
