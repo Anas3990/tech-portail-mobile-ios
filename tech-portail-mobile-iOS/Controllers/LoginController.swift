@@ -337,8 +337,6 @@ class LoginController: UIViewController {
     override internal final func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
-    fileprivate(set) var authUI: FUIAuth?
     
     override func viewDidLoad() {
         super.viewDidLoad()
