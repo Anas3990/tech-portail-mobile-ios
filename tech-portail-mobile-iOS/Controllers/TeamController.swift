@@ -7,42 +7,35 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class TeamController: UITableViewController {
     
-    private let authProvider: AuthProvider = AuthProvider()
-    
+    private var students = [User]()
+    private var mentors = [User]()
+
+
+    /* MARK: View's lifecycle */
     override internal final func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    
-    @IBAction func logoutTaped(_ sender: UIBarButtonItem) {
-        let alertVC = UIAlertController(title: "Se déconnecter", message: "Êtes-vous sûrs de vouloir vous déconnecter du Tech Portail ?", preferredStyle: .alert)
-        
-        let alertActionCancel = UIAlertAction(title: "Non", style: .default, handler: nil)
-        alertVC.addAction(alertActionCancel)
-        
-        let alertActionConfirm = UIAlertAction(title: "Oui", style: .default) {
-            (_) in
-            self.authProvider.disconnetUser(completion: { (error) in
-                if let error = error {
-                    let alertVC = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative de déconnexion : \(error.localizedDescription)", preferredStyle: .alert)
-                    
-                    let alertActionOkay = UIAlertAction(title: "Non", style: .default, handler: nil)
-                    alertVC.addAction(alertActionOkay)
-                    
-                    self.present(alertVC, animated: true, completion: nil)
-                    
-                    return
-                }
-                
-                self.present(LoginController(), animated: true, completion: nil)
-            })
+    override internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return self.students.count
+            
+        case 1:
+            return self.mentors.count
+            
+        default:
+            return students.count
         }
-        alertVC.addAction(alertActionConfirm)
+    }
+    
+    override internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "teamMemberCell", for: indexPath)
         
-        
-        self.present(alertVC, animated: true, completion: nil)
+        return cell
     }
 }

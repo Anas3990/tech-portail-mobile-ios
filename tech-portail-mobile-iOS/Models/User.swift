@@ -39,7 +39,7 @@ struct User {
         
         return displayName
     }
-
+    
     public func shouldSignIn() -> Bool {
         if Auth.auth().currentUser != nil {
             return false

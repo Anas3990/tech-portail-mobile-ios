@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AudioToolbox
+import FirebaseAuth
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
     
     /* MARK: Views' declarations */
     private let logoImageView: UIImageView = {
@@ -17,8 +19,7 @@ class LoginController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+    
         return imageView
     }()
     
@@ -43,25 +44,27 @@ class LoginController: UIViewController {
     
     private let inputsContainerView: UIView = {
         let view = UIView()
+        
         view.backgroundColor = UIColor(red:0.74, green:0.74, blue:0.74, alpha:1.0)
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+    
         return view
     }()
     
     private let emailTextField: UITextField = {
         let tf = UITextField()
         
-        tf.placeholder = "Courriel"
+        tf.placeholder = NSLocalizedString("emailTextFieldPlaceholder", comment: "The placeholder for the email text field in the login screen")
         tf.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
+        
         tf.keyboardType = .emailAddress
+        tf.keyboardAppearance = .light
+        tf.returnKeyType = .continue
         tf.autocorrectionType = .no
         tf.autocapitalizationType = .none
-        tf.keyboardAppearance = .light
         
         tf.translatesAutoresizingMaskIntoConstraints = false
         
@@ -81,9 +84,14 @@ class LoginController: UIViewController {
     private let passwordTextField: UITextField = {
         let tf = UITextField()
         
-        tf.placeholder = "Mot de passe"
+        tf.placeholder = NSLocalizedString("passwordTextFieldPlaceholder", comment: "The placeholder for the password text field in the login screen")
         tf.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
+        
+        tf.addTarget(self, action: #selector(handlePasswordVisibilityToggling), for: UIControlEvents.editingChanged)
+        
         tf.isSecureTextEntry = true
+        
+        tf.returnKeyType = .done
         tf.keyboardAppearance = .light
         
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -94,9 +102,10 @@ class LoginController: UIViewController {
     private let passwordVisibilityButton: UIButton = {
         let button = UIButton()
         
+        button.isHidden = true
+        
         button.setImage(UIImage(named: "visible"), for: .normal)
         button.addTarget(self, action: #selector(handlePasswordVisibility), for: .touchUpInside)
-        button.isEnabled = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -108,8 +117,9 @@ class LoginController: UIViewController {
         
         button.backgroundColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
         
-        button.setTitle("Se connecter", for: .normal)
+        button.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.black, for: .disabled)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
         button.layer.cornerRadius = 5.0
@@ -132,9 +142,9 @@ class LoginController: UIViewController {
     private let forgotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
         
-        button.setTitle("Mot de passe oublié", for: .normal)
-        button.setTitleColor(UIColor(red:0.94, green:0.68, blue:0.31, alpha:1.0), for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
+        button.setTitle(NSLocalizedString("forgotPasswordButtonTitle", comment: "The title for the forgot password button in the login screen"), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
         button.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
     
@@ -144,15 +154,26 @@ class LoginController: UIViewController {
     private let signupButton: UIButton = {
         let button = UIButton(type: .system)
         
-        button.setTitle("Créer un compte", for: .normal)
-        button.setTitleColor(UIColor(red:0.94, green:0.68, blue:0.31, alpha:1.0), for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
+        button.setTitle(NSLocalizedString("signupButtonTitle", comment: "The title for the signup button in the login screen"), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
-        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showSignupVC), for: .touchUpInside)
         
         return button
     }()
     
+    private let bottomControlsStackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
     
     /* MARK: Views' Auto layout constraints */
     private var logoImageViewBottomAnchor: NSLayoutConstraint?
@@ -183,10 +204,15 @@ class LoginController: UIViewController {
         errorMessageLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1).isActive = true
     }
     
+    private var inputsContainerViewCenterYAnchor: NSLayoutConstraint?
+    
     private final func setupInputsContainerView() {
         // x, y, width, height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        inputsContainerViewCenterYAnchor = inputsContainerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        inputsContainerViewCenterYAnchor?.isActive = true
+        
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         inputsContainerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
@@ -195,8 +221,8 @@ class LoginController: UIViewController {
         inputsContainerView.addSubview(passwordTextField)
 
         // x, y, width, height constraints
-        emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         emailTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
+        emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2).isActive = true
         
@@ -214,7 +240,7 @@ class LoginController: UIViewController {
     }
     
     private final func setupPasswordTextFieldImageView() {
-        // Add the view to the inputs container view
+        // Add the image view to the inputs container view
         inputsContainerView.addSubview(passwordVisibilityButton)
         
         // x, y, width, height constraints
@@ -224,108 +250,192 @@ class LoginController: UIViewController {
         passwordVisibilityButton.widthAnchor.constraint(equalToConstant: 25.0).isActive = true
     }
     
+    private var loginButtonWidthAnchor: NSLayoutConstraint?
+    private var loginButtonCenterXAnchor: NSLayoutConstraint?
+    private var loginButtonTrailingAnchor: NSLayoutConstraint?
+    
     private final func setupLoginButton() {
         // x, y, width, height constraints
-        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginButtonCenterXAnchor = loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        loginButtonCenterXAnchor?.isActive = true
         loginButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 14).isActive = true
-        loginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        loginButtonWidthAnchor = loginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor)
+        loginButtonWidthAnchor?.isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        //
+        // Add the loading indicator to the button
         loginButton.addSubview(loginActivityIndicatorView)
         
         // x, y, width, height constraints
+        loginActivityIndicatorView.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor).isActive = true
         loginActivityIndicatorView.centerYAnchor.constraint(equalTo: loginButton.centerYAnchor).isActive = true
-        loginActivityIndicatorView.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor, constant: -15).isActive = true
     }
     
     private final func setupBottomStackView() {
-        // Setting up the stackview
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [forgotPasswordButton, signupButton])
-        
-        bottomControlsStackView.axis = .horizontal
-        bottomControlsStackView.distribution = .fillEqually
-        bottomControlsStackView.alignment = .leading
-        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Add the stackview to the view
-        view.addSubview(bottomControlsStackView)
+        // Adding the arranged subviews
+        self.bottomControlsStackView.addArrangedSubview(forgotPasswordButton)
+        self.bottomControlsStackView.addArrangedSubview(signupButton)
         
         // x, y, width, height constraints
-        bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        bottomControlsStackView.leadingAnchor.constraint(equalTo: inputsContainerView.leadingAnchor).isActive = true
+        bottomControlsStackView.trailingAnchor.constraint(equalTo: inputsContainerView.trailingAnchor).isActive = true
         bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    /* */
+    override internal final func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Change the view's background color
+        view.backgroundColor = UIColor(red: 0.13, green: 0.12, blue: 0.12, alpha: 1.0)
+        
+        
+        // Add subviews to the superview
+        view.addSubview(logoImageView)
+        view.addSubview(errorMessageLabel)
+        view.addSubview(inputsContainerView)
+        view.addSubview(loginButton)
+        view.addSubview(bottomControlsStackView)
+        
+        // Setup the views' constraints
+        setupLogoImageView()
+        setupErrorBoxView()
+        setupInputsContainerView()
+        setupPasswordTextFieldImageView()
+        setupLoginButton()
+        setupBottomStackView()
+        
+        // Text fields' delegates
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    override internal final func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Keyboard's interactions observers
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name:  NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    /* MARK: Keyboard and text fields managment */
+    override internal final func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    internal final func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case self.emailTextField:
+            self.emailTextField.resignFirstResponder()
+            self.passwordTextField.becomeFirstResponder()
+            
+        case self.passwordTextField:
+            self.passwordTextField.resignFirstResponder()
+            self.handleLogin()
+            
+        default:
+            break
+        }
+        
+        return true
+    }
+    
+    internal final func textFieldDidBeginEditing(_ textField: UITextField) {
+        if self.passwordTextField.text?.isEmpty != true {
+            self.passwordVisibilityButton.isHidden = false
+        }
+    }
+    
+    internal final func textFieldDidEndEditing(_ textField: UITextField) {
+        self.passwordVisibilityButton.isHidden = true
+    }
+    
+    private var inputsContainerViewBottomAnchor: NSLayoutConstraint?
+    
+    @objc private final func handleKeyboardWillShowNotification(_ notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
+            
+            UIView.animate(withDuration: 1, animations: {
+                self.inputsContainerViewCenterYAnchor?.isActive = false
+                self.inputsContainerViewBottomAnchor = self.inputsContainerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -keyboardFrame!.height)
+                self.inputsContainerViewBottomAnchor?.isActive = true
+
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc private final func handleKeyboardWillHideNotification() {
+        UIView.animate(withDuration: 1) {
+            self.inputsContainerViewBottomAnchor?.isActive = false
+            self.inputsContainerViewCenterYAnchor = self.inputsContainerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            self.inputsContainerViewCenterYAnchor?.isActive = true
+            
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+/* MARK: Buisness logic */
+extension LoginController {
+    @objc private final func handlePasswordVisibilityToggling() {
+        if passwordTextField.text != "" {
+            self.passwordVisibilityButton.isHidden = false
+        } else {
+            self.passwordVisibilityButton.isHidden = true
+        }
+    }
+    
     @objc private final func handleLogin() {
+        loginButton.setTitle(nil, for: .normal)
         loginActivityIndicatorView.startAnimating()
         
         guard let email = self.emailTextField.text else { return }
         guard let password = self.passwordTextField.text else { return }
         
-        User().signIn(withEmail: email, password: password) { (error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (nil, error) in
             if let error = error {
+                // Make the phone vibrate for a better user feedback
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+
+                //
+                self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
                 self.loginActivityIndicatorView.stopAnimating()
                 self.showErrorBox(withMessage: error.localizedDescription)
                 
                 return
             }
             
+            self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
             self.loginActivityIndicatorView.stopAnimating()
             self.present(TabBarController.fromStoryboard(), animated: true, completion: nil)
         }
     }
     
-    @objc private final func handleSignup() {
-        
+    @objc private final func showSignupVC() {
+        self.present(UINavigationController(rootViewController: SignupController()), animated: true, completion: nil)
     }
     
     @objc private final func handleForgotPassword() {
-        let alertVC = UIAlertController(title: "Mot de passe oublié", message: "Veuillez entrer votre courriel dans le champs ci-dessous.", preferredStyle: .alert)
         
-        let alertActionCancel = UIAlertAction(title: "Annuler", style: .default, handler: nil)
-        alertVC.addAction(alertActionCancel)
-        
-        alertVC.addTextField { (textField : UITextField!) -> Void in
-            textField.keyboardType = UIKeyboardType.emailAddress
-            textField.placeholder = "Votre courriel"
-        }
-        
-        // Action à effectuer si le bouton "Envoyer" est appuyé
-        let alertActionSend = UIAlertAction(title: "Envoyer", style: .default) {
-            (_) in
-            let emailTextField = alertVC.textFields![0]
-            
-            User().sendPasswordReset(withEmail: emailTextField.text!, completion: { (error) in
-                if let error = error {
-                    let alertController = UIAlertController(title: "Oups !", message: "Une erreur est survenue lors de la tentative d'envoie du courriel : \(error.localizedDescription)" , preferredStyle: .alert)
-                    
-                    let OKAction = UIAlertAction(title: "OK", style: .default)
-                    alertController.addAction(OKAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                    return
-                }
-                
-                let alertController = UIAlertController(title: "Courriel envoyé", message: "Veuillez suivre les instructions envoyées à \(String(describing: emailTextField.text)) afin de réinitialiser votre mot de passe." , preferredStyle: .alert)
-                
-                let OKAction = UIAlertAction(title: "OK", style: .default)
-                alertController.addAction(OKAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-            })
-        }
-        alertVC.addAction(alertActionSend)
-        
-        self.present(alertVC, animated: true, completion: nil)
     }
     
     @objc public final func handlePasswordVisibility() {
+        let cursorPosition = passwordTextField.selectedTextRange
+        
         if passwordVisibilityButton.image(for: .normal) == UIImage(named: "visible") {
             passwordTextField.isSecureTextEntry = false
+            
+            // Reset the cursor offset from the text
+            passwordTextField.selectedTextRange = nil
+            passwordTextField.selectedTextRange = cursorPosition!
+            
             passwordVisibilityButton.setImage(UIImage(named: "invisible"), for: .normal)
         } else {
             passwordTextField.isSecureTextEntry = true
@@ -333,35 +443,6 @@ class LoginController: UIViewController {
         }
     }
     
-    /* MARK: Keyboard managment */
-    override internal final func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Changer la couleur de fond de la vue
-        view.backgroundColor = UIColor(red: 0.13, green: 0.12, blue: 0.12, alpha: 1.0)
-        
-        
-        // Ajouter les vues à la vue parent
-        view.addSubview(logoImageView)
-        view.addSubview(errorMessageLabel)
-        view.addSubview(inputsContainerView)
-        view.addSubview(loginButton)
-        
-        // Effectuer les fonctions qui établissent les contraintes de la vue
-        setupLogoImageView()
-        setupErrorBoxView()
-        setupInputsContainerView()
-        setupPasswordTextFieldImageView()
-        setupLoginButton()
-        setupBottomStackView()
-    }
-}
-
-extension LoginController {
     private final func showErrorBox(withMessage message: String) {
         self.errorMessageLabel.text = message
         
@@ -379,6 +460,8 @@ extension LoginController {
             self.logoImageViewBottomAnchor?.isActive = true
             self.logoImageViewHeightAnchor?.isActive = true
             self.logoImageViewWidthAnchor?.isActive = true
+            
+            self.view.layoutIfNeeded()
         }, completion: nil)
     }
 }

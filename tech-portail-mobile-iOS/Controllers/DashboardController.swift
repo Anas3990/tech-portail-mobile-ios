@@ -11,9 +11,7 @@ import EventKit
 import FirebaseFirestore
 
 class DashBoardController: UITableViewController {
-    
-    private var user = User()
-    
+        
     private var upcomingEvents = [Event]()
     private var recentNews = [New]()
     

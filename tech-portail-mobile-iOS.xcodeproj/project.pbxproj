@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1101D410204FB00300ED883E /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1101D40F204FB00300ED883E /* SignupController.swift */; };
+		1101D416204FB42B00ED883E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1101D414204FB42B00ED883E /* Localizable.strings */; };
 		11127B401FF60F5100800013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11127B3F1FF60F5100800013 /* Assets.xcassets */; };
 		1134BEB51FCB6A1B00D8FBBF /* NewInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */; };
 		1134BEB71FCB73C400D8FBBF /* EventInfosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1134BEB61FCB73C400D8FBBF /* EventInfosController.swift */; };
@@ -77,6 +79,12 @@
 
 /* Begin PBXFileReference section */
 		0422C232C601DB6FD2B3126E /* Pods-tech-portail-mobile-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tech-portail-mobile-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-tech-portail-mobile-iOSUITests/Pods-tech-portail-mobile-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1101D40F204FB00300ED883E /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
+		1101D411204FB39500ED883E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1101D415204FB42B00ED883E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1101D417204FB45200ED883E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1101D418204FB7F600ED883E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1101D419204FB7F600ED883E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11127B3F1FF60F5100800013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfosController.swift; sourceTree = "<group>"; };
 		1134BEB61FCB73C400D8FBBF /* EventInfosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfosController.swift; sourceTree = "<group>"; };
@@ -218,6 +226,7 @@
 				76F0C936202F5F2B00368C99 /* Main.storyboard */,
 				11127B3F1FF60F5100800013 /* Assets.xcassets */,
 				766F150C1FC1304700A8197B /* LaunchScreen.storyboard */,
+				1101D414204FB42B00ED883E /* Localizable.strings */,
 				766F150F1FC1304700A8197B /* Info.plist */,
 				7666F5FB204DA3880001EC94 /* GoogleService-Info.plist */,
 			);
@@ -257,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				76BEABF61FC1332C00F39BC1 /* LoginController.swift */,
+				1101D40F204FB00300ED883E /* SignupController.swift */,
 				76BEABFB1FC1354D00F39BC1 /* DashboardController.swift */,
 				764455121FC13FDA0070E831 /* NewsController.swift */,
 				1134BEB41FCB6A1B00D8FBBF /* NewInfosController.swift */,
@@ -400,6 +410,8 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				es,
 			);
 			mainGroup = 766F14F71FC1304700A8197B;
 			productRefGroup = 766F15011FC1304700A8197B /* Products */;
@@ -418,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1101D416204FB42B00ED883E /* Localizable.strings in Resources */,
 				766F150E1FC1304700A8197B /* LaunchScreen.storyboard in Resources */,
 				7666F5FC204DA3880001EC94 /* GoogleService-Info.plist in Resources */,
 				11127B401FF60F5100800013 /* Assets.xcassets in Resources */,
@@ -656,6 +669,7 @@
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
 				115C27561FDA137600073372 /* EditEventController.swift in Sources */,
 				115EF0C21FF22586002AB4F1 /* AttendanceStartDatePopupController.swift in Sources */,
+				1101D410204FB00300ED883E /* SignupController.swift in Sources */,
 				7644551B1FC148830070E831 /* EventsController.swift in Sources */,
 				116751511FD8B345007A2E85 /* EditNewController.swift in Sources */,
 				76248EAF202BFA2F00B875B5 /* NewTableViewCell.swift in Sources */,
@@ -695,10 +709,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1101D414204FB42B00ED883E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1101D415204FB42B00ED883E /* Base */,
+				1101D417204FB45200ED883E /* fr */,
+				1101D419204FB7F600ED883E /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		766F150C1FC1304700A8197B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				766F150D1FC1304700A8197B /* Base */,
+				1101D411204FB39500ED883E /* fr */,
+				1101D418204FB7F600ED883E /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -710,6 +736,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -767,6 +794,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
