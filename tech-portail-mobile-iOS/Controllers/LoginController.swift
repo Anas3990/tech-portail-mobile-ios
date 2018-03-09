@@ -57,7 +57,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     private let emailTextField: UITextField = {
         let tf = UITextField()
         
-        tf.placeholder = NSLocalizedString("emailTextFieldPlaceholder", comment: "The placeholder for the email text field in the login screen")
+        tf.placeholder = NSLocalizedString("emailTextFieldPlaceholder", comment: "The placeholder for the email text field in the login/signup screen")
         tf.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
         
         tf.keyboardType = .emailAddress
@@ -84,7 +84,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     private let passwordTextField: UITextField = {
         let tf = UITextField()
         
-        tf.placeholder = NSLocalizedString("passwordTextFieldPlaceholder", comment: "The placeholder for the password text field in the login screen")
+        tf.placeholder = NSLocalizedString("passwordTextFieldPlaceholder", comment: "The placeholder for the password text field in the login/signup screen")
         tf.tintColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
         
         tf.addTarget(self, action: #selector(handlePasswordVisibilityToggling), for: UIControlEvents.editingChanged)
@@ -154,7 +154,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     private let signupButton: UIButton = {
         let button = UIButton(type: .system)
         
-        button.setTitle(NSLocalizedString("signupButtonTitle", comment: "The title for the signup button in the login screen"), for: .normal)
+        button.setTitle(NSLocalizedString("signupButtonTitle", comment: "The title for the signup button in the login/signup screen"), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
@@ -318,7 +318,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    deinit {
+    override internal func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         NotificationCenter.default.removeObserver(self, name:  NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -414,12 +416,12 @@ extension LoginController {
             
             self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
             self.loginActivityIndicatorView.stopAnimating()
-            self.present(TabBarController.fromStoryboard(), animated: true, completion: nil)
+            self.present(TabBarController(), animated: true, completion: nil)
         }
     }
     
     @objc private final func showSignupVC() {
-        self.present(UINavigationController(rootViewController: SignupController()), animated: true, completion: nil)
+        
     }
     
     @objc private final func handleForgotPassword() {

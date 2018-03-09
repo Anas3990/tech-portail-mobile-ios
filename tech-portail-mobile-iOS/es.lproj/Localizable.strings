@@ -6,8 +6,17 @@
   Copyright © 2018 Équipe Team 3990 : Tech For Kids. All rights reserved.
 */
 
+"tabBarFirstItemTitle" = "Tablero";
+"tabBarSecondItemTitle" = "Noticias";
+"tabBarThirdItemTitle" = "Eventos";
+"tabBarLastItemTitle" = "Equipo";
+
+"displayNameTextFieldPlaceholder" = "Nombre completo";
 "emailTextFieldPlaceholder" = "Correo electrónico";
 "passwordTextFieldPlaceholder" = "Contraseña";
+
 "loginButtonTitle" = "Iniciar sesión";
 "forgotPasswordButtonTitle" = "Contraseña olvidada";
 "signupButtonTitle" = "Regístrate";
+
+"dashboardViewTitleLabel" = "Tablero";

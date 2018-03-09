@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DYQ-Sg-JNh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zqd-Op-fgd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,31 +15,55 @@
             <objects>
                 <viewController id="DYQ-Sg-JNh" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WAa-Hu-oNe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t4k-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Aj2-oJ-7fM">
-                                <rect key="frame" x="97.5" y="243.5" width="180" height="180"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="RmU-fE-9Oj"/>
-                                    <constraint firstAttribute="height" constant="180" id="h1K-ee-LI6"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.13333333333333333" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="Aj2-oJ-7fM" firstAttribute="centerX" secondItem="WAa-Hu-oNe" secondAttribute="centerX" id="HTD-SU-Pf9"/>
-                            <constraint firstItem="Aj2-oJ-7fM" firstAttribute="centerY" secondItem="WAa-Hu-oNe" secondAttribute="centerY" id="I9M-H2-Tyr"/>
-                        </constraints>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3Oh-UQ-0oj"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KIO-Hi-cH2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gs2-6E-ebM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-700" y="89.505247376311857"/>
+            <point key="canvasLocation" x="-21.600000000000001" y="89.505247376311857"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U7W-LT-MQk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J3E-9o-y3s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="JFx-2a-yeC"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="2ZH-Ta-YHo">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.074509803921568626" green="0.074509803921568626" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DYQ-Sg-JNh" kind="relationship" relationship="rootViewController" id="pIc-Sd-cXh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6f-ka-VUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698" y="89"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="iJ0-S1-h6p">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zqd-Op-fgd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="tiW-6f-n5i">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.074509803920000006" green="0.074509803920000006" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="J3E-9o-y3s" kind="relationship" relationship="viewControllers" id="ksr-cX-XjJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhZ-93-dXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1384" y="89.055472263868069"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="t4k-logo" width="500" height="500"/>
-    </resources>
 </document>

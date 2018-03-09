@@ -19,12 +19,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Définir blanc comme couleur de la status bar
+        // Set the status bar color to white
         UIApplication.shared.statusBarStyle = .lightContent
         
-        // Vérifier si un utilisateur est connecté et le rediriger vers la bonne page        
+        // Ignore the Storyboard
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        // Set the app's default navigation bar color and remove its transparency
+        UINavigationBar.appearance().prefersLargeTitles = true 
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.07, green:0.07, blue:0.07, alpha:1.0)
+        UINavigationBar.appearance().isTranslucent = false
+        
+        // Remove the black bar underneath the navbar for the Menu bar
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .compact)
+        
+        //
         if User().shouldSignIn() != true {
-            window?.rootViewController = TabBarController.fromStoryboard()
+            window?.rootViewController = TabBarController()
         } else {
             window?.rootViewController = LoginController()
         }

@@ -9,22 +9,20 @@
 import UIKit
 
 class NewTableViewCell: UITableViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bodyLabel: UILabel!
     
-    func populate(new: New) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE d MMMM yyyy"
+    
+    
+    public final func populate(new: New) {
         
-        
-        //
-        dateLabel.text = "Le " + dateFormatter.string(from: new.timestamp)
-        titleLabel.text = new.title
-        bodyLabel.text = new.body
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        accessoryType = .disclosureIndicator
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -9,12 +9,57 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    static func fromStoryboard(_ storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)) -> TabBarController {
-        let controller = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+    
+    let dashboardController: UINavigationController = {
+        let controller = UINavigationController(rootViewController: DashboardController())
+        
+        controller.tabBarItem.title = NSLocalizedString("tabBarFirstItemTitle", comment: "Describes the title of the first item in the navigation bar (should be the dashboard)")
+        controller.tabBarItem.image = UIImage(named: "home")
+        
         return controller
+    }()
+    
+    let newsController: UINavigationController = {
+        let controller = UINavigationController(rootViewController: NewsController())
+        
+        controller.tabBarItem.title = NSLocalizedString("tabBarSecondItemTitle", comment: "Describes the title of the second item in the navigation bar (should be the news tab)")
+        controller.tabBarItem.image = UIImage(named: "advertising")
+        
+        return controller
+    }()
+    
+    let eventsController: UINavigationController = {
+        let controller = UINavigationController(rootViewController: EventsController())
+        
+        controller.tabBarItem.title = NSLocalizedString("tabBarThirdItemTitle", comment: "Describes the title of the third item in the navigation bar (should be the news tab)")
+        controller.tabBarItem.image = UIImage(named: "calendar")
+        
+        return controller
+    }()
+    
+    let teamController: UINavigationController = {
+        let controller = UINavigationController(rootViewController: TeamController())
+        
+        controller.tabBarItem.title = NSLocalizedString("tabBarLastItemTitle", comment: "Describes the title of the last item in the navigation bar (should be the news tab)")
+        controller.tabBarItem.image = UIImage(named: "people")
+        
+        return controller
+    }()
+    
+    private final func setupTabBar() {
+        //
+        viewControllers = [dashboardController, newsController, eventsController, teamController]
+        
+        //
+        tabBar.barTintColor = UIColor(red:0.07, green:0.07, blue:0.07, alpha:1.0)
+        tabBar.isTranslucent = false
+        tabBar.tintColor = .white
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTabBar()
     }
 }
