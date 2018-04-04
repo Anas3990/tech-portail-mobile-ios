@@ -28,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set the app's default navigation bar color and remove its transparency
         UINavigationBar.appearance().prefersLargeTitles = true 
-        UINavigationBar.appearance().barTintColor = UIColor(red:0.07, green:0.07, blue:0.07, alpha:1.0)
+        UINavigationBar.appearance().barTintColor = .black
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         UINavigationBar.appearance().isTranslucent = false
         
         // Remove the black bar underneath the navbar for the Menu bar

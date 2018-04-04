@@ -6,6 +6,9 @@
   Copyright © 2018 Équipe Team 3990 : Tech For Kids. All rights reserved.
 */
 
+"errorAlertControllerTitle" = "Oops !";
+"errorAlertControllerMessage" = "An error occured";
+
 "tabBarFirstItemTitle" = "Dashboard";
 "tabBarSecondItemTitle" = "News";
 "tabBarThirdItemTitle" = "Events";
@@ -19,5 +22,9 @@
 "forgotPasswordButtonTitle" = "Forgot password";
 "signupButtonTitle" = "Signup";
 
+"dashboardViewFirstTitleLabel" = "Latest events";
+"dashboardViewSecondTitleLabel" = "Latest news";
+"dashboardViewThirdTitleLabel" = "Workshop schedules";
+"dashboardViewFourthTitleLabel" = "My progression";
 
-"dashboardViewTitleLabel" = "Dashboard";
+"filterBarButtonItemTitle" = "Filter";

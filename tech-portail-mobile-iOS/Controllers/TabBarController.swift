@@ -51,9 +51,9 @@ class TabBarController: UITabBarController {
         viewControllers = [dashboardController, newsController, eventsController, teamController]
         
         //
-        tabBar.barTintColor = UIColor(red:0.07, green:0.07, blue:0.07, alpha:1.0)
-        tabBar.isTranslucent = false
+        tabBar.barTintColor = .black
         tabBar.tintColor = .white
+        tabBar.isTranslucent = false
         
     }
     

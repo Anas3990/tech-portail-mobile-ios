@@ -13,7 +13,7 @@ struct New {
     var body: String
     var author: [String: String]
     var timestamp: Date
-    
+
     var dictionary: [String: Any] {
         return [
             "title": title,

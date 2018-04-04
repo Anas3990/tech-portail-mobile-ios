@@ -14,12 +14,17 @@ struct Activity {
     var author: [String: String]
     var timestamp: Date
     
-    var dictionary: [String: Any] {
+    var startDate: Date?
+    var endDate: Date?
+    
+    var dictionary: [String: Any?] {
         return [
             "title": title,
             "body": body,
             "author": author,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "start_date": startDate,
+            "end_date": endDate
         ]
     }
 }
@@ -31,7 +36,10 @@ extension Activity: DocumentSerializable {
             let author = dictionary["author"] as? [String: String],
             let timestamp = dictionary["timestamp"] as? Date else { return nil }
         
-        self.init(title: title, body: body, author: author, timestamp: timestamp)
+        let startDate = dictionary["start_date"] as? Date
+        let endDate = dictionary["end_date"] as? Date
+        
+        self.init(title: title, body: body, author: author, timestamp: timestamp, startDate: startDate, endDate: endDate)
     }
 }
 

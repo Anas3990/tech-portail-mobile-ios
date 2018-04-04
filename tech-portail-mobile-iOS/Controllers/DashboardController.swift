@@ -10,12 +10,13 @@ import UIKit
 
 class DashboardController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
-    private let dashboardSectionCell: DashboardSectionCell = DashboardSectionCell()
+    private let dashboardSectionCell: DashboardCell = DashboardCell()
+    private let titles: [String] = [NSLocalizedString("dashboardViewFirstTitleLabel", comment: "Describes the view title of the DashboardController"), NSLocalizedString("dashboardViewSecondTitleLabel", comment: "Describes the view title of the DashboardController"), NSLocalizedString("dashboardViewThirdTitleLabel", comment: "Describes the view title of the DashboardController"), NSLocalizedString("dashboardViewFourthTitleLabel", comment: "Describes the view title of the DashboardController")]
     
     private lazy var viewTitleLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
         
-        label.text = NSLocalizedString("dashboardViewTitleLabel", comment: "Describes the view title of the DashboardController")
+        label.text = NSLocalizedString("dashboardViewFirstTitleLabel", comment: "Describes the view title of the DashboardController")
         label.textColor = .white
         
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -40,7 +41,7 @@ class DashboardController: UIViewController, UICollectionViewDataSource, UIColle
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        collectionView.backgroundColor = UIColor(red:0.07, green:0.07, blue:0.07, alpha:1.0)
+        collectionView.backgroundColor = .white
         
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
@@ -86,8 +87,9 @@ class DashboardController: UIViewController, UICollectionViewDataSource, UIColle
         sectionsCollectionView.dataSource = self
         sectionsCollectionView.delegate = self
 
-        sectionsCollectionView.register(DashboardSectionCell.self, forCellWithReuseIdentifier: "dashboardSectionCell")
+        sectionsCollectionView.register(DashboardCell.self, forCellWithReuseIdentifier: "dashboardSectionCell")
         sectionsCollectionView.register(NewsFeedCell.self, forCellWithReuseIdentifier: "newsFeedCell")
+        sectionsCollectionView.register(SchedulesFeedCell.self, forCellWithReuseIdentifier: "schedulesFeedCell")
         sectionsCollectionView.register(UserProgressCell.self, forCellWithReuseIdentifier: "userProgressCell")
     }
     
@@ -108,14 +110,26 @@ class DashboardController: UIViewController, UICollectionViewDataSource, UIColle
         let indexPath = IndexPath(item: Int(index), section: 0)
         
         menuBar.tabsCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        
+        setTitleForIndex(Int(index))
+    }
+    
+    public final func setTitleForIndex(_ index: Int) {
+        if let titleLabel = navigationItem.titleView
+            as? UILabel {
+            titleLabel.text = self.titles[index]
+        }
     }
     
     public final func scrollToMenuIndex(_ menuIndex: Int) {
         let indexPath = IndexPath(item: 0, section: menuIndex)
         sectionsCollectionView.scrollToItem(at: indexPath, at: [], animated: true)
+        
+        setTitleForIndex(menuIndex)
     }
-    
-    /* MARK: Collection view delegates configuration */
+}
+
+extension DashboardController {
     internal final func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 4
     }
@@ -127,13 +141,18 @@ class DashboardController: UIViewController, UICollectionViewDataSource, UIColle
     internal final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 1 {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "newsFeedCell", for: indexPath)
+        } else if indexPath.section == 2 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "schedulesFeedCell", for: indexPath)
         } else if indexPath.section == 3 {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "userProgressCell", for: indexPath)
         }
         
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "dashboardSectionCell", for: indexPath) as! DashboardSectionCell
-    }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dashboardSectionCell", for: indexPath) as! DashboardCell
+        cell.dashboardController = self
         
+        return cell
+    }
+    
     internal final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
@@ -141,4 +160,5 @@ class DashboardController: UIViewController, UICollectionViewDataSource, UIColle
     internal final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: sectionsCollectionView.frame.width, height: sectionsCollectionView.frame.height)
     }
+
 }

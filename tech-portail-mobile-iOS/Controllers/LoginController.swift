@@ -54,7 +54,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         return view
     }()
     
-    private let emailTextField: UITextField = {
+    public let emailTextField: UITextField = {
         let tf = UITextField()
         
         tf.placeholder = NSLocalizedString("emailTextFieldPlaceholder", comment: "The placeholder for the email text field in the login/signup screen")
@@ -81,7 +81,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         return view
     }()
     
-    private let passwordTextField: UITextField = {
+    public let passwordTextField: UITextField = {
         let tf = UITextField()
         
         tf.placeholder = NSLocalizedString("passwordTextFieldPlaceholder", comment: "The placeholder for the password text field in the login/signup screen")
@@ -112,7 +112,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    private let loginButton: UIButton = {
+    public let loginButton: UIButton = {
         let button = UIButton(type: .system)
         
         button.backgroundColor = UIColor(red:0.96, green:0.92, blue:0.08, alpha:1.0)
@@ -163,7 +163,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    private let bottomControlsStackView: UIStackView = {
+    public let bottomControlsStackView: UIStackView = {
         let stackView = UIStackView()
         
         stackView.axis = .horizontal
@@ -283,12 +283,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
         bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    override internal final func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         // Change the view's background color
         view.backgroundColor = UIColor(red: 0.13, green: 0.12, blue: 0.12, alpha: 1.0)
-        
         
         // Add subviews to the superview
         view.addSubview(logoImageView)
@@ -310,10 +309,12 @@ class LoginController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
     }
     
-    override internal final func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Keyboard's interactions observers
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -394,7 +395,7 @@ extension LoginController {
         }
     }
     
-    @objc private final func handleLogin() {
+    @objc public func handleLogin() {
         loginButton.setTitle(nil, for: .normal)
         loginActivityIndicatorView.startAnimating()
         
@@ -421,7 +422,8 @@ extension LoginController {
     }
     
     @objc private final func showSignupVC() {
-        
+        let signupController = UINavigationController(rootViewController: SignupController())
+        present(signupController, animated: true, completion: nil)
     }
     
     @objc private final func handleForgotPassword() {

@@ -23,7 +23,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         collectionView.delegate = self
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: "tabCell")
         
-        collectionView.backgroundColor = UIColor(red:0.07, green:0.07, blue:0.07, alpha:1.0)
+        collectionView.backgroundColor = .black
         
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
