@@ -27,6 +27,8 @@
 		116EADAC2052596F00718933 /* TeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EADAB2052596F00718933 /* TeamController.swift */; };
 		11A479B32075513E006C64E4 /* BodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A479B22075513E006C64E4 /* BodyCell.swift */; };
 		11A479B52075682B006C64E4 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A479B42075682B006C64E4 /* EventCell.swift */; };
+		11A479FF2075BB60006C64E4 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A479FE2075BB60006C64E4 /* UIExtensions.swift */; };
+		11A47A012075BB6B006C64E4 /* FirebaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A47A002075BB6B006C64E4 /* FirebaseExtensions.swift */; };
 		11C7CD1520507E31009CFC24 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7CD1420507E31009CFC24 /* DashboardController.swift */; };
 		11FFEC422051FAEE00AA8E46 /* UserProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFEC412051FAEE00AA8E46 /* UserProgressCell.swift */; };
 		11FFEC442051FFC300AA8E46 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FFEC432051FFC300AA8E46 /* Activity.swift */; };
@@ -38,7 +40,6 @@
 		766F15191FC1304700A8197B /* tech_portail_mobile_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F15181FC1304700A8197B /* tech_portail_mobile_iOSTests.swift */; };
 		766F15241FC1304700A8197B /* tech_portail_mobile_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F15231FC1304700A8197B /* tech_portail_mobile_iOSUITests.swift */; };
 		76A365481FC13A440091EA54 /* New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A365471FC13A440091EA54 /* New.swift */; };
-		76A3654C1FC13A600091EA54 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A3654B1FC13A600091EA54 /* User.swift */; };
 		76BEABF71FC1332C00F39BC1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BEABF61FC1332C00F39BC1 /* LoginController.swift */; };
 		76BEABFA1FC1341E00F39BC1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BEABF91FC1341E00F39BC1 /* TabBarController.swift */; };
 		76F0C933202F3E0400368C99 /* DocumentSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F0C932202F3E0400368C99 /* DocumentSerializable.swift */; };
@@ -103,6 +104,8 @@
 		116EADAB2052596F00718933 /* TeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamController.swift; sourceTree = "<group>"; };
 		11A479B22075513E006C64E4 /* BodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCell.swift; sourceTree = "<group>"; };
 		11A479B42075682B006C64E4 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		11A479FE2075BB60006C64E4 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		11A47A002075BB6B006C64E4 /* FirebaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExtensions.swift; sourceTree = "<group>"; };
 		11C7CD1420507E31009CFC24 /* DashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		11FFEC412051FAEE00AA8E46 /* UserProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressCell.swift; sourceTree = "<group>"; };
 		11FFEC432051FFC300AA8E46 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -123,7 +126,6 @@
 		766F15231FC1304700A8197B /* tech_portail_mobile_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tech_portail_mobile_iOSUITests.swift; sourceTree = "<group>"; };
 		766F15251FC1304700A8197B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76A365471FC13A440091EA54 /* New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = New.swift; sourceTree = "<group>"; };
-		76A3654B1FC13A600091EA54 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		76BEABF61FC1332C00F39BC1 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		76BEABF91FC1341E00F39BC1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		76F0C932202F3E0400368C99 /* DocumentSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSerializable.swift; sourceTree = "<group>"; };
@@ -186,6 +188,15 @@
 			path = "TableView cells";
 			sourceTree = "<group>";
 		};
+		11A479FD2075BB4A006C64E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				11A479FE2075BB60006C64E4 /* UIExtensions.swift */,
+				11A47A002075BB6B006C64E4 /* FirebaseExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		63765B24CDA9361D8920C7CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +248,7 @@
 				76248EA5202BF69E00B875B5 /* Views */,
 				76BEABF51FC1330800F39BC1 /* Controllers */,
 				76F0C92F202F3D7E00368C99 /* Protocols */,
+				11A479FD2075BB4A006C64E4 /* Extensions */,
 				113F472320537D1300B919B8 /* BaseCell.xib */,
 				11127B3F1FF60F5100800013 /* Assets.xcassets */,
 				766F150C1FC1304700A8197B /* LaunchScreen.storyboard */,
@@ -268,7 +280,6 @@
 		76A365441FC13A170091EA54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				76A3654B1FC13A600091EA54 /* User.swift */,
 				11FFEC432051FFC300AA8E46 /* Activity.swift */,
 				76A365471FC13A440091EA54 /* New.swift */,
 				112A326B2054D276009F1E72 /* Event.swift */,
@@ -655,12 +666,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A47A012075BB6B006C64E4 /* FirebaseExtensions.swift in Sources */,
 				1119284F207353470033375A /* SettingsController.swift in Sources */,
 				76BEABF71FC1332C00F39BC1 /* LoginController.swift in Sources */,
 				76BEABFA1FC1341E00F39BC1 /* TabBarController.swift in Sources */,
 				112A32682054C285009F1E72 /* SignupController.swift in Sources */,
 				11FFEC422051FAEE00AA8E46 /* UserProgressCell.swift in Sources */,
-				76A3654C1FC13A600091EA54 /* User.swift in Sources */,
 				11FFEC442051FFC300AA8E46 /* Activity.swift in Sources */,
 				116EADAC2052596F00718933 /* TeamController.swift in Sources */,
 				116EADAA2052594700718933 /* EventsController.swift in Sources */,
@@ -678,6 +689,7 @@
 				11A479B52075682B006C64E4 /* EventCell.swift in Sources */,
 				113F47262053917D00B919B8 /* SchedulesFeedCell.swift in Sources */,
 				1104619B2050D3240060C018 /* BaseCell.swift in Sources */,
+				11A479FF2075BB60006C64E4 /* UIExtensions.swift in Sources */,
 				1104619920509BF50060C018 /* DashboardCell.swift in Sources */,
 				764455131FC13FDA0070E831 /* NewsController.swift in Sources */,
 				11C7CD1520507E31009CFC24 /* DashboardController.swift in Sources */,

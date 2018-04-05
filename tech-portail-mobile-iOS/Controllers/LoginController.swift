@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import FirebaseAuth
+import FirebaseFirestore
 
 class LoginController: UIViewController, UITextFieldDelegate {
     
@@ -396,18 +397,17 @@ extension LoginController {
     }
     
     @objc public func handleLogin() {
-        loginButton.setTitle(nil, for: .normal)
-        loginActivityIndicatorView.startAnimating()
-        
         guard let email = self.emailTextField.text else { return }
         guard let password = self.passwordTextField.text else { return }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (nil, error) in
+        self.loginButton.setTitle(nil, for: .normal)
+        self.loginActivityIndicatorView.startAnimating()
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 // Make the phone vibrate for a better user feedback
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 
-                //
                 self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
                 self.loginActivityIndicatorView.stopAnimating()
                 self.showErrorBox(withMessage: error.localizedDescription)
@@ -415,9 +415,31 @@ extension LoginController {
                 return
             }
             
-            self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
-            self.loginActivityIndicatorView.stopAnimating()
-            self.present(TabBarController(), animated: true, completion: nil)
+            if let user = user {
+                user.getProfile(completion: { (data, error) in
+                    if let error = error {
+                        // Make the phone vibrate for a better user feedback
+                        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                        
+                        self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
+                        self.loginActivityIndicatorView.stopAnimating()
+                        self.showErrorBox(withMessage: error.localizedDescription)
+                        
+                        return
+                    }
+                    
+                    if let userProfile = data {
+                        
+                    } else {
+                        // Make the phone vibrate for a better user feedback
+                        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                        
+                        self.loginButton.setTitle(NSLocalizedString("loginButtonTitle", comment: "The title for the login button in the login screen"), for: .normal)
+                        self.loginActivityIndicatorView.stopAnimating()
+                        self.showErrorBox(withMessage: "Nous n'avons pas pu récupérer les données de l'utilisateur")
+                    }
+                })
+            }
         }
     }
     
@@ -469,4 +491,3 @@ extension LoginController {
         }, completion: nil)
     }
 }
-

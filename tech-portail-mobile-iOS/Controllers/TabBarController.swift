@@ -54,7 +54,6 @@ class TabBarController: UITabBarController {
         tabBar.barTintColor = .black
         tabBar.tintColor = .white
         tabBar.isTranslucent = false
-        
     }
     
     override func viewDidLoad() {

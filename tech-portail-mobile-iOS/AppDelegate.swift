@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import Firebase
 
 @UIApplicationMain
@@ -39,10 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .compact)
         
         //
-        if User().shouldSignIn() != true {
+        if Auth.auth().currentUser != nil {
             window?.rootViewController = TabBarController()
         } else {
             window?.rootViewController = LoginController()
+        }
+        
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print(error.localizedDescription)
         }
         
         return true
@@ -69,5 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 }
 

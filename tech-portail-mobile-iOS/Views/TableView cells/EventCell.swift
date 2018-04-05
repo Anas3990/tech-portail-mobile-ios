@@ -14,6 +14,9 @@ class EventCell: UITableViewCell {
     private let timestampLabel: UILabel = {
         let label = UILabel()
         
+        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.textAlignment = .right
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -32,7 +35,6 @@ class EventCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "Test"
         label.font = UIFont.boldSystemFont(ofSize: 15.0)
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,13 +72,13 @@ class EventCell: UITableViewCell {
         addSubview(detailStackView)
         
         // x, y, width and height constraints
-        timestampLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        timestampLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10.0).isActive = true
         timestampLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        timestampLabel.widthAnchor.constraint(equalToConstant: 70.0).isActive = true
-        timestampLabel.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        timestampLabel.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        timestampLabel.heightAnchor.constraint(equalTo: detailStackView.heightAnchor).isActive = true
         
         // x, y, width and height constraints
-        blackBandView.leadingAnchor.constraint(equalTo: timestampLabel.trailingAnchor).isActive = true
+        blackBandView.leadingAnchor.constraint(equalTo: timestampLabel.trailingAnchor, constant: 10.0).isActive = true
         blackBandView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         blackBandView.widthAnchor.constraint(equalToConstant: 3.0).isActive = true
         blackBandView.heightAnchor.constraint(equalTo: detailStackView.heightAnchor).isActive = true
